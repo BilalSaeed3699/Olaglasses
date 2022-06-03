@@ -1,0 +1,341 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblUserPrescription
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    @if (Model.PrescriptionID > 0)
+                    {
+                        <h2 class="breadcrumb-title">Edit Prescription Info</h2>
+                    }
+                    else
+                    {
+                         <h2 class="breadcrumb-title">Add Prescription Info</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="doc-review review-listing custom-edit-service">
+
+
+    <!-- Add Blog -->
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("Create", "Prescription", FormMethod.Post, new
+            {
+                enctype = "multipart/form-data"
+            }))
+            {
+                <form>
+
+                    <input type="hidden" name="PrescriptionID" value="@Model.PrescriptionID">
+                    <input type="hidden" name="UserID" value="@Model.UserID">
+                    <div class="service-fields">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="change-avatar">
+                                    <div class="profile-img">
+                                        <img src=@Model.PrescriptionImage alt="User Image" id="PrescriptionImage">
+                                        <input type="text" name="PrescriptionImage" value="@Model.PrescriptionImage" hidden>
+                                    </div>
+                                    <div class="upload-img">
+                                        <div class="change-photo-btn">
+                                            <span><i class="fa fa-upload"></i> Upload Prescription Photo</span>
+                                            <input type="file" class="upload" id="Image" name="Image" onchange="show(this)">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group" style="margin-top: 25%;">
+                                    <h5>Left Eye</h5>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>SPH</label>
+                                    <select class="form-control select" name="l_sph">
+                                        @foreach (var item in ViewBag.SPH)
+                                        {
+                                            if (Model.l_sph == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>CYL</label>
+                                    <select class="form-control select" name="l_cyl">
+                                        @foreach (var item in ViewBag.CYL)
+                                        {
+                                            if (Model.l_cyl == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>AXIS</label>
+
+                                    <input class="form-control" type="text" name="l_axis" id="l_axis" value="@Model.l_axis">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>ADD</label>
+                                    <select class="form-control select" name="l_add">
+                                        @foreach (var item in ViewBag.ADD)
+                                        {
+                                            if (Model.l_add == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group" style="margin-top: 25%;">
+                                    <h5>Right Eye</h5>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>SPH</label>
+                                    <select class="form-control select" name="r_sph">
+                                        @foreach (var item in ViewBag.SPH)
+                                        {
+                                            if (Model.r_sph == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>CYL</label>
+                                    <select class="form-control select" name="r_cyl">
+                                        @foreach (var item in ViewBag.CYL)
+                                        {
+                                            if (Model.r_cyl == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>AXIS</label>
+
+                                    <input class="form-control" type="text" name="l_axis" id="l_axis" value="@Model.r_axis">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>ADD</label>
+                                    <select class="form-control select" name="r_add">
+                                        @foreach (var item in ViewBag.ADD)
+                                        {
+                                            if (Model.r_add == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+               
+
+                    <div class="service-fields">
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group" style="margin-top: 25%;">
+                                    <h5>Pupillary Distance (PD) </h5>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>PD</label>
+
+                                    <select class="form-control select" name="PD">
+                                        @foreach (var item in ViewBag.PD)
+                                        {
+                                            if (Model.PD == Convert.ToDouble(item.TypeValue))
+                                            {
+                                                <option selected>@item.TypeValue</option>
+                                            }
+                                            else
+                                            {
+                                                <option> @item.TypeValue</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                          
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group" style="margin-top: 25%;">
+                                    <h5>Who is the prescription for?</h5>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>First Name<span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="text" name="Fname" id="Fname" value="@Model.Fname" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Last Name<span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="text" name="Lname" id="Lname" value="@Model.Lname" required="">
+                                </div>
+                            </div>
+                            @*<div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Save Prescription</label>
+
+                                    <select class="form-control select" name="prescription">
+
+                                        @if (Model.prescription == "Yes")
+                                        {
+                                            <option selected>Yes</option>
+                                            <option>No</option>
+
+                                        }
+                                        @if (Model.prescription == "No")
+                                        {
+                                            <option>Yes</option>
+                                            <option selected>No</option>
+                                        }
+                                        else
+                                        {
+                                            <option selected>Yes</option>
+                                            <option>No</option>
+                                        }
+
+                                    </select>
+                                </div>
+                            </div>*@
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <label>Date of Prescription<span class="text-danger">*</span></label>
+                                    
+                                    <input class="form-control" type="date" name="prescriptionDate" id="prescriptionDate" value="@Model.prescriptionDate.Value.ToString("yyyy-MM-dd")" required="">
+                                </div>
+                            </div>
+
+                           
+                            <div class="col-md-4" style="margin-top:3%">
+                                <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
+                                <a href="@Url.Action("Index","Prescription",new { id=@Model.UserID})"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            }
+        </div>
+    </div>
+    <!-- /Add Blog -->
+
+</div>
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#PrescriptionImage').attr('src', e.target.result);
+
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#perscription').addClass('active');
+
+    });
+</script>
+
+

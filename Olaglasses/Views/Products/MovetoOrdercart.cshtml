@@ -1,0 +1,600 @@
+﻿
+@{
+    ViewBag.Title = "MovetoOrdercart";
+}
+
+<!-- ::::products-hero-aria  start:::::: -->
+<section class="products-wishlist-hero-aria">
+
+
+    <div class="container-fluid custum-pd ">
+        <div class="products-wishlist-banner">
+            <h2>View Cart</h2>
+            
+        </div>
+    </div>
+
+</section>
+<!-- ::::products-hero-aria  end:::::: -->
+<!-- ::::my-cart-area  start:::::: -->
+<section class="my-cart-area">
+    <!--  -->
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/Bg-left-2.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/Bg-right-2.png" alt="img">
+        </div>
+    </div>
+    <!--  -->
+    <div class="container custum-pd2">
+        <!-- <div class="my-cart-section"> -->
+        <h3>my cart</h3>
+        @{int Subtotatal = 0;}
+        @{int UVProtectionvalue = 0;}
+        @foreach (var item in ViewBag.Usercartdetails)
+        {
+            <div class="my-cart-bg">
+                <!-- <div class="my-cart-item">
+                </div> -->
+                <div class="my-cart-item">
+
+                    <div class="my-cart-bg-product d-flex flex-wrap">
+                        <div class="product-img ">
+                            <img src="@item.ProductImagePath" alt="img" style="width:314px;height:155px">
+
+                        </div>
+
+                        @if (item.Productcategory != "Accessory")
+                        {
+                            <div class="product-details">
+                                <h4>@item.Title</h4>
+                                <div class="siz-flex">
+                                    <ul>
+                                        <li><strong> Size</strong></li>
+                                        <li> : </li>
+                                        <li> @item.Size </li>
+                                    </ul>
+
+
+
+                                    <ul>
+
+                                        <li><strong>Lens</strong></li>
+                                        <li> : </li>
+                                        <li>
+
+
+                                            <div class="dropdown ">
+                                                @if (item.UVProtection == "on")
+                                                {
+                                                    UVProtectionvalue = 20;
+                                                }
+                                                else
+                                                {
+                                                    UVProtectionvalue = 0;
+                                                }
+                                                @if (item.LensType == "Standard")
+                                                {
+                                                    Subtotatal += Convert.ToInt32(39) + Convert.ToInt32(item.Price) * @Convert.ToInt32(item.Quantity) + Convert.ToInt32(UVProtectionvalue);
+                                                    <input id='@item.Cartid-txtlensamount' value="39" hidden/>
+                                                    <input onclick="updatevalue('SL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" name="@item.Cartid-lens" class='@item.Cartid-lens' type="radio" checked><label>Standard Lens ($39)</label>
+                                                    <input onclick="updatevalue('EL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',49,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" name="@item.Cartid-lens" class='@item.Cartid-lens' type="radio"> <label>Enhanced Lens ($49)</label>
+                                                }
+                                                else
+                                                {
+                                                    Subtotatal += Convert.ToInt32(49) + Convert.ToInt32(item.Price) * @Convert.ToInt32(item.Quantity);
+                                                    <input id='@item.Cartid-txtlensamount' value="49" hidden/>
+                                                    <input onclick="updatevalue('SL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" name="@item.Cartid-lens" class='@item.Cartid-lens' type="radio"><label>Standard Lens ($39)</label> 
+                                                    <input onclick="updatevalue('EL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',49,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" name="@item.Cartid-lens" class='@item.Cartid-lens' type="radio" checked> <label>Enhanced Lens ($49)</label>
+                                                }
+
+
+
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                    <ul>
+                                        <li><strong>Vision</strong></li>
+                                        <li> : </li>
+                                        <li>
+
+
+                                            <div class="dropdown ">
+
+                                                @if (item.VisionType == "Reading")
+                                                {
+                                                    <input name="@item.Cartid-vision" class='@item.Cartid-vision' type="radio" onclick="updatevalue('RE',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')"   checked><label>Reading</label>
+                                                }
+                                                else
+                                                {
+                                                    <input  name="@item.Cartid-vision" class='@item.Cartid-vision' type="radio" onclick="updatevalue('DI',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" ><label>Reading</label>
+                                                }
+
+
+                                                
+                                                @if (item.VisionType == "Distance")
+                                                {
+                                                    <input name="@item.Cartid-vision" class='@item.Cartid-vision' type="radio" onclick="updatevalue('RE',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')"  checked><label>Distance</label>
+                                                }
+                                                else
+                                                {
+                                                    <input name="@item.Cartid-vision" class='@item.Cartid-vision' type="radio" onclick="updatevalue('DI',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',39,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')"  ><label>Distance</label>
+                                                }
+
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="lien">
+
+                                    <label class="lien-chackbox">
+                                        UV Protection ($20)
+                                        @if (item.UVProtection == "on")
+                                        {
+                                            <input id="@item.Cartid-UVProtection" onclick="updatevalue('UV',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',0,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" type="checkbox" checked="checked">
+                                            <span class="checkmark"></span>
+                                        }
+                                        else
+                                        {
+                                            <input id="@item.Cartid-UVProtection" onclick="updatevalue('UV',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',0,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')" type="checkbox">
+                                            <span class="checkmark"></span>
+                                        }
+
+                                    </label>
+
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                    <div class="product-details">
+                        <h4>@item.Title</h4>
+                        <input id="@item.Cartid-UVProtection" hidden />
+                        <input id='@item.Cartid-txtlensamount' value="0" hidden />
+                        @{Subtotatal += @Convert.ToInt32(@item.Price) *@Convert.ToInt32(item.Quantity);}
+                        <div class="siz-flex">
+                            <ul>
+                                <li><strong> Size</strong></li>
+                                <li> : </li>
+                                <li> @item.Size </li>
+                            </ul>
+                        </div>
+                    </div>
+                        }
+
+                    </div>
+
+
+
+                </div>
+                <div class="my-cart-item ">
+                    <div class="number-p">
+                        <button class="min minus"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown(),updatevalue('QL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',0,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')">
+                            -
+                        </button>
+                        <input id="@item.Cartid-txtquantity" class="quantity number" min="1" name="quantity" value="@item.Quantity" type="number" >
+                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp() ,updatevalue('QL',@item.Cartid,'@item.Cartid-UVProtection','@item.Cartid-IndividualTotalAmount',0,'@item.Cartid-txtlensamount','@item.Cartid-unitprice','@item.Cartid-totalprice','@item.Cartid-txtquantity')"
+                                class="plus max">
+                            +
+                        </button>
+                    </div>
+
+                </div>
+                <div class="my-cart-item ">
+                    <div class="unit">
+                        <span>
+                            unit price
+                        </span>
+                        <h5>
+                            <input hidden id='@item.Cartid-unitprice' value="@item.Price" />
+                            @item.Price
+                        </h5>
+                    </div>
+
+                </div>
+                <div class="my-cart-item ">
+                    <div class="unit">
+                        <span>
+                            Totalt price
+                        </span>
+                        @{int Totalprice = 0;}
+                        @{int UVProtection = 0;}
+
+
+
+                        @if (@item.UVProtection == "on")
+                        {
+                            UVProtection = 20;
+                        }
+                        else
+                        {
+                            UVProtection = 0;
+                        }
+
+
+                        @if (item.Productcategory != "Accessory")
+                        {
+                            if (item.LensType == "Standard")
+                            {
+                                Totalprice = @Convert.ToInt32(item.Price) * @Convert.ToInt32(item.Quantity) + @Convert.ToInt32(39) + @Convert.ToInt32(UVProtection);
+
+
+
+                            }
+                            else
+                            {
+                                Totalprice = @Convert.ToInt32(item.Price) * @Convert.ToInt32(item.Quantity) + @Convert.ToInt32(49);
+
+
+                            }
+                        }
+                        else
+                        {
+                            Totalprice = @Convert.ToInt32(item.Price) * @Convert.ToInt32(item.Quantity);
+                        }
+
+                        <input class="classtotalprice" id='@item.Cartid-IndividualTotalAmount' value="@Totalprice" hidden/>
+                        <h5 id='@item.Cartid-totalprice'>
+                            $@Totalprice
+
+                        </h5>
+
+                    </div>
+                </div>
+
+                <div class="my-cart-item ">
+                    <a href="@Url.Action("Deletecart","Products",new {Cartid=@item.Cartid })">
+                        <img class="close-icon img-fluid" src="~/assets/img/vew-chart-clos.png" alt="img">
+                    </a>
+                </div>
+            </div>
+        }
+
+
+        
+
+
+        <div class="coupon">
+            <form>
+
+                <input id="txtcouponcode" type="text" placeholder="Enter coupon Code">
+                <button id="btnapplycoupon" onclick="Applycoupon('A')" type="button">Apply coupon</button>
+                <button id="btnreversecoupon" onclick="Applycoupon('R')" type="button" style="background-color:#00B0DC !important;display:none">Reverse coupon</button>
+                <h4 id="couponerror" style="color:red;display:none">Invalid Coupon</h4>
+            </form>
+
+            @*<a class="ccart-button" href="#">update cart</a>*@
+        </div>
+        <!-- </div> -->
+    </div>
+</section>
+<!-- ::::my-cart-area end:::::: -->
+<!-- ::::  Indepenend start:::::: -->
+<section class="indepenend">
+    <!--  -->
+    <!--  -->
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/Bg-right-1.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/Bg-left-1.png" alt="img">
+        </div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div class="container custum-pd2">
+        <h2>Indepenend accsories Selection</h2>
+        <div class="indepenend-flex d-flex justify-content-between flex-wrap">
+            <div class="product-gallary">
+                <div class="indepenend-left"></div>
+                <div class="indepenend-left-item">
+                    @foreach (var item in ViewBag.ProductList)
+                    {
+                        <div class="box">
+                            <div class="img">
+                                <img class="img-fluid" src="@item.ImagePath" alt="img">
+                            </div>
+                            <div class="box-details">
+                                <h6>@item.Title</h6>
+                                <div class="box-cart-area">
+                                    <span>$@item.Price</span>
+                                    @if (Convert.ToInt32(ViewBag.UserID) != 0)
+                                    {
+                                        <a class="ccart-button" href="@Url.Action("AddtoCart", "Products", new { ProductID = @item.GlassID, price = @item.Price, Name = @item.Title, Image = @item.ImagePath, color = "zz", size = "No size", type = 0, UserID = @ViewBag.UserID })">Add to cart</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="ccart-button" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-toggle="tooltip" title="Login">Add to cart</a>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="order-details">
+                <div class="indepenend-right">
+                    <h4>Summery</h4>
+
+                    <span>Items: 2</span>
+                    <div class="subtotal">
+                        <p>Subtotal:</p>
+                        <span id="spandisplaysubtotal">$@Subtotatal</span>
+                    </div>
+                    <div class="subtotal">
+                        <p>Tax <small>(5%):</small></p>
+                        <span id="spandisplaytax">%</span>
+                    </div>
+
+                    <div class="subtotal">
+                        <p>Shipping Charges:</p>
+                        <input id="txtshippingcharges" value="9" hidden />
+                        <span id="spandisplayshipping">$9</span>
+                    </div>
+
+                    <div class="subtotal">
+                        <p>Disount: <small id="discountpercentage"> </small></p>
+                       
+                        <span id="spandisplaydiscountamount">%</span>
+                    </div>
+
+                    <div class="Ordertotal d-flex justify-content-between align-items-center flex-wrap">
+
+                        <h3>Ordertotal</h3>
+                        <h3 id="lblordertotal">$164.98</h3>
+
+                    </div>
+                    <p>shipping, tax and shipping protection not included</p>
+                    <div class="payments">
+                        <img src="~/assets/img/pay-logo.png" alt="img">
+                        <p>
+                            Pay in 4 interest-free payments
+                            of $19.48 .
+                        </p>
+                    </div>
+                    <form action="@Url.Action("Index1","PaymentProcess")" method="post">
+                        <input id="txtdiscountamount" value="0" name="txtdiscountamount" hidden />
+                        <input value="@Subtotatal" id="txtsubtotal" name="txtsubtotal" hidden />
+                        <input value="@ViewBag.UserID" id="id" name="id" hidden />
+                        <input value="@Subtotatal" id="txtordertotal" name="txtordertotal" hidden />
+                        @if (Convert.ToInt32(ViewBag.UserID) != 0)
+                        {
+
+                            <button type="submit" class="proceed-btn d-block" style="width: 100%;">  Proceed to checkout</button>
+
+                        }
+                        else
+                        {
+
+                            <a class="proceed-btn d-block" data-bs-toggle="modal" data-bs-target="#exampleModal">Proceed to checkout</a>
+
+
+
+                        }
+                    </form>
+                   
+                    @*<div class="paypal-flex ">
+            <a class="paypal" href="#"><img src="~/assets/img/PayPal2.png" alt="img"></a>
+
+        </div>*@
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ::::  Indepenend end:::::: -->
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+
+
+
+
+    function updatevalue(updatetype,cartid,UVProtectionstatus, IndividualTotalAmount, Lensstatusvaue, LensPrice, UnitPrice, TotalPrice, TotalQuantity) {
+       
+
+        var UVProtection = 0;
+        var IsUVProtectionstatus = $("#" + UVProtectionstatus).is(':checked');
+
+
+        var Quantity = document.getElementById(TotalQuantity).value;
+        var price = document.getElementById(UnitPrice).value;
+        var txtLensPrice = document.getElementById(LensPrice).value;
+        var Lens = 0;
+
+        
+        if (parseInt(Lensstatusvaue) > 0) {
+            document.getElementById(LensPrice).value = Lensstatusvaue;
+            Lens = parseInt(Lensstatusvaue);
+        }
+        else {
+
+            Lens = txtLensPrice;
+        }
+
+
+        var Result;
+
+
+        if (IsUVProtectionstatus == true) {
+            UVProtection = 20;
+            /*            result = result + parseInt(UVProtection);*/
+
+        }
+        else if (IsUVProtectionstatus == false) {
+            UVProtection = 0;
+
+        }
+
+        result = parseInt(Quantity) * parseInt(price);
+        result = result + parseInt(Lens) + parseInt(UVProtection);
+
+        if (!isNaN(result)) {
+            document.getElementById(TotalPrice).innerHTML = "$" + result;
+        }
+
+
+        document.getElementById(IndividualTotalAmount).value = result;
+
+        //Get sum of all individual product/rows from user add to cart (price * quantity + lens value (39 or 49))
+        var sum = 0;
+        $(".classtotalprice").each(function () {
+            if (!isNaN(this.value) && this.value.length != 0) {
+                sum += parseFloat(this.value);
+            }
+        });
+
+        document.getElementById("spandisplaysubtotal").innerHTML = "$" + sum;
+        $("#txtsubtotal").val(sum);
+
+
+        Calculateamounts();
+        var Subtotalvalue = $("#txtsubtotal").val();
+        var Tax = 0;
+        Tax = parseFloat((parseInt(Subtotalvalue) / 100) * 5);
+        var discount = $("#txtdiscountamount").val();
+         $.ajax({
+
+                url: '@Url.Action("Updatecart", "Products")',
+                type: "POST",
+                dataType: 'JSON',
+             data: {
+                 updatetype: updatetype, cartid: cartid, quantity: Quantity, subtotal: result, Shippingamount: $("#txtshippingcharges").val(), TaxAmount: Tax
+                 , Discount: discount
+             },
+                success: function (result) {
+
+
+                }
+            });
+
+       
+    }
+    $(document).ready(function () {
+        Calculateamounts();
+    });
+
+    function Calculateamounts() {
+        /*Get sub total amount*/
+        var Subtotalvalue = $("#txtsubtotal").val();
+
+    /*Calculate Tax*/
+        var Tax = 0;
+        Tax = parseFloat((parseInt(Subtotalvalue) / 100) * 5);
+        document.getElementById("spandisplaytax").innerHTML = "$" + Tax;
+
+        /*Get Shipping charges*/
+        var Shippingcharges = $("#txtshippingcharges").val();
+
+        var GrandTotal = 0;
+
+        GrandTotal = parseFloat(Subtotalvalue) + parseFloat(Tax) + parseFloat(Shippingcharges);
+
+
+        document.getElementById("lblordertotal").innerHTML ="$"+GrandTotal;
+
+        $("#txtordertotal").val(GrandTotal);
+    }
+
+    function Applycoupon(Type)
+    {
+
+        var Discountamount = 0;
+        var Grandtotal = $("#txtordertotal").val();
+        var couponcode = $("#txtcouponcode").val();
+
+        /*Get sub total amount*/
+        var Subtotalvalue = $("#txtsubtotal").val();
+
+        /*Calculate Tax*/
+        var Tax = 0;
+        Tax = parseFloat((parseInt(Subtotalvalue) / 100) * 5);
+        document.getElementById("spandisplaytax").innerHTML = "$" + Tax;
+
+        /*Get Shipping charges*/
+        var Shippingcharges = $("#txtshippingcharges").val();
+
+
+        if (Type == 'A') {
+            $.ajax({
+
+                url: '@Url.Action("Applycoupon", "Products")',
+                type: "POST",
+                dataType: 'JSON',
+                data: { Couponcode: couponcode },
+                success: function (result) {
+                    if (result != "-1") {
+
+                        Discountamount = parseFloat(Subtotalvalue) / 100 * parseFloat(result);
+                        document.getElementById("discountpercentage").innerHTML = '(' + result + '%)';
+
+                        $("#txtdiscountamount").val(Discountamount.toFixed(1));
+                        document.getElementById("spandisplaydiscountamount").innerHTML = parseFloat(Discountamount).toFixed(1);
+                        Grandtotal = parseFloat(Subtotalvalue) - parseFloat(Discountamount);
+                       /* $("#txtordertotal").val(Grandtotal);*/
+                       // document.getElementById("lblordertotal").innerHTML = "$" + Grandtotal.toFixed(1);
+                        $("#couponerror").fadeOut();
+
+
+                        $("#btnapplycoupon").fadeOut();
+                        $("#btnreversecoupon").fadeIn();
+
+
+                        Grandtotal = parseFloat(Grandtotal) + parseFloat(Tax) + parseFloat(Shippingcharges);
+                        
+                        $("#txtordertotal").val(Grandtotal);
+                        //$("#txtdiscountamount").val(0);
+                        //$("#txtcouponcode").val("");
+                        document.getElementById("lblordertotal").innerHTML = "$" + Grandtotal.toFixed(1);
+
+                    }
+                    else {
+
+                        $("#couponerror").fadeIn();
+                        $("#couponerror").fadeOut(8000);
+                    }
+
+                }
+            });
+
+
+        }
+        else {
+
+            $("#btnreversecoupon").fadeOut();
+            $("#btnapplycoupon").fadeIn();
+
+
+
+
+
+            Grandtotal = parseFloat(Grandtotal) + parseFloat($("#txtdiscountamount").val());
+
+            /*Calculate Tax*/
+            var Tax = 0;
+            Tax = parseFloat((parseInt(Subtotalvalue) / 100) * 5);
+            document.getElementById("spandisplaytax").innerHTML = "$" + Tax;
+
+            /*Get Shipping charges*/
+            var Shippingcharges = $("#txtshippingcharges").val();
+
+
+
+            GrandTotal = Grandtotal + parseFloat(Tax) + parseFloat(Shippingcharges);
+            $("#txtordertotal").val(Grandtotal.toFixed(1));
+            $("#txtdiscountamount").val(0);
+            $("#txtcouponcode").val("");
+            document.getElementById("lblordertotal").innerHTML = "$" + Grandtotal.toFixed(1);
+
+        }
+
+    }
+</script>

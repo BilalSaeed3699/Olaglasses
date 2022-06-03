@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+@{ 
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ola Optical</title>
+    <link rel="shortcut icon" href="~/assets/img/fav-ivon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <link rel="stylesheet" href="~/Dashboardassets/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/datatables/datatables.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Dashboardassets/assets/css/style.css">
+
+    <script src="~/Dashboardassets/assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/Dashboardassets/assets/js/popper.min.js"></script>
+    <script src="~/Dashboardassets/assets/js/bootstrap.min.js"></script>
+
+    <!-- Sticky Sidebar JS -->
+    <script src="~/Dashboardassets/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="~/Dashboardassets/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+    <!-- Circle Progress JS -->
+    <script src="~/Dashboardassets/assets/js/circle-progress.min.js"></script>
+
+
+</head>
+<body>
+    <div>
+        <div class="navigation">
+            <div class="mb-15 col-md-12" style="background-color:@Context.Request.Cookies["_CouponsColor"].Value">
+
+                <p style="margin-left:2%; margin-right:2%">@Context.Request.Cookies["_CouponsDescription"].Value <a style="float:right" href="@Context.Request.Cookies["_CouponsLink"].Value" target="_blank">@Context.Request.Cookies["_CouponsText"].Value</a></p>
+
+            </div>
+
+            <nav class="navbar navbar-expand-lg menu">
+                <div class="container-fluid custum-pd  ">
+                    <!-- ::::navbar-logo:::::: -->
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                        <img class="img-fluid" src="~/assets/img/Logo.png" alt="log">
+                    </a>
+                    <!-- ::::navbar-logo end:::::: -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- ::::navbar menu-list:::::: -->
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a id="index" class="nav-link " aria-current="page" href="@Url.Action("index","Home")">
+                                    Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="Eyeglassess" class="nav-link " aria-current="page" href="@Url.Action("eyeglassess","Home")">
+                                    eyeglassess
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="Sunglassess" class="nav-link" href="@Url.Action("Sunglassess","Home")">Sunglassess</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="Accessories" class="nav-link" href="@Url.Action("Accessories","Home")">Accessories</a>
+                            </li>
+                            @*<li class="nav-item">
+                            <a id="OurStory" class="nav-link" href="@Url.Action("OurStory","Home")">Our Story</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="News" class="nav-link" href="@Url.Action("News","Home")">News</a>
+                        </li>*@
+                            <li class="nav-item">
+                                <a id="Contact" class="nav-link" href="@Url.Action("Contact","Home")">Contact Us</a>
+                            </li>
+                        </ul>
+                        <!-- ::::navbar menu-list end:::::: -->
+                        <!-- ::::navbarnav-rightt:::::: -->
+                        <div class="nav-right d-flex flex-end align-items-center">
+                            <ul class="list-inline">
+                                @if (Session["Email"] != null)
+                                {
+                    <li class="list-inline-item" id="fav" data-toggle="tooltip" title="Favourite">
+                        <a href="@Url.Action("Favourites","Dashboard",new { id = Convert.ToInt32(Session["UserID"]) })">
+                            <img class="peple-icon" src="~/assets/img/heart-like.svg"
+                                 alt="">
+                        </a>
+                    </li> }
+                                else
+                                {
+                    <li class="list-inline-item" id="fav" data-toggle="tooltip" title="Favourite">
+                        <a href="#">
+                            <img class="peple-icon" src="~/assets/img/heart-icon.svg"
+                                 alt="">
+                        </a>
+                    </li>}
+                                @if (Session["Email"] != null)
+                                {
+                    <li class="list-inline-item" id="user" data-toggle="tooltip" title="Account">
+                        <a href="@Url.Action("Index","Dashboard")">
+                            <img class="peple-icon" src="~/assets/img/pepole-icon.svg"
+                                 alt="img">
+                        </a>
+                    </li>
+                                    <li class="list-inline-item" id="user" data-toggle="tooltip" title="Logout">
+                                        <a href="@Url.Action("Logout","Account")">
+                                            <img class="peple-icon" src="~/assets/img/logout.svg"
+                                                 alt="img">
+                                        </a>
+
+
+                                    </li> }
+                                                else
+                                                {
+                                    <li class="list-inline-item" id="user">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-toggle="tooltip" title="Login">
+                                            <img class="peple-icon" src="~/assets/img/pepole-icon.svg"
+                                                 alt="img">
+                                        </a>
+                                    </li>}
+                                <li class="list-inline-item active" id="cart">
+                                    <a href="@Url.Action("MovetoOrdercart","Products", new { id=Convert.ToInt32(Session["UserID"])})" data-toggle="tooltip" title="Cart"> <img class="cart-icon" src="~/assets/img/cart-icon.svg" alt="img"></a>
+                                </li>
+                            </ul>
+                            @*<button class="virtual-btn">
+                            <img src="~/assets/img/virtual-icon.svg" alt="img">
+                            Virtual Try
+                        </button>*@
+                        </div>
+                        <!-- ::::navbarnav-rightt end:::::: -->
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <div class="main-wrapper">
+            <br>
+
+            <div class="breadcrumb-bar">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-md-12 col-12">
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                @*<ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                    </ol>*@
+                            </nav>
+                            <h2 class="breadcrumb-title">My Account</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Breadcrumb -->
+            <!-- Page Content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+                            <!-- Profile Sidebar -->
+                            <div class="profile-sidebar">
+                                <div class="widget-profile pro-widget-content">
+                                    <div class="profile-info-widget">
+                                        <a href="#" class="booking-doc-img">
+                                            <img src="@Session["UserImage"]" alt="User Image">
+                                        </a>
+                                        <div class="profile-det-info">
+                                            <h3>@Session["userName"]</h3>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-widget">
+                                    <nav class="dashboard-menu nav">
+                                        <ul>
+                                            <li class="active" id="dashboard">
+                                                <a href="@Url.Action("Index","Dashboard")">
+                                                    <i class="fas fa-columns"></i>
+                                                    <span>Dashboard</span>
+                                                </a>
+                                            </li>
+                                            @if (Convert.ToString(Session["Role"]) == "admin")
+                                            {
+                                        <li id="glass">
+                                            <a href="@Url.Action("Index", "Glassess")">
+                                                <i class="fas fa-glasses"></i>
+                                                <span>Glasses</span>
+                                            </a>
+                                        </li>
+                                                        <li id="accessory">
+                                                            <a href="@Url.Action("Index", "Accessorries")">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                                <span>Accessories</span>
+                                                            </a>
+                                                        </li>
+                                                                        <li id="user">
+                                                                            <a href="@Url.Action("Users", "Dashboard")">
+                                                                                <i class="fas fa-users"></i>
+                                                                                <span>Users</span>
+                                                                            </a>
+                                                                        </li>
+                                                                                        <li id="coupon">
+                                                                                            <a href="@Url.Action("Index", "Coupons")">
+                                                                                                <i class="fas fa-calendar"></i>
+                                                                                                <span>Coupons</span>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                                        <li id="color">
+                                                                                                            <a href="@Url.Action("Index", "Colors")">
+                                                                                                                <i class="fas fa-marker"></i>
+                                                                                                                <span>Colors</span>
+                                                                                                            </a>
+                                                                                                        </li>
+}
+                                            <li id="order">
+                                                <a href="@Url.Action("Orders","Dashboard", new { id=Convert.ToInt32(Session["UserID"])})">
+                                                    <i class="fas fa-file-invoice"></i>
+                                                    <span>Orders</span>
+                                                </a>
+                                            </li>
+                                            <li id="perscription">
+                                                <a href="@Url.Action("Index","Prescription", new { id=Convert.ToInt32(Session["UserID"])})">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>Prescriptions</span>
+                                                </a>
+                                            </li>
+                                            <li id="fav" >
+                                                <a target="_blank" href="@Url.Action("Favourites","Dashboard",new { id = Convert.ToInt32(Session["UserID"]) })">
+                                                    <i class="fas fa-heart"></i>
+                                                    <span>Favourite</span>
+                                                </a>
+                                            </li>
+                                            <li id="setting">
+                                                <a href="@Url.Action("PersonalInfo","Dashboard",new { id=Convert.ToInt32(Session["UserID"])})">
+                                                    <i class="fas fa-user-cog"></i>
+                                                    <span>Profile Settings</span>
+                                                </a>
+                                            </li>
+
+                                            <li id="password">
+                                                <a href="@Url.Action("ChangePassword","Dashboard")">
+                                                    <i class="fas fa-lock"></i>
+                                                    <span>Change Password</span>
+                                                </a>
+                                            </li>
+                                            @*@if (Convert.ToInt32(Session["UserStatus"]) == 2)
+        {
+            <li>
+                <a onclick="signOut()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        }
+        else {*@
+                                            <li>
+                                                <a href="@Url.Action("Logout","Account")">
+                                                    <i class="fas fa-sign-out-alt"></i>
+                                                    <span>Logout</span>
+                                                </a>
+                                            </li>
+
+
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- /Profile Sidebar -->
+
+                        </div>
+
+                        <div class="col-md-7 col-lg-8 col-xl-9">
+
+                            @RenderBody()
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <footer class="footer" style="padding:0px !important">
+
+
+                <!-- /Footer Top -->
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="container-fluid">
+
+                        <!-- Copyright -->
+                        <div class="copyright">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    @*<div class="footer-widget footer-about">
+                                            <div class="footer-logo">
+                                                <img src="~/assets/img/footer-Logo.png" alt="logo">
+                                            </div>
+
+                                        </div>*@
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="copyright-text">
+                                            <p class="mb-0">&copy; 2021 Ola Glasses. All rights reserved.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6">
+
+                                    <!-- Copyright Menu -->
+                                    <div class="copyright-menu">
+                                        <ul class="policy-menu">
+                                            @*<li><a href="#">&copy; 2021 Ola Glasses. All rights reserved.</a></li>*@
+                                            <li><a href="#">Terms and Conditions</a></li>
+                                            <li><a href="#">Policy</a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /Copyright Menu -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Copyright -->
+
+                    </div>
+                </div>
+                <!-- /Footer Bottom -->
+
+            </footer>
+
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="delete_post" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteData", "Glassess", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="type" name="type" hidden>
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_Accessory" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteData", "Accessorries", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="type" name="type" hidden>
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_post_variation" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("VariationDeleteData", "Glassess", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="Productid" name="Productid" hidden>
+                                <input type="text" id="type" name="type" hidden>
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_Prescription" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteData", "Prescription", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+                                <input type="text" id="UserID" name="UserID" hidden>
+                                <input type="text" id="type" name="type" hidden>
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_post_coupon" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteData", "Coupons", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete_post_Color" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                @using (Html.BeginForm("DeleteData", "Colors", FormMethod.Post))
+                {
+    @Html.AntiForgeryToken()
+                    <form>
+                        <div class="modal-body" style="text-align:center">
+                            <div class="form-content p-2">
+                                <input type="text" id="id" name="id" hidden>
+
+                                <h2 class="modal-title">Delete</h2>
+                                <p class="mb-4">Are you sure want to delete?</p>
+                                <button type="submit" class="btn btn-success">Confirm </button>
+                                @*<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>*@
+                            </div>
+                        </div>
+                    </form>}
+            </div>
+        </div>
+    </div>
+    <!-- Custom JS -->
+    <script src="~/Dashboardassets/assets/js/script.js"></script>
+    <script src="~/assets/js/venobox.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/aos.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+</body>
+
+</html>

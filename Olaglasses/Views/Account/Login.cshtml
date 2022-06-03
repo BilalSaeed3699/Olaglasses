@@ -1,0 +1,145 @@
+﻿<head>
+    <style>
+
+        svg{
+            width:100% !important;
+        }
+    </style>
+</head>
+@{
+    ViewBag.Title = "Login";
+}
+<section class="sign-in-area">
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/bg-3.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/bg-4.png" alt="img">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <div class="sign-in-area-bg">
+                    <img class="img-fluid" src="~/assets/img/Logo-sm.png" alt="img">
+                    <h4>Sign in </h4>
+                    @*<p>
+            Returning user? <br>
+            Sign in to use saved information
+        </p>*@
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        <small style="color:red !important;font-weight:bold;font-size:14px !important "> @ViewBag.Error</small>
+                        <input name="useremail" required class="form-control input" type="text" placeholder="Enter User Name Or Email">
+                        <input name="userpassword" required class="form-control input" type="password" placeholder="Password">
+                        <ul class="checkbox">
+                            <li> <input type="checkbox"> Remember Me </li>
+                            <li> <a class="text-warning d-inline" href="@Url.Action("Forgetpassword","Account")">Forgot Password?</a> </li>
+                        </ul>
+
+                        <button type="submit" class="btn btn-primary">
+                            Sign in
+                        </button>
+
+                        @*<button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#sign-in">
+                Sign in
+            </button>*@
+                        @*<h6 style="float:right !important">
+                I am new here. <a href="@Url.Action("Register","Account")" class="text-warning d-inline">
+                    Create an
+                    Account
+                </a>
+            </h6> <br />*@
+                        <h5>or fast log in with</h5>
+                        @*<div class="g-signin2" data-onsuccess="onSignIn"></div>*@
+
+
+                       
+                        <p>
+                            I am new here. <a href="@Url.Action("Register","Account")" class="text-warning d-inline" ctype="button">
+                                Create an
+                                Account
+                            </a>
+                        </p>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+
+
+
+
+@*<script>
+
+
+    $("#cl").click(function () {
+        $("#reg").show();
+        $("#log").hide();
+        $(".modal-title").hide();
+        $(".modal-title-reg").show();
+    });
+    $(".si").click(function () {
+        $("#reg").hide();
+        $("#log").show();
+        $(".modal-title").show();
+        $(".modal-title-reg").hide();
+    });
+
+    var googleUser = {};
+    var startApp = function () {
+        gapi.load('auth2', function () {
+            auth2 = gapi.auth2.init({
+                // client_id: '68565884830-lb0slv6toaj5jouscjs3l1hdaglgqpk5.apps.googleusercontent.com',
+                // client_secret : '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',
+
+                client_id: '68565884830-1prvs1durf24veud9c6h9gn02ick5a33.apps.googleusercontent.com',
+                client_secret: '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',
+
+                // client_id: '68565884830-068kg5nldf680ij7ejjaen46h11b6kic.apps.googleusercontent.com',
+                // client_secret : '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',   //live
+            });
+            attachSignin(document.getElementById('customBtn'));
+        });
+
+        gapi.load('auth2', function () {
+            auth2 = gapi.auth2.init({
+                client_id: '68565884830-1prvs1durf24veud9c6h9gn02ick5a33.apps.googleusercontent.com',
+                client_secret: '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',
+
+                // client_id: '68565884830-068kg5nldf680ij7ejjaen46h11b6kic.apps.googleusercontent.com',
+                // client_secret : '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', //live
+
+            });
+            attachSignin(document.getElementById('customBtn1'));
+        });
+    };
+
+    function attachSignin(element) {
+        auth2.attachClickHandler(element, {},
+            function (googleUser) {
+                var name = googleUser.getBasicProfile().getName();
+                var id = googleUser.getBasicProfile().getId();
+                var email = googleUser.getBasicProfile().getEmail();
+                var pic = googleUser.getBasicProfile().getImageUrl();
+                if (id != '') {
+                    document.getElementById("google_data").elements[0].value = id;
+                    document.getElementById("google_data").elements[1].value = name;
+                    document.getElementById("google_data").elements[2].value = email;
+                    document.getElementById("google_data").elements[3].value = pic;
+                    document.getElementById('google_data').submit();
+                }
+            }, function (error) {
+            });
+    }
+
+
+</script>*@

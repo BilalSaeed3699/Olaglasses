@@ -1,0 +1,232 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblProduct
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<head>
+
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/dropzone/dropzone.min.css">
+
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+
+    <script src="~/Dashboardassets/assets/js/profile-settings.js"></script>
+
+    <script src="~/Dashboardassets/assets/plugins/dropzone/dropzone.min.js"></script>
+</head>
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    @if (Model.GlassID > 0)
+                    {
+                        <h2 class="breadcrumb-title">Edit Accessory Info</h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">Add Accessory Info</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="doc-review review-listing custom-edit-service">
+
+
+    <!-- Add Blog -->
+    <div class="card">
+        <div class="card-body">
+
+            <form method="post" action="@Url.Action("Create","Accessorries")">
+                <input type="hidden" name="GlassID" id="GlassID" value="@Model.GlassID">
+
+                <div class="service-fields">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Title <span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="text" name="Title" id="Title" value="@Model.Title" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Price ($)<span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="Price" id="Price" value="@Model.Price" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Cost ($)<span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="number" name="Cost" id="Cost" value="@Model.Cost" required="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="service-fields">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Manufacturer <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Manufacturer" id="Manufacturer" value="@Model.Manufacturer" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>File <span class="text-danger">*</span></label>
+                                <input class="form-control" type="file" id="TemplateImages" name="TemplateImages" accept="image/jpeg, image/png, image/gif,">
+                                <small class="form-text text-muted">Allowed images: size 191 * 112.</small>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="margin-top:3%">
+                            <div class="form-group">
+                                <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit" >Submit</button>
+                                <a href="@Url.Action("Index","Accessorries")"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-fields">
+                    <div class="upload-wrap" id="Products_Image_Div">
+                       
+                        @if (ViewBag.AccessoryImages != null)
+                        {
+                            foreach (var item in ViewBag.AccessoryImages)
+                            {
+                                <div class="upload-images">
+                                    <img src="@item.ImagePath" alt="Upload Image" style="width:100% !important">
+                                    <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm" onclick="DeleteImage('@item.PictureID')"><i class="far fa-trash-alt"></i></a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                </div>
+                <br>
+                <div class="submit-section">
+
+                </div>
+            </form>
+            @*<div class="service-fields">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Accessory Images</label>
+                            <form action="#" class="dropzone"></form>
+                        </div>
+
+                    </div>
+                </div>*@
+        </div>
+    </div>
+    <!-- /Add Blog -->
+
+</div>
+
+<script>
+    $('#TemplateImages').change(function (e) {
+
+       
+        if (window.FormData !== undefined) {
+
+            var fileUpload = $("#TemplateImages").get(0);
+            var files = fileUpload.files;
+
+            var fileData = new FormData();
+            
+
+
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+
+
+            var ProductId = $("#GlassID").val();
+            // Adding one more key to FormData object
+            fileData.append('ProductId', ProductId);
+
+            $.ajax({
+                url: '@Url.Action("UploadImages", "Accessorries")',
+                type: "POST",
+                contentType: false, // Not to set any content header
+                processData: false, // Not to process data
+                data: fileData,
+                success: function (result) {
+                   
+                    $("#Products_Image_Div div ").remove();
+                    var ImageDiv;
+
+                    if (result != null || result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            var img = document.createElement('img');
+                            img.src = result[i].ImagePath;
+
+                            ImageDiv = "<div class='upload-images'><img src ='" + img.src + "' style='width: 100% !important' >\ <a href='javascript:void(0);'  class='btn btn-icon btn-danger btn-sm' onclick='DeleteImage(" + result[i].PictureID +")'><i class='far fa-trash-alt'></i></a> </div>";
+                            $('#Products_Image_Div').append(ImageDiv);
+                        }
+
+                    }
+
+                },
+                error: function (err) {
+                    /alert(err.statusText);/
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    });
+</script>
+<script>
+    function DeleteImage(ImageId) {
+
+        var productId = $("#GlassID").val();
+        var ImageId = ImageId;
+      $.ajax({
+                url: '@Url.Action("DeleteImage", "Accessorries")',
+                type: "POST",
+                dataType: 'JSON',
+                data: { VCardid: productId, ImageId: ImageId },
+                success: function (result) {
+                 
+                    $("#Products_Image_Div div").remove();
+                    var ImageDiv;
+
+                    if (result != null || result.length > 0) {
+                        for (var i = 0; i < result.length; i++) {
+                            var img = document.createElement('img');
+                            img.src = result[i].ImagePath;
+
+                            ImageDiv = "<div class='upload-images' > <img src ='" + img.src + "' style='width: 100% !important'>\ <a href='javascript:void(0);' class='btn btn-icon btn-danger btn-sm' onclick='DeleteImage(" + result[i].PictureID +")'><i class='far fa-trash-alt'></i></a> </div>";
+                            $('#Products_Image_Div').append(ImageDiv);
+                        }
+
+                    }
+
+
+                },
+                error: function (err) {
+                    /alert(err.statusText);/
+                }
+            });
+    }
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#accessory').addClass('active');
+
+    });
+</script>
+

@@ -1,0 +1,124 @@
+﻿@using Olaglasses.Models;
+@{
+    List<tblUserPrescription> prescriptions = (List<tblUserPrescription>)ViewBag.PrescriptionList;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <h2 class="breadcrumb-title">Prescriptions</h2>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-4"></div>
+    <div class="col-md-3 col-3 ">
+
+        <a href="@Url.Action("Create","Prescription", new { UserID=@ViewBag.UserID})" class="btn btn-secondary float-right" style="background-color:var(--Secondery-color); color:white ;float: right;"><i class="fa fa-plus"></i> Add New Prescription</a>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-body">
+                @if (ViewBag.message != null && ViewBag.message != "")
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-right:0 !important" id="LinkCopy">
+                        @ViewBag.message
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                }
+                <div class="table-responsive">
+                    <table class="table table-hover table-center mb-0" id="GlassesList">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Prescription Date</th>
+                                <th>File</th>
+
+
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in prescriptions)
+                            {
+                                <tr>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="javascript:void(0);">@item.Fname</a>
+                                        </h2>
+                                    </td>
+
+
+                                    <td>@item.Lname</td>
+                                    <td>@item.prescriptionDate.Value.ToString("dd/MM/yyyy")</td>
+                                    <td><a href="@item.PDImage" target="_blank">Click to view</a></td>
+
+                                    <td class="text-center">
+                                        <div class="table-action">
+
+                                           
+
+                                            <a href="@Url.Action("Create","Prescription", new { id=@item.PrescriptionID,UserID=@ViewBag.UserID})" class="btn btn-sm bg-success-light">
+                                                <i class="fas fa-pen"></i> Edit
+                                            </a>
+                                            <a href="javascript:void(0)" onclick="DeleteData(@item.PrescriptionID,@item.UserID)" class="btn btn-sm bg-danger-light">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Dashboardassets/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Dashboardassets/assets/plugins/datatables/datatables.min.js"></script>
+<script>
+    function DeleteData(ID,UserID) {
+     
+        var myModal = $('#delete_Prescription');
+        $("#id", myModal).val(ID);
+        $("#UserID", myModal).val(UserID);
+        $("#delete_Prescription").modal('show');
+    }
+    $(document).ready(function () {
+        $('#GlassesList').DataTable({
+            searching: true,
+            "ordering": false
+        });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#perscription').addClass('active');
+
+    });
+</script>
+

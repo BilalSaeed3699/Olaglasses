@@ -1,0 +1,233 @@
+﻿@using Olaglasses.Models;
+@{
+    List<tblOrder> orders = (List<tblOrder>)ViewBag.ordersList;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <h2 class="breadcrumb-title">Orders</h2>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 col-2">
+    </div>
+    <div class="col-md-5 col-5">
+        @using (Html.BeginForm("Orders", "Dashboard"))
+        {
+            @Html.AntiForgeryToken()
+            <form>
+                <input type="text" name="id" value="@ViewBag.UserID" hidden>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+
+                            <select class="form-control js-example-basic-multiple" name="status" id="status">
+                                @if (ViewBag.Type == "All")
+                                {
+                                    <option selected>All</option>
+                                    <option>Not Started</option>
+                                    <option>InProgress</option>
+                                    <option>Complete</option>
+                                    <option>Delivered</option>
+                                    <option>Remake</option>
+                                }
+                                @if (ViewBag.Type == "Not Started")
+                                {
+                                    <option>All</option>
+                                    <option selected>Not Started</option>
+                                    <option>InProgress</option>
+                                    <option>Complete</option>
+                                    <option>Delivered</option>
+                                    <option>Remake</option>
+                                }
+                                @if (ViewBag.Type == "InProgress")
+                                {
+                                    <option>All</option>
+                                    <option>Not Started</option>
+                                    <option selected>InProgress</option>
+                                    <option>Complete</option>
+                                    <option>Delivered</option>
+                                    <option>Remake</option>
+                                }
+                                @if (ViewBag.Type == "Complete")
+                                {
+                                    <option>All</option>
+                                    <option>Not Started</option>
+                                    <option>InProgress</option>
+                                    <option selected>Complete</option>
+                                    <option>Delivered</option>
+                                    <option>Remake</option>
+                                }
+                                @if (ViewBag.Type == "Delivered")
+                                {
+                                    <option>All</option>
+                                    <option>Not Started</option>
+                                    <option>InProgress</option>
+                                    <option>Complete</option>
+                                    <option selected>Delivered</option>
+                                    <option>Remake</option>
+                                }
+                                @if (ViewBag.Type == "Remake")
+                                {
+                                    <option>All</option>
+                                    <option>Not Started</option>
+                                    <option>InProgress</option>
+                                    <option>Complete</option>
+                                    <option>Delivered</option>
+                                    <option selected>Remake</option>
+                                }
+
+
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-body">
+                <form action="@Url.Action("UpdateStatus","Dashboard")" method="POST">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0" id="GlassesList">
+                            <thead>
+                                <tr>
+                                    <th>OrderId</th>
+                                    <th>User</th>
+                                    <th>Address</th>
+                                    <th>Order Date</th>
+                                    <th>Status</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @foreach (var item in orders)
+                                {
+                                <tr>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="javascript:void(0);">#@item.OrderID</a>
+                                        </h2>
+                                    </td>
+
+
+                                    <td>@item.UserName</td>
+                                    <td>@item.UserAddress</td>
+                                    <td>@item.OrderDate.Value.ToString("yyyy-MM-dd")</td>
+                                    @if (Convert.ToString(Session["Role"]) == "admin")
+                                    {
+                                        <td>
+                                            <select class="form-control js-example-basic-multiple" name="Ostatus" id="Ostatus" onchange="Updatestatus(this,@item.OrderID)">
+
+                                                @*<select class="form-control js-example-basic-multiple" name="Ostatus" id="Ostatus" onchange="this.form.submit()">*@
+                                                @foreach (var item1 in ViewBag.OrderStats)
+                                                {
+                                                    if (item.Status == item1)
+                                                    {
+
+                                                        <option selected>@item.Status</option>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <option>@item1</option>
+
+                                                    }
+                                                }
+                                            </select>
+
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>@item.Status</td>
+                                    }
+                                    <td class="text-right">
+                                        <div class="table-action">
+                                            <a href="@Url.Action("OrderDetails","Dashboard",new { id=@item.OrderID})" target="_blank" class="btn btn-sm bg-warning-light">
+                                                <i class="fa fa-list"></i> OrderDetails
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="userid" value="@ViewBag.userid" hidden />
+
+<script src="~/Dashboardassets/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Dashboardassets/assets/plugins/datatables/datatables.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $('#GlassesList').DataTable({
+            searching: true,
+            "ordering": false
+        });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#order').addClass('active');
+
+    });
+
+    function Updatestatus(status, orderid) {
+
+
+
+
+        $.ajax({
+            url: '/Dashboard/Orderstatusupdate?id=' + orderid + '&ostatus=' + status.value + '&userid=' + $("#userid").val() + '&status=' + $("#status").val() + '',
+            type: "POST",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            success: function (result) {
+                window.location = result.url;
+
+            },
+            error: function (err) {
+                alert(err.statusText);
+            }
+        });
+
+    }
+</script>
+

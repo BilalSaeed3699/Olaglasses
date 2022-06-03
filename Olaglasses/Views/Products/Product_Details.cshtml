@@ -1,0 +1,1106 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblProduct
+@{
+    ViewBag.Title = "Product_Details";
+}
+
+@{int ReviewStatus = 0;}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Ola Optical</title>
+    <link rel="shortcut icon" href="~/assets/img/fav-ivon.jpg" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Slider_Assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Slider_Assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Slider_Assets/plugins/fontawesome/css/all.min.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="~/Slider_Assets/plugins/select2/css/select2.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Slider_Assets/css/style.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="~/Slider_Assets/js/html5shiv.min.js"></script>
+            <script src="~/Slider_Assets/js/respond.min.js"></script>
+        <![endif]-->
+    <style>
+        .sawyer .main-img {
+            background-color: var(--Gary2);
+            padding: 0px 0px !important;
+        }
+
+        svg {
+            width: 5%;
+        }
+
+        .upload_image {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-right: 22px;
+        }
+
+        #uploadpdphot .provide-btn {
+            width: 167px;
+            font-size: 13px;
+        }
+
+        #uploadpdphot .provide-btn {
+            background-color: var(--yellow);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 13px 10px;
+            width: 198px;
+            height: 50px;
+            border-radius: 25px;
+            font-size: 16px;
+            line-height: 150%;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .color_list {
+            display: inline-block;
+            border-radius: 50%;
+            margin-top: 18px;
+            cursor: pointer;
+            margin-right: 4px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .color_list_transform {
+            display: inline-block;
+            border-radius: 50%;
+            margin-top: 18px;
+            cursor: pointer;
+            margin-right: 4px;
+            width: 20px;
+            height: 20px;
+            transform: scale(1.2, 1.3);
+        }
+    </style>
+</head>
+
+<body>
+    @using (Html.BeginForm("AddtoCart", "Products", FormMethod.Post))
+    {
+
+        <input name="ProductID" id="ProductID" value="@Model.GlassID" hidden />
+        <input name="price" id="price" value="@Model.Price" hidden />
+        <input name="Name" id="Name" value="@Model.Title" hidden />
+        <input name="Productcategory" id="Productcategory" value="@Model.ProductCategory" hidden />
+        <input name="UserID" id="UserID" value="@Convert.ToInt32(ViewBag.UserID)" hidden />
+
+
+        <!-- ::::navigation end:::::: -->
+        <section class="sawyer" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+            <!-- ::::sawyer has-bg start:::::: -->
+            <div class="has-bg">
+                <div class="has-bg-3">
+                    <img src="~/assets/img/product-details-bg/left-1.png" alt="img">
+                </div>
+                <div class="has-bg-4">
+                    <img src="~/assets/img/product-details-bg/right-1.png" alt="img">
+                </div>
+            </div>
+
+            <!-- ::::sawyer has-bg ebd:::::: -->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <!-- ::::Sawyer  images side start:::::: -->
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <div class="main-img">
+                            @foreach (var item in ViewBag.Variation)
+                            {
+                                <input name="Image" id="Image" value="@item.ImagePath" hidden />
+                                <img id="Main-Image" class="img-fluid" src="@item.ImagePath" alt="img">
+                                break;
+                            }
+                        </div>
+
+                        <div class="doctor-slider slider">
+
+                            @if (Model.ProductCategory != "Accessory")
+                            {
+                                foreach (var item in ViewBag.Variation)
+                                {
+                                    <div class="profile-widget">
+                                        <div class="doc-img">
+                                            <a onclick="Changecolour(@item.VariationID,'@item.VariationID-colorli','@item.ImagePath','@item.Color1')">
+
+                                                <img style="width:220px !important; height:173px !important" src="@item.ImagePath" class="img-fluid" alt="No Image">
+
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                foreach (var item in ViewBag.Variation)
+                                {
+                                    <div class="profile-widget">
+                                        <div class="doc-img">
+                                            <a onclick="Changecolour(0,'@item.PictureID-colorli','@item.ImagePath','')">
+
+                                                <img style="width:220px !important; height:173px !important" src="@item.ImagePath" class="img-fluid" alt="No Image">
+
+
+                                            </a>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+                        <a class="virtual" href="#"><img src="~/assets/img/virtual-icon.svg" alt="img">Virtual Try</a>
+
+                    </div>
+                    <!-- ::::Sawyer  images side end:::::: -->
+                    <!-- ::::Sawyer-right details start:::::: -->
+                    <div class="col-md-5">
+                        <div class="sawyer-right">
+                            <h2>@Model.Title </h2>
+                            <ul class="sawyer-rating">
+
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < @ViewBag.AverageRating)
+                                    {
+                                        <li><i style="color:orange" class="fa fa-star"></i></li>
+
+                                    }
+                                    else
+                                    {
+                                        <li><i style="color:lightgrey" class="fa fa-star"></i></li>
+                                    }
+                                }
+
+
+                                <li>(@ViewBag.Reviewscount Reviews)</li>
+                            </ul>
+                            <span>$@Model.Price</span>
+                            @if (Model.ProductCategory != "Accessory")
+                            {
+
+                                <div class="color" id="maincolordiv">
+                                    <ul>
+                                        @{int colorcount = 0; }
+                                        @foreach (var colors in ViewBag.Variation)
+                                        {
+                                            if (colorcount == 0)
+                                            {
+                                                <input name="color" id="txtcolors" value="@colors.Color1" hidden />
+                                                <input name="VariationId" id="VariationId" value="@colors.VariationID" hidden />
+                                                colorcount = colorcount + 1;
+                                                <li class="color_list color_list_transform" ID='@colors.VariationID-colorli' onclick="Changecolour(@colors.VariationID,'@colors.VariationID-colorli','@colors.ImagePath','@colors.Color1')" style="background-color: @colors.Color1"></li>
+                                            }
+                                            else
+
+                                            {
+                                                <li class="color_list" ID='@colors.VariationID-colorli' onclick="Changecolour(@colors.VariationID,'@colors.VariationID-colorli','@colors.ImagePath','@colors.Color1')" style="background-color: @colors.Color1"></li>
+                                            }
+
+
+
+
+                                        }
+
+
+                                    </ul>
+                                </div>
+                                <div class="available-sizes">
+                                    <h4>Available Sizes</h4>
+                                    <a href="#pills-tab"> <p>Size Guide <i class="fas fa-info-circle"></i></p></a>
+                                </div>
+                                <div class="product-button ">
+                                    @{int count = 0; }
+                                    @foreach (var item in ViewBag.Variation)
+                                    {
+                                        if (count == 0)
+                                        {
+
+                                            <input name="size" id="txtsizes" value="@item.size" hidden />
+                                            count = count + 1;
+                                            <a id='@item.VariationID-size' onclick="Getsize('@item.size','@item.VariationID-size')" class="btn" href="#">@item.size</a>
+                                        }
+                                        else
+                                        {
+                                            <a id='@item.VariationID-size' onclick="Getsize('@item.size','@item.VariationID-size')" class="btn bg-transparent" href="#">@item.size</a>
+                                        }
+
+
+
+                                        @*<a class="btn bg-transparent" href="#">42 - 21 - 140</a>*@
+                                    }
+                                </div>
+                                <input name="type" id="type" value="1" hidden />
+                                <div class="sawyer-right-virtu">
+                                    @if (Convert.ToInt32(ViewBag.UserID) != 0)
+                                    {
+                                        <a onclick="selectlenses(@Model.GlassID)" class="virtual" style="background: var(--Secondery-color); color: var(--white); width: 85% !important;">
+                                            <img class="me-3" src="~/assets/img/virtual-icon.svg" alt="img">select lenses
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="virtual" style="background: var(--Secondery-color); color: var(--white); width: 85% !important;">
+                                            <img class="me-3" src="~/assets/img/virtual-icon.svg" alt="img">select lenses
+                                        </a>
+                                    }
+                                    @if (ViewBag.Isfav != null)
+                                    {<div class="icon">
+                                            <a href="@Url.Action("ProductFavourite", "Products", new { id = Model.GlassID })"> <i style="background-color:red !important;" class="far fa-heart heart-icon"></i></a>
+                                        </div> }
+                                    else
+                                    {<div class="icon"><a href="@Url.Action("ProductFavourite", "Products", new { id = Model.GlassID })"><i class="far fa-heart"></i></a></div>}
+
+                                </div>
+                                if (Convert.ToInt32(ViewBag.UserID) != 0)
+                                {
+                                    <button class="frame" type="submit" style=" width: 100% !important; ">frame only</button>
+                                }
+                                else
+                                {
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button class="frame" type="submit" style=" width: 100% !important; ">frame only</button>
+                                    </a>
+                                }
+                            }
+                            else
+                            {
+                                <input name="type" id="type" value="0" hidden />
+                                <div class="sawyer-right-virtu">
+                                    @if (Convert.ToInt32(ViewBag.UserID) != 0)
+                                    {
+                                        <button class="virtual" type="submit" style="background: var(--Secondery-color); color: var(--white); width: 85% !important;">
+                                            Add to Cart
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <button class="virtual" type="submit" style="background: var(--Secondery-color); color: var(--white); width: 85% !important;">
+                                                Add to Cart
+                                            </button>
+                                        </a>
+
+                                    }
+                                    @if (ViewBag.Isfav != null)
+                                    {<div class="icon">
+                                            <a href="@Url.Action("ProductFavourite", "Products", new { id = Model.GlassID })"> <i style="background-color:red !important;" class="far fa-heart heart-icon"></i></a>
+                                        </div> }
+                                    else
+                                    {<div class="icon"><a href="@Url.Action("ProductFavourite", "Products", new { id = Model.GlassID })"><i class="far fa-heart"></i></a></div>}
+
+                                </div>
+                            }
+                            <div class="share">
+                                <h3>Share this</h3>
+                                <ul class="share-media">
+                                    <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+
+                                    <li><a href="https://twitter.com/"><i class="fab fa-twitter active"></i></a></li>
+                                    <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="https://printess.com/"><i class="fab fa-pinterest-p"></i></a></li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- ::::Sawyer-right details start:::::: -->
+
+                </div>
+            </div>
+        </section>
+    }
+
+
+
+    <!-- ::::Sawyer  end:::::: -->
+    <!-- :::: additional start:::::: -->
+    <section class="additional" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+        <!-- ::::additional has-bg start:::::: -->
+
+        <div class="has-bg">
+            <div class="has-bg-five">
+                <img src="~/assets/img/product-details-bg/left-2.png" alt="img">
+            </div>
+            <div class="has-bg-six">
+                <img src="~/assets/img/product-details-bg/right-2.png" alt="img">
+            </div>
+        </div>
+
+
+        <!-- ::::additional has-bg start:::::: -->
+
+        <div class="container">
+
+            <!-- :::: glasses nav&tabs start:::::: -->
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <!-- :::: glasses nav&tabs list:::::: -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                            aria-selected="true">
+                        additional information
+                    </button>
+                </li>
+                <!-- :::: glasses nav&tabs list:::::: -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                            aria-selected="false">
+                        size guide
+                    </button>
+                </li>
+                <!-- :::: glasses nav&tabs list:::::: -->
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                            aria-selected="false">
+                        Shipping & Returns
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content additional-bg" id="pills-tabContent">
+                <!-- :::: glasses nav&tabs details:::::: -->
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h2>Additional Information</h2>
+                            <p>
+                                @Model.AdditionalInfo
+                            </p>
+                            @if (Model.ProductCategory != "Accessory")
+                            {
+                                <div class="list">
+                                    <ul>
+                                        <li>Model:</li>
+                                        <li> Name:</li>
+                                        <li> Material: </li>
+                                        <li> Gender: </li>
+                                        <li> Shape: </li>
+                                    </ul>
+                                    <ul>
+                                        <li> @Model.Manufacturer</li>
+                                        <li> @Model.Title</li>
+                                        <li> @Model.Material</li>
+                                        <li>@Model.Gender</li>
+                                        <li>@Model.shape</li>
+
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="list">
+                                    <ul>
+                                        <li>Model:</li>
+                                        <li> Name:</li>
+
+                                    </ul>
+                                    <ul>
+                                        <li> @Model.Manufacturer</li>
+                                        <li> @Model.Title</li>
+
+
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                        @foreach (var item in ViewBag.Variation)
+                        {
+                            <div class="col-md-6">
+                                <img class="img-fluid" src="@item.ImagePath" alt="img">
+                            </div>
+                            break;
+                        }
+
+                    </div>
+
+                </div>
+                <!-- :::: glasses nav&tabs details:::::: -->
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-12">
+                            <h2>Size Guide</h2>
+                            <table class="table table-sm mt-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col" class="table-header">Rang in MM</th>
+                                        <th scope="col" class="table-header">Rang in Inch</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <td class="table-list">Small</td>
+                                        <td>0 to 130 MM</td>
+                                        <td>0 to 5.1 inch</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-list">Medium</td>
+                                        <td>131 to 135 MM</td>
+                                        <td>5.1 to 5.32 inch</td>
+                                    </tr>
+                                    <tr class="last-item">
+                                        <td class="table-list">Learg</td>
+                                        <td>Greater then 136MM</td>
+                                        <td>Greater then 5.3 2Inch</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="what-is">
+                                <h3>What is my size?</h3>
+                                <div class="option ">
+                                    <ul>
+                                        <li>Option 1: Musure you</li>
+                                        <li>Current frames</li>
+                                    </ul>
+                                    <ul>
+                                        <li>Option 1: Musure you</li>
+                                        <li>Current frames</li>
+                                    </ul>
+                                </div>
+                                <div class="size-img">
+                                    <div class="size-left-img">
+                                        <div class="size-left-shape">
+                                            <img class="size-left-shape-one" src="~/assets/img/size-lefr-shape-one.png"
+                                                 alt="img">
+                                            <img class="size-left-shape-two" src="~/assets/img/size-lefr-shape-two.png"
+                                                 alt="img">
+                                            <img class="size-left-shape-three" src="~/assets/img/size-shape.png"
+                                                 alt="img">
+                                        </div>
+                                        <div class="size-left-main-img">
+                                            <img src="~/assets/img/size-left-main-img.png" alt="img">
+                                        </div>
+                                    </div>
+                                    <div class="size-right-img">
+                                        <div class="size-right-shape">
+                                            <img class="size-right-line-one" src="~/assets/img/size-right-line-one.png"
+                                                 alt="img">
+                                            <img class="size-right-line-two" src="~/assets/img/size-right-line-two.png"
+                                                 alt="img">
+                                            <img class="size-right-shape-one" src="~/assets/img/size-shape.png" alt="img">
+                                        </div>
+                                        <div class="size-main-main-img">
+                                            <img src="~/assets/img/size-right-main-img.png" alt="img">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- :::: glasses nav&tabs details:::::: -->
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <h3>Delivery</h3>
+                            <p>
+
+                                Direct Vision will deliver the Product to the address provided by the Customer in a commercially viable manner as quickly and efficiently as reasonably possible. In some instances, an order may be delayed. Delays may include a lack of Product in stock, product requiring special handling or prescription information needing to be verified. Delays may also be due to issue with a third-party shipping company. Direct Vision holds no responsibility to delays under any circumstance. Once Product is in stock they should be shipped within 1-2 business days and will arrive within the time estimate provided for your chosen shipping method. If you are dissatisfied with the delivery time, your sole remedy and recourse is to return the Product in accordance with our return policy.
+                            </p>
+
+                        </div>
+                        <div class="col-md-12">
+                            <h3>Returns and Exchanges</h3>
+                            <p>
+
+                                Direct Vision offers a 14 day return policy on all eyewear. To make a return simply contact us within 14 days for your request to be processed. Please ship the product back to us as soon a possible to receive your refund. Glasses or sunglasses must be returned in their original and unworn conditions. Returns of glasses or sunglasses made after 14 days are subject to a restocking fee. Direct Vision has the right to deny returns or exchanges, in very rare circumstances, based on the nature of your prior transactions. Direct Vision is not responsible for refunding the cost of shipping but may cover this cost at the company’s discretion.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- :::: glasses nav&tabs start:::::: -->
+
+        </div>
+    </section>
+    <!-- :::: additionalend:::::: -->
+    <!-- :::: reviews start:::::: -->
+    <section class="reviews">
+        <div class="has-bg">
+            <div class="has-bg-28">
+                <img src="~/assets/img/product-details-bg/left-3.png" alt="img">
+            </div>
+            <div class="has-bg-27">
+                <img src="~/assets/img/product-details-bg/right-3.png" alt="img">
+            </div>
+        </div>
+        <div class="container custum-pd2">
+            <!-- :::: reviews title start:::::: -->
+            <div class="reviews-title">
+                <h2>Customer reviews (@ViewBag.Reviewscount)</h2>
+                @*<p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel elit ridiculus crornare. Egeadipiscing
+                        libero eget nec sed mauris. Sed ac, massa viverra tellus elementum tortor egestas at lorem nunc
+                        consectetur mauris.
+                    </p>*@
+            </div>
+            <!-- :::: reviews title end:::::: -->
+            <!-- :::: reviews imges start:::::: -->
+            @*<div class="reviews-imges" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-1.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-2.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-3.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-4.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-5.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-6.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-7.png" alt="img">
+                    <img class="img-fluid review-img" src="~/assets/img/reviews-img-8.png" alt="img">
+
+                </div>*@
+            <!-- :::: reviews imges end:::::: -->
+            <!-- :::: reviews avarage-bg start:::::: -->
+
+            <div class="avarage-bg" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+                <h2>Average Rating</h2>
+                <ul>
+
+
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        if (i < @ViewBag.AverageRating)
+                        {
+                            <li><i style="color:orange" class="fa fa-star"></i></li>
+
+                        }
+                        else
+                        {
+                            <li><i style="color:lightgrey" class="fa fa-star"></i></li>
+                        }
+                    }
+                    <li>(@ViewBag.AverageRating)</li>
+                </ul>
+                @if (Session["UserID"] != null)
+                {
+                    <h4>
+
+                        <svg onclick="showhidereviewsection()" width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4H11V6H0V4ZM0 2H11V0H0V2ZM0 10H7V8H0V10ZM15.01 6.87L15.72 6.16C16.11 5.77 16.74 5.77 17.13 6.16L17.84 6.87C18.23 7.26 18.23 7.89 17.84 8.28L17.13 8.99L15.01 6.87ZM14.3 7.58L9 12.88V15H11.12L16.42 9.7L14.3 7.58Z"
+                                  fill="#00B0DC" />
+                        </svg> Write a review
+
+                    </h4>
+                }
+                else
+                {
+                    <h4>
+
+                        <svg onclick="@Url.Action("Login","Account")" width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4H11V6H0V4ZM0 2H11V0H0V2ZM0 10H7V8H0V10ZM15.01 6.87L15.72 6.16C16.11 5.77 16.74 5.77 17.13 6.16L17.84 6.87C18.23 7.26 18.23 7.89 17.84 8.28L17.13 8.99L15.01 6.87ZM14.3 7.58L9 12.88V15H11.12L16.42 9.7L14.3 7.58Z"
+                                  fill="#00B0DC" />
+                        </svg> Write a review
+
+                    </h4>
+                }
+                @using (Html.BeginForm("SaveReview", "Products", FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {@Html.AntiForgeryToken()
+                <div class="card" style="display:none;" id="reviewsection">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div>
+                                <input name="GlassID" value="@Model.GlassID" hidden>
+
+                                <input name="UserID" id="txtUserId" value="@Convert.ToInt32(ViewBag.UserID)" hidden>
+                                <img id="ImagePath" class="upload_image" />
+                                <div class="provide-item provide-item2" style="float:right !important">
+
+
+                                    <ul class="list-inline">
+
+                                        <li class="list-inline-item">
+                                            <div class="uploded-btn-area" id="uploadpdphot">
+                                                <label class="provide-btn">
+                                                    <input name="ReviewImage" class="form-control" type="file" tabindex="0" onchange="show(this)">
+                                                    upload photo
+                                                </label>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                            <input value="0" id="Rating" hidden />
+                            <div class="star-rating">
+                                <input id="star-1" type="radio" name="rating" value="5" onclick="updaterating(5)">
+                                <label for="star-1" title="1 stars">
+                                    <i class="active fa fa-star"></i>
+                                </label>
+                                <input id="star-2" type="radio" name="rating" value="4" onclick="updaterating(4)">
+                                <label for="star-2" title="2 stars">
+                                    <i class="active fa fa-star"></i>
+                                </label>
+                                <input id="star-3" type="radio" name="rating" value="3" onclick="updaterating(3)">
+                                <label for="star-3" title="3 stars">
+                                    <i class="active fa fa-star"></i>
+                                </label>
+                                <input id="star-4" type="radio" name="rating" value="2" onclick="updaterating(2)">
+                                <label for="star-4" title="4 stars">
+                                    <i class="active fa fa-star"></i>
+                                </label>
+                                <input id="star-5" type="radio" name="rating" value="1" onclick="updaterating(1)">
+                                <label for="star-5" title="5 star">
+                                    <i class="active fa fa-star"></i>
+                                </label>
+                            </div>
+                        </div>
+                        <label>Review</label>
+                        <textarea name="Review" style="width:100% !important" rows="5"> </textarea>
+
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            <!-- :::: reviews avarage-bg start:::::: -->
+            @*Rating Section*@
+
+
+
+
+            <div class="row" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
+
+                <!-- :::: reviews nav&tabs start:::::: -->
+                <div class="col-lg-9 order-1 order-lg-0">
+
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <!-- :::: reviews nav&tabs list:::::: -->
+                            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">
+                                All Reviews (@ViewBag.Reviewscount)
+                            </button>
+                            <!-- :::: reviews nav&tabs list:::::: -->
+                            <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">
+                                Images (@ViewBag.Reviewsimagescount)
+                            </button>
+                        </div>
+                    </nav>
+
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <!-- :::: reviews nav&tabs details:::::: -->
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                             aria-labelledby="nav-home-tab">
+
+                            @foreach (var item in ViewBag.Reviewslist)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="rating-left">
+                                            <div class="hawkins">
+                                                <img class="img-fluid hawkins-img" src="@item.UserImage" alt="img">
+                                                <div class="hawkins-details">
+
+                                                    <h4>@item.UserName</h4>
+                                                    <ul>
+                                                        <li>@item.CreatedDate</li>
+                                                        @*<li> 10:30 AM</li>*@
+                                                    </ul>
+                                                    <p>
+                                                        @item.Review
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="hawkins-icon">
+                                            <ul>
+                                                @for (int i = 0; i < 5; i++)
+                                                {
+                                                    if (i < @item.Rating)
+                                                    {
+                                                        <li><i style="color:orange" class="fa fa-star"></i></li>
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <li><i style="color:lightgrey" class="fa fa-star"></i></li>
+                                                    }
+                                                }
+
+
+                                            </ul>
+                                            @{int reviewlikecount = 0; }
+                                            @if (Session["UserID"] != null)
+                                            {
+
+                                                foreach (var likes in ViewBag.ReviewsLike)
+                                                {
+
+                                                    if (likes.ReviewID == item.ReviewID)
+                                                    {
+                                                        reviewlikecount = 1;
+                                                        <a href="@Url.Action("UpdateLikes", "Products", new { item.ReviewID, item.GlassID })"> <i style="background-color:red!important;color:white !important" class="far fa-heart heart-icon"></i></a>
+                                                        break;
+                                                    }
+                                                    @*else
+                                                        {
+                                                            <a href="@Url.Action("UpdateLikes","Products",new {item.ReviewID,item.GlassID})"> <i style="background-color:#f2f2f2 !important;color:green !important" class="far fa-heart heart-icon"></i></a>
+                                                        }*@
+
+                                                }
+                                                if (reviewlikecount == 0)
+                                                {<a href="@Url.Action("UpdateLikes", "Products", new { item.ReviewID, item.GlassID })"> <i style="background-color:#f2f2f2 !important;color:red !important" class="far fa-heart heart-icon"></i></a>
+
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div>
+                        <!-- :::: reviews nav&tabs details:::::: -->
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            @foreach (var item in ViewBag.Reviewslist)
+                            {
+                                if (@item.ReviewImage != "")
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <div class="rating-left">
+                                                <div class="hawkins">
+                                                    <img class="img-fluid hawkins-img" src="@item.UserImage" alt="img">
+                                                    <div class="hawkins-details">
+
+                                                        <h4>@item.UserName</h4>
+                                                        <ul>
+                                                            <li>@item.CreatedDate</li>
+                                                            @*<li> 10:30 AM</li>*@
+                                                        </ul>
+                                                        <p>
+                                                            @item.Review
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="hawkins-icon">
+                                                <ul>
+                                                    @for (int i = 0; i < 5; i++)
+                                                    {
+                                                        if (i < @item.Rating)
+                                                        {
+                                                            <li><i class="active fa fa-star"></i></li>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <li><i class="fa fa-star"></i></li>
+                                                        }
+                                                    }
+
+
+                                                </ul>
+
+                                                @{int reviewlikecount = 0; }
+                                                @foreach (var likes in ViewBag.ReviewsLike)
+                                                {
+                                                    if (likes.ReviewID == item.ReviewID)
+                                                    {
+                                                        reviewlikecount = 1;
+                                                        <a href="@Url.Action("UpdateLikes","Products",new {item.ReviewID,item.GlassID})"> <i style="background-color:green!important;color:white !important" class="far fa-heart heart-icon"></i></a>
+                                                        break;
+                                                    }
+                                                    @*else
+                                                        {
+                                                            <a href="@Url.Action("UpdateLikes","Products",new {item.ReviewID,item.GlassID})"> <i style="background-color:#f2f2f2 !important;color:green !important" class="far fa-heart heart-icon"></i></a>
+                                                        }*@
+                                                }
+
+                                                @if (reviewlikecount == 0)
+                                                {<a href="@Url.Action("UpdateLikes","Products",new {item.ReviewID,item.GlassID})"> <i style="background-color:#f2f2f2 !important;color:green !important" class="far fa-heart heart-icon"></i></a>
+
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+                <!-- :::: reviews nav&tabs start:::::: -->
+                <!-- :::: reviews recent-oldest start:::::: -->
+
+                <div class="col-lg-3 order-0 order-lg-1">
+
+
+                </div>
+                <!-- :::: reviews recent-oldest end:::::: -->
+
+            </div>
+
+        </div>
+    </section>
+    <!-- :::: reviews end:::::: -->
+    <!-- ::::products start:::::: -->
+    <!-- ::::products start:::::: -->
+    <section class="products products-page-two  products-details-one products-details-one-area">
+        <!-- ::::products has-bg start:::::: -->
+        <div class="has-bg">
+            <div class="has-bg-29">
+                <img src="~/assets/img/product-details-bg/left-4.png" alt="img">
+            </div>
+            <div class="has-bg-30">
+                <img src="~/assets/img/product-details-bg/right-4.png" alt="img">
+            </div>
+        </div>
+        <!-- ::::products has-bg end:::::: -->
+        <div class="container custum-pd2">
+            <div class="products-title-might text-center">
+                <div class="title">
+                    <h2>You Might Also Like</h2>
+                </div>
+            </div>
+            <div class="product-bg bg-transparent p-0">
+
+                <div class="row g-4">
+
+                    @{int Count = 0;}
+                    @{int Duplicatecheck = 0;}
+                    @foreach (var item in ViewBag.ProductList)
+                    {
+                        if (Count < 5)
+                        {
+                            Count = Count + 1;
+                            if (Duplicatecheck != @item.GlassID)
+                            {
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="product-item" id="Product_Items">
+                                        <div class="img">
+                                            @if (item.Sticker == "Hot")
+                                            {
+                                                <a class="bg-danger wishlist-link" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-fire bg"></i> @item.Sticker</a>
+                                            }
+                                            @if (item.Sticker == "New Arrival")
+                                            {
+                                                <a class="wishlist-link bg-secondary" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Sticker</a>
+                                            }
+                                            @if (item.Sticker == "Top Seller")
+                                            {
+                                                <a class="wishlist-link wishlist-link-premium" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-crown bg"></i> @item.Sticker</a>
+                                            }
+
+                                            <img id="@item.GlassID-image-color" class="img-fluid" src="@item.ImagePath" alt="ig">
+
+                                        </div>
+
+
+                                        <div class="details">
+                                            <h6><a target="_blank" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Title </a></h6>
+                                            <p>$@item.Price</p>
+                                            <div class="color">
+                                                <ul>
+                                                    @foreach (var colors in ViewBag.ProductList)
+                                                    {
+                                                        Duplicatecheck = Convert.ToInt32(@item.GlassID);
+                                                        if (item.GlassID == colors.GlassID)
+                                                        {
+                                                            <li onclick="Changecolour1('@colors.GlassID-image-color','@colors.ImagePath')" style="background-color: @colors.ColorCode"></li>
+                                                        }
+
+                                                    }
+
+
+                                                </ul>
+                                                <div class="icon">
+                                                    @{int likecount = 0; }
+                                                    @foreach (var likes in ViewBag.ProductList)
+                                                    {
+                                                        if (item.GlassID == likes.GlassID && likes.Likestatus == 1)
+                                                        {
+                                                            likecount = 1;
+                                                            <a href="#"> <i style="background-color:red !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+                                                            break;
+                                                        }
+
+                                                    }
+                                                    @if (likecount == 0)
+                                                    {<a> <i style="background-color:black !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!--::::::products single item:::::: -->
+                        }
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ::::products end:::::: -->
+    <!-- ::::products end:::::: -->
+    <!-- ::::  has-radious:::::: -->
+    <div class="has-radious">
+        <div class="radious-one">
+            <a href="#">
+
+                <img src="~/assets/img/chat.svg" alt="chat">
+            </a>
+        </div>
+    </div>
+    <!-- ::::  has-radious end:::::: -->
+
+</body>
+<!-- /Main Wrapper -->
+<script src="~/Slider_Assets/js/jquery.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="~/Slider_Assets/js/popper.min.js"></script>
+<script src="~/Slider_Assets/js/bootstrap.min.js"></script>
+<!-- Slick JS -->
+<script src="~/Slider_Assets/js/slick.js"></script>
+<script src="~/Slider_Assets/js/select2.min.js"></script>
+<!-- Custom JS -->
+<script src="~/Slider_Assets/js/script.js"></script>
+<!-- Custom JS -->
+@*<script src="~/Slider_Assets/js/script.js"></script>*@
+
+@*<script src="~/assets/js/jquery-1.12.4.min.js"></script>*@
+
+
+<script>
+
+    function selectlenses(GlassID) {
+
+        var Image = $("#Image").val();
+        var txtcolors = $("#txtcolors").val();
+        var txtsizes = $("#txtsizes").val();
+        var variationid = $("#VariationId").val();
+        var txtUserId = $("#txtUserId").val();
+        var Productcategory = $("#Productcategory").val();
+    
+          var link = "@Url.Action("Orderprocessing", "Products",new{ Productid = "pid", VariationId = "vid", Image = "mid", size = "sid", USID = "UID", Productcategory="PC"})";
+        link = link.replace('pid', GlassID);
+        link = link.replace('vid', variationid);
+        link = link.replace('mid', Image);
+        link = link.replace('sid', txtsizes);
+        link = link.replace('UID', txtUserId);
+        link = link.replace('PC', Productcategory);
+        link = link.replace(/&amp;/g, '&');
+
+        
+                       window.location.href = link;
+
+    }
+    function Getsize(size, sizeid) {
+        $('.product-button a').addClass('bg-transparent');
+
+        if (document.getElementById(sizeid).classList.contains("bg-transparent")) {
+            $('#' + sizeid).removeClass('bg-transparent');
+            $("#txtsizes").val(size);
+        }
+
+
+
+    }
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#ImagePath').attr('src', e.target.result);
+
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+    function updaterating(rating) {
+
+        $("#Rating").val();
+        $("#Rating").val(rating);
+    }
+
+
+    function showhidereviewsection() {
+        var x = document.getElementById("reviewsection");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+
+    function Changecolour(VariationID,colorid, imgurl, colorname) {
+        $("#Image").val(imgurl);
+        $("#maincolordiv ul li").removeClass('color_list_transform');
+        $('#' + colorid).addClass('color_list_transform');
+        /*document.getElementById(colorid).style = "background-color:"+colorname+"; transform: scale(1.2, 1.3)";*/
+        /*document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");*/
+        $("#txtcolors").val(colorname);
+        $("#VariationId").val(VariationID);
+        document.getElementById('Main-Image').src = imgurl;
+
+
+    }
+    function Changecolour1(colorid, imgurl) {
+
+
+        document.getElementById(colorid).src = imgurl;
+    }
+</script>

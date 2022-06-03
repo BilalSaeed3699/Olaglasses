@@ -1,0 +1,843 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="53198261843-a0b0piqcbhlal6n841ufprc7t5io7tf5.apps.googleusercontent.com">
+    <title>Ola Optical</title>
+    <link rel="shortcut icon" href="~/assets/img/fav-ivon.jpg" type="image/x-icon">
+  
+    <link rel="stylesheet" href="~/assets/css/slick.css">
+    <link rel="stylesheet" href="~/assets/css/all.min.css">
+    <link rel="stylesheet" href="~/assets/css/aos.css">
+    <link rel="stylesheet" href="~/assets/css/venobox.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+    <link href="~/assets/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+  
+    <style>
+        .products .prooduct-design li {
+            display: inline-block;
+            /* padding: 5px 7px; */
+            margin-right: 12px;
+            background-color: var(--Gary2);
+            color: var(--Gary);
+            margin-bottom: 0px !important;
+            transition: .4s;
+            cursor: pointer;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            height: 34px;
+            text-align: center;
+            font-size: 20px;
+            line-height: 130%;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .products .prooduct-design {
+            margin-top: 0px !important;
+        }
+
+        .product-details .product-details-list {
+            justify-content: none !important;
+        }
+
+        .select2-container {
+            width: 100% !important;
+        }
+
+        .product-details ul .product-details-item {
+            width: 20.7% !important;
+            margin-right: 0px;
+        }
+
+        .products .product-details .product-details-item span {
+            color: var(--black);
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: 100% !important;
+            text-transform: capitalize;
+            font-weight: 400;
+        }
+
+        dl, ol, ul {
+            margin-top: 0;
+            margin-bottom: 0rem !important;
+        }
+
+        .sawyer .sawyer-right .product-button {
+            margin-bottom: 0px !important;
+        }
+
+
+        .abcRioButton .abcRioButtonLightBlue{
+            width:70% !important;
+
+        }
+        .abcRioButtonContents {
+            font-size: 21px !important;
+        }
+        svg{
+            width:100%
+        }
+      
+    </style>
+</head>
+
+<body>
+    <!-- start preloader -->
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- end preloader -->
+    <!-- ::::navigation start:::::: -->
+    <div class="navigation">
+        <div class="mb-15 col-md-12" style="background-color:@Context.Request.Cookies["_CouponsColor"].Value">
+
+            <p style="margin-left:3%; margin-right:3%">@Context.Request.Cookies["_CouponsDescription"].Value <a style="float:right" href="@Context.Request.Cookies["_CouponsLink"].Value" target="_blank">@Context.Request.Cookies["_CouponsText"].Value</a></p>
+
+</div>
+        <!-- ::::has-bg:::::: -->
+        <div class="has-bg shape">
+            <img class="has-bg-1" src="~/assets/img/navigation-bg2.png" alt="bg1">
+            <img class="has-bg-2" src="~/assets/img/navigationbg-1.png" alt="bg1">
+        </div>
+        <!-- ::::has-bg end:::::: -->
+        <!-- ::::navbar:::::: -->
+        <nav class="navbar navbar-expand-lg menu">
+            <div class="container-fluid custum-pd  ">
+                <!-- ::::navbar-logo:::::: -->
+                <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                    <img class="img-fluid" src="~/assets/img/Logo.png" alt="log">
+                </a>
+                <!-- ::::navbar-logo end:::::: -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- ::::navbar menu-list:::::: -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a id="index" class="nav-link active" aria-current="page" href="@Url.Action("index","Home")">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="Eyeglassess" class="nav-link" aria-current="page" href="@Url.Action("eyeglassess","Home")">
+                                eyeglassess
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="Sunglassess" class="nav-link" href="@Url.Action("Sunglassess","Home")">Sunglassess</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="Accessories" class="nav-link" href="@Url.Action("Accessories","Home")">Accessories</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a id="OurStory" class="nav-link" href="@Url.Action("OurStory","Home")">Our Story</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="News" class="nav-link" href="@Url.Action("News","Home")">News</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a id="Contact" class="nav-link" href="@Url.Action("Contact","Home")">Contact Us</a>
+                        </li>
+                    </ul>
+                    <!-- ::::navbar menu-list end:::::: -->
+                    <!-- ::::navbarnav-rightt:::::: -->
+                    <div class="nav-right d-flex flex-end align-items-center">
+                        <ul class="list-inline nav">
+                            @*<li class="list-inline-item" id="search_content_dsk">
+                                <a href="#">
+                                    <img class="peple-icon" src="~/assets/img/search-icon.svg" alt="img">
+                                </a>
+                            </li>*@
+                            @*<li class="list-inline-item" id="fav">
+                                <a href="#" data-toggle="popover" title="Coupon" data-content="@Session["Coupon"]">Coupon</a>
+                            </li>*@
+                            @if (Session["Email"] != null)
+                            {
+                                <li class="list-inline-item" id="fav">
+                                    <a data-toggle="tooltip" title="Favourite" href="@Url.Action("Favourites","Dashboard",new { id = Convert.ToInt32(Session["UserID"]) })">
+                                        <img class="peple-icon" src="~/assets/img/heart-like.svg"
+                                             alt="">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" id="user">
+                                    <a href="@Url.Action("Index","Dashboard")" data-toggle="tooltip" title="Account">
+                                        <img class="peple-icon" src="~/assets/img/pepole-icon.svg"
+                                             alt="img">
+                                    </a>
+                                </li>
+
+                                <li class="list-inline-item" id="user">
+                                    <a href="@Url.Action("Logout", "Account")" data-toggle="tooltip" title="Logout">
+                                        <img class="peple-icon" src="~/assets/img/logout.svg"
+                                             alt="img">
+                                    </a>
+
+
+                                </li>
+                                <li class="list-inline-item " id="cart">
+                                    <a data-toggle="tooltip" title="Cart" href="@Url.Action("MovetoOrdercart","Products", new { id=Convert.ToInt32(Session["UserID"])})"> <img class="cart-icon" src="~/assets/img/cart-icon.svg" alt="img"></a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="list-inline-item" id="fav">
+                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <img class="peple-icon" src="~/assets/img/heart-icon.svg"
+                                             alt="">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item" id="user">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" data-toggle="tooltip" title="Login">
+                                        <img class="peple-icon" src="~/assets/img/pepole-icon.svg"
+                                             alt="img">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item " id="cart">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"> <img class="cart-icon" src="~/assets/img/cart-icon.svg" alt="img"></a>
+                                </li>
+                            }
+
+
+                        </ul>
+                        <button class="virtual-btn">
+                            <img src="~/assets/img/virtual-icon.svg" alt="img">
+                            Virtual Try
+                        </button>
+                    </div>
+                    <!-- ::::navbarnav-rightt end:::::: -->
+                </div>
+            </div>
+        </nav>
+
+        <div class="virtual-model">
+            <div class="virtual-x position-absolute ">
+                <img class="logo-resize" src="~/assets/img/Logo-sm.png" alt="img">
+                <img class="icon" src="~/assets/img/clos.png" alt="img">
+            </div>
+            <div class="container virtual-container">
+                <div class="virtual-bg">
+                    <div class="row ">
+                        <div class="col-lg-8 col-md-7">
+                            <div class="play-btn img-aria position-relative">
+                                <div class="img-area-main">
+                                    <img class="img-main img-fluid" src="~/assets/img/virtu-img-left.png" alt="img">
+                                </div>
+                                <div class="icon-area">
+                                    <div class="box-icon">
+                                        <a href="#"><img class="img-fluid" src="~/assets/img/virtu-left-icon.png" alt="img"></a>
+                                    </div>
+                                    <div class="box-icon">
+                                        <a href="#"><img class="img-fluid" src="~/assets/img/virtu-right-icon.png" alt="img"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-5 pdl-0 bg-full">
+                            <div class="bg_warp">
+                                <div class="blog-aria">
+                                    <div class="blog active">
+                                        <img class=" img img-fluid" src="~/assets/img/virtual-right-img1.png" alt="img">
+                                        <div class="tex active d-flex justify-content-between ">
+                                            <div class="left-text ">
+                                                <h4>Eyeglass name</h4>
+                                                <span>$145.00</span>
+                                            </div>
+                                            <a class="box-btn" href="#">More Info</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog">
+                                        <img class="img img-fluid" src="~/assets/img/virtual-right-img2.png" alt="img">
+                                        <div class="tex d-flex justify-content-between ">
+                                            <div class="left-text ">
+                                                <h4>Eyeglass name</h4>
+                                                <span>$145.00</span>
+                                            </div>
+                                            <a class="box-btn" href="#">More Info</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog">
+                                        <img class="img img-fluid" src="~/assets/img/virtual-right-img2.png" alt="img">
+                                        <div class="tex d-flex justify-content-between ">
+                                            <div class="left-text ">
+                                                <h4>Eyeglass name</h4>
+                                                <span>$145.00</span>
+                                            </div>
+                                            <a class="box-btn" href="#">More Info</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog">
+                                        <img class="img img-fluid" src="~/assets/img/virtual-right-img2.png" alt="img">
+                                        <div class="tex d-flex justify-content-between ">
+                                            <div class="left-text ">
+                                                <h4>Eyeglass name</h4>
+                                                <span>$145.00</span>
+                                            </div>
+                                            <a class="box-btn" href="#">More Info</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <a class="venobox" href="image01-big.jpg"><img src="image01-small.jpg" alt="image alt"/> adsfasfd</a> -->
+        <!-- ::::navbar end:::::: -->
+    </div>
+
+    @RenderBody()
+
+    <!-- :::: ctl start:::::: -->
+    <section class="ctl">
+
+        <div class="container ">
+            <div class="cta-bg position-relative">
+                <div class="ctl-bg ">
+                    <div class="row justify-content-center align-items-center">
+                        <!-- :::: ctl single item:::::: -->
+                        <div class="col-lg-6">
+                            <div class="title">
+                                <h2>Newsletter</h2>
+                                <p>
+                                    At Direct Vision, we provide you with great glasses at affordable prices. We pride ourselves on quality frames and lenses
+                                    that are well-made, fashion-forward and original. We want you to express your unique personality
+                                    through your eyewear, so you can both see and be seen.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- :::: ctl single item:::::: -->
+                        <div class="col-lg-6">
+                            <form action="method">
+                                <input type="text" class="form-control" placeholder="Email Address">
+                                <button type="submit">subscribe now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- :::: ctl end:::::: -->
+    <footer>
+        <div class="has-bg">
+            <div class="has-bg-left">
+                <img src="~/assets/img/index-bg/left-8.png" alt="img">
+            </div>
+            <div class="has-bg-right">
+                <img src="~/assets/img/index-bg/right-8.png" alt="img">
+            </div>
+        </div>
+        <!-- :::: footer has-bg start:::::: -->
+        <div class="container-fluid custum-pd">
+            <div class="footer-bg">
+                <div class="container">
+                    <div class="row">
+                        <!-- :::: footer logo:::::: -->
+                        <div class="col-lg-6">
+                            <div class="logo">
+                                <a href="#"><img src="~/assets/img/footer-Logo.png" alt="img"></a>
+                                <h3>MISSION STATEMENT</h3>
+                                <h4>Quality Vision Should Never Be Out of Your Price Range</h4>
+                                <p>
+                                    At Direct Vision, we provide you with great glasses at affordable prices. We pride
+                                    <br>
+                                    ourselves on quality frames and lenses
+                                    that are well-made, fashion-forward and <br> original. We want you to express your
+                                    unique
+                                    personality
+                                    through your eyewear, <br> so you can both see and be seen.
+                                </p>
+                                <a href="#" class="details">© 2021 <strong>Olaglasses.</strong> All Rights Reserved.</a>
+                            </div>
+                        </div>
+                        <!-- :::: footer quick:::::: -->
+                        <div class="col-lg-3 col-md-6">
+                            <div class="quick">
+                                <h3>Quick Services</h3>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="@Url.Action("Contact","Home")">Contact Us</a></li>
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- :::: footer follow:::::: -->
+                        <div class="col-lg-3 col-md-6">
+                            <div class="follow follow2">
+                                <h3>Follow us</h3>
+                                <ul>
+                                    <li><i class="fab fa-facebook-f"></i></li>
+                                    <li class="active"><i class="fab fa-twitter"></i></li>
+                                    <li><i class="fab fa-instagram"></i></li>
+                                    <li><i class="fab fa-pinterest-p"></i></li>
+                                </ul>
+                                <h3>Payment With:</h3>
+                                <img src="~/assets/img/card.png" alt="img">
+                                <a class="follow-link " href="#">© 2021 Olaglasses. All Rights Reserved.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="sign-in-area-bg">
+                        <img class="img-fluid" src="~/assets/img/Logo-sm.png" alt="img">
+
+                        <h4 class="seconheding">Create Account</h4>
+
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                        {
+                            <small style="color:red !important;font-weight:bold;font-size:14px !important " id="ErrorAccessMessageR"> @ViewBag.Error</small>
+                            <br>
+                            <input name="Email" id="txtEmailRegister" required class="form-control input" type="Email" placeholder="Enter  Email">
+
+                            <input name="Name" id="txtNameRegister" required class="form-control input" type="text" placeholder="Enter Name ">
+                            <input name="Password" id="txtPasswordRegister" required class="form-control input" type="password" placeholder="Password">
+
+                            <button type="button" class="btn btn-primary" id="btnRegister" onclick="UserRegister()">
+                                Sign Up
+                            </button>
+
+
+
+                            <h5 class="text-center">or fast log in with</h5>
+                            <small style="color:green !important;font-weight:bold;font-size:14px !important " id="ErrorAccessMessageG"> @ViewBag.Error</small>
+                            <br>
+                            <ul class="sign-with-social g-signin2" data-onsuccess="onSignIn">
+                                <li> <a class=""><img src="~/assets/img/google-logo.png" alt="img"></a></li>
+                            </ul>
+                            @*<p>
+                                    Already Have An Account. <a href="@Url.Action("Login", "Account")" class="text-warning d-inline" ctype="button">
+                                        Sign In Now
+                                    </a>
+                                </p>*@
+                        }
+                        @*<p>Already Have An Account. <a href="#">Sign In Now</a></p>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <div class="sign-in-area-bg">
+                        <img class="img-fluid" src="~/assets/img/Logo-sm.png" alt="img">
+
+                        <h4>Sign in</h4>
+
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            <small style="color:red !important;font-weight:bold;font-size:14px !important " id="ErrorAccessMessage"> @ViewBag.Error</small>
+                            <input name="useremail" id="txtEmail" required class="form-control input" type="text" placeholder="Enter Email">
+                            <input name="userpassword" id="txtPassword" required class="form-control input" type="password" placeholder="Password">
+                            <ul class="checkbox">
+                                <li> <input type="checkbox"> Remember Me </li>
+                                <li> <a class="text-warning d-inline" href="@Url.Action("Forgetpassword","Account")">Forgot Password?</a> </li>
+                            </ul>
+
+                            <button type="button" class="btn btn-primary" onclick="UserLogin()" id="btnLogin">
+                                Sign in
+                            </button>
+
+                            @*<button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#sign-in">
+                                    Sign in
+                                </button>*@
+                            @*<h6 style="float:right !important">
+                                    I am new here. <a href="@Url.Action("Register","Account")" class="text-warning d-inline">
+                                        Create an
+                                        Account
+                                    </a>
+                                </h6> <br />*@
+                            <h5 class="text-center">or fast log in with</h5>
+                            <small style="color:green !important;font-weight:bold;font-size:14px !important " id="ErrorAccessMessageG1"> @ViewBag.Error</small>
+                            <br>
+                            <ul class="sign-with-social g-signin2" data-onsuccess="onSignIn">
+                                <li> <a class=""><img src="~/assets/img/google-logo.png" alt="img"></a></li>
+                            </ul>
+                            <br>
+                            <p>
+                                I am new here. <a href="#" class="text-warning d-inline" ctype="button"
+                                                  data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                    Create an
+                                    Account
+                                </a>
+                            </p>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- :::: footer start:::::: -->
+    <div class="olaglasses-model-item">
+        <!--::::::olaglasses modal::::: -->
+        <div class="modal fade" id="ReviewsModal" aria-hidden="true"
+             tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-item">
+                            <img id="UserImage" alt="img" style="width:333px; height:480px">
+                            <div class="details">
+                                <div class="img">
+                                    @*<img id="Userreviewimage"  alt="img">*@
+
+                                    <span style="border-bottom:0px !important" id="product-name"></span>
+                                </div>
+                                <span id="Product-price"></span>
+                                <ul id="AverageReviewList">
+
+                                    <li id="Totalreviews"></li>
+                                </ul>
+                                <p id="UserReviews">
+
+                                </p>
+                                <div>
+                                    <a target="_blank" id="shopnow" class="btn" href="#">Shop now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- js -->
+    <script src="~/assets/js/jquery-1.12.4.min.js"></script>
+    <script src="~/assets/js/venobox.min.js"></script>
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/aos.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script src="~/assets/js/select2.min.js"></script>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+    <!-- js -->
+    <!--  -->
+    @*<script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+           
+        });
+    </script>*@
+    <script>
+
+        function UserRegister() {
+
+    var Email = $("#txtEmailRegister").val();
+            var Password = $("#txtPasswordRegister").val();
+            var Name = $("#txtNameRegister").val();
+    if (Email == "") {
+        document.getElementById("txtEmailRegister").style.borderColor = "red";
+        document.getElementById("txtEmailRegister").placeholder = "Type Email here..";
+
+    return;
+
+    }
+            if (Name == "") {
+                document.getElementById("txtNameRegister").style.borderColor = "red";
+                document.getElementById("txtNameRegister").placeholder = "Type Name here..";
+
+                return;
+
+            }
+    else {
+
+                var email = document.getElementById("txtEmailRegister").value;
+
+
+    var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (!expr.test(email)) {
+
+
+        document.getElementById("txtEmailRegister").placeholder = "Invalid Email Address.";
+        document.getElementById("txtEmailRegister").style.borderColor = "Red";
+        $("#EmailValidationErrorR").fadeIn();
+    return;
+    }
+    else {
+    $("#EmailValidationErrorR").fadeOut();
+        document.getElementById("txtEmailRegister").style.borderColor = "Green";
+    }
+
+
+    }
+
+
+    if (Password == "") {
+        document.getElementById("txtPasswordRegister").style.borderColor = "red";
+
+        document.getElementById("txtPasswordRegister").placeholder = "Type Password here..";
+    return;
+
+    }
+    else
+    {
+        document.getElementById("txtPasswordRegister").style.borderColor = "Green";
+    }
+
+        var url = window.location.href;
+        var UserInfo = {};
+        UserInfo.UserEmail = Email;
+            UserInfo.Firstname = Name;
+            UserInfo.UserPass = Password;
+
+            document.getElementById("btnRegister").innerHTML = " <img id='LoginLoader' style='Width: 34px!important; height: 30px!important' src='/assets/img/loader.gif' /> &nbsp;  Please Wait.......";
+    /*document.getElementById("btnLogin").innerHTML = " <img id='LoginLoader' style='Width: 34px!important; height: 30px!important' src='/assets/img/loaders.gif' /> &nbsp; Please Wait...";*/
+
+
+            document.getElementById("btnRegister").style.backgroundColor = 'black';
+            document.getElementById("btnRegister").style.borderColor = "black";
+            document.getElementById("btnRegister").disabled = true;
+
+
+    $.ajax({
+    type: "POST",
+    url: '@Url.Action("Register", "Account")',
+    data: '{UserInformation: ' + JSON.stringify(UserInfo) + '}',
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            console.log(result.status);
+    if (result.status == "-1") {
+
+        document.getElementById("ErrorAccessMessageR").innerHTML = "User Already registered ";
+        document.getElementById("ErrorAccessMessageR").style.color = "#a94442";
+        document.getElementById("btnRegister").innerHTML = "Sign up";
+        document.getElementById("btnRegister").style.backgroundColor = '#009B95';
+        document.getElementById("btnRegister").style.borderColor = "#009B95";
+        document.getElementById("btnRegister").disabled = false;
+
+    }
+    else if (result.status == "1") {
+
+        window.location.href = url;
+
+    }
+
+
+
+
+    },
+    error: function (err) {
+
+    }
+    });
+        }
+
+        function UserLogin() {
+
+    var Email = $("#txtEmail").val();
+    var Password = $("#txtPassword").val();
+
+    if (Email == "") {
+    document.getElementById("txtEmail").style.borderColor = "red";
+    document.getElementById("txtEmail").placeholder = "Type Email here..";
+
+    return;
+
+    }
+    else {
+
+    var email = document.getElementById("txtEmail").value;
+
+
+    var expr = /^([\w-\.]+)@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (!expr.test(email)) {
+
+
+    document.getElementById("txtEmail").placeholder = "Invalid Email Address.";
+    document.getElementById("txtEmail").style.borderColor = "Red";
+    $("#EmailValidationError").fadeIn();
+    return;
+    }
+    else {
+    $("#EmailValidationError").fadeOut();
+    document.getElementById("txtEmail").style.borderColor = "Green";
+    }
+
+
+    }
+
+
+    if (Password == "") {
+    document.getElementById("txtPassword").style.borderColor = "red";
+
+    document.getElementById("txtPassword").placeholder = "Type Password here..";
+    return;
+
+    }
+    else
+    {
+    document.getElementById("txtPassword").style.borderColor = "Green";
+    }
+
+        var url = window.location.href;
+        var UserInfo = {};
+        UserInfo.UserEmail = Email;
+        UserInfo.UserPass = Password;
+
+
+        document.getElementById("btnLogin").innerHTML = " <img id='LoginLoader' style='Width: 34px!important; height: 30px!important' src='/assets/img/loader.gif' /> &nbsp;  Please Wait.......";
+    /*document.getElementById("btnLogin").innerHTML = " <img id='LoginLoader' style='Width: 34px!important; height: 30px!important' src='/assets/img/loaders.gif' /> &nbsp; Please Wait...";*/
+
+
+    document.getElementById("btnLogin").style.backgroundColor = 'black';
+    document.getElementById("btnLogin").style.borderColor = "black";
+    document.getElementById("btnLogin").disabled = true;
+
+
+    $.ajax({
+    type: "POST",
+    url: '@Url.Action("UserLogin", "Account")',
+    data: '{UserInformation: ' + JSON.stringify(UserInfo) + '}',
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            console.log(result.status);
+    if (result.status == "-1") {
+
+        document.getElementById("ErrorAccessMessage").innerHTML = "User not registered ";
+        document.getElementById("ErrorAccessMessage").style.color = "#a94442";
+        document.getElementById("btnLogin").innerHTML = "Sign in";
+        document.getElementById("btnLogin").style.backgroundColor = '#009B95';
+        document.getElementById("btnLogin").style.borderColor = "#009B95";
+        document.getElementById("btnLogin").disabled = false;
+
+    }
+    else if (result.status == "-2") {
+
+        document.getElementById("ErrorAccessMessage").innerHTML = "Incorrect password";
+        document.getElementById("ErrorAccessMessage").style.color = "#a94442";
+        document.getElementById("btnLogin").innerHTML = "Sign in";
+        document.getElementById("btnLogin").style.backgroundColor = '#009B95';
+        document.getElementById("btnLogin").style.borderColor = "#009B95";
+        document.getElementById("btnLogin").disabled = false;
+
+    }
+
+    else if (result.status == "-3") {
+
+        document.getElementById("ErrorAccessMessage").innerHTML = "User is not active";
+        document.getElementById("ErrorAccessMessage").style.color = "#a94442";
+        document.getElementById("btnLogin").innerHTML = "Sign in";
+        document.getElementById("btnLogin").style.backgroundColor = '#009B95';
+        document.getElementById("btnLogin").style.borderColor = "#009B95";
+        document.getElementById("btnLogin").disabled = false;
+    }
+
+
+    else if (result.status == "1") {
+    window.location.href = result.url;
+
+            }
+    else if (result.status == "2") {
+        alert("Successfully Login");
+        window.location.href = url;
+
+    }
+    },
+    error: function (err) {
+
+    }
+    });
+        }
+    </script>
+
+
+
+    <script>
+        window.onbeforeunload = function (e) {
+            gapi.auth2.getAuthInstance().signOut();
+        };
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+
+            var url = window.location.href;
+            var UserInfo = {};
+            UserInfo.UserEmail = profile.getEmail();
+            UserInfo.Firstname = profile.getName();
+            UserInfo.UserImage = profile.getImageUrl();
+            UserInfo.UserPass = "";
+
+            $.ajax({
+    type: "POST",
+    url: '@Url.Action("RegisterGoogle", "Account")',
+    data: '{UserInformation: ' + JSON.stringify(UserInfo) + '}',
+    dataType: "json",
+    contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            console.log(result.status);
+
+
+            if (result.status == "1") {
+                document.getElementById("ErrorAccessMessageG1").innerHTML = "User successfully login. Please refresh your page.";
+                document.getElementById("ErrorAccessMessageG").innerHTML = "User successfully login. Please refresh your page.";
+                document.getElementById("ErrorAccessMessageG").style.color = "green";
+
+            }
+
+
+
+            window.location.href = url;
+
+    },
+    error: function (err) {
+
+    }
+    });
+        }
+
+
+        function signOut() {
+            var url = window.location.href;
+
+            var auth2= gapi.auth2.getAuthInstance();
+            alert(auth2);
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+            window.location.href = url;
+        }
+    </script>
+</body>
+
+</html>

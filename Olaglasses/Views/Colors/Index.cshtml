@@ -1,0 +1,146 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblColors
+@{
+    List<tblColors> Color = (List<tblColors>)ViewBag.Color;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <h2 class="breadcrumb-title">Colors</h2>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-body">
+                @if (ViewBag.message != null && ViewBag.message != "")
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-right:0 !important" id="LinkCopy">
+                        @ViewBag.message
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                }
+                <form method="post" action="@Url.Action("Create", "Colors")">
+                    <input type="hidden" name="ColorID" id="ColorID" value="@Model.ColorID">
+
+                    <div class="service-fields">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>HexaCode <span class="text-danger">*</span></label>
+
+                                    <input class="form-control" type="text" name="hexacode" id="hexacode" value="@Model.hexacode" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Color Name<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="colorname" id="colorname" value="@Model.colorname" required="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4" style="margin-top:3%">
+                                <div class="form-group">
+                                    <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
+                                    <a href="@Url.Action("Cancel","Colors")"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-center mb-0" id="GlassesList">
+                        <thead>
+                            <tr>
+                                <th>HexaCode</th>
+                                <th>Color</th>
+
+
+
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Color)
+                            {
+                                <tr>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="javascript:void(0);">@item.hexacode</a>
+                                        </h2>
+                                    </td>
+
+
+                                    <td>@item.colorname</td>
+
+
+                                    <td class="text-center">
+                                        <div class="table-action">
+
+
+                                            <a href="@Url.Action("Index","Colors", new { id=@item.ColorID})" class="btn btn-sm bg-success-light">
+                                                <i class="fas fa-pen"></i> Edit
+                                            </a>
+                                            <a href="javascript:void(0)" onclick="DeleteData(@item.ColorID)" class="btn btn-sm bg-danger-light">
+                                                <i class="fas fa-trash"></i> Delete
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                </div>
+            </div>
+</div>
+
+
+<script src="~/Dashboardassets/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Dashboardassets/assets/plugins/datatables/datatables.min.js"></script>
+<script>
+    function DeleteData(ID) {
+
+        var myModal = $('#delete_post_Color');
+        $("#id", myModal).val(ID);
+        $("#delete_post_Color").modal('show');
+    }
+    $(document).ready(function () {
+        $('#GlassesList').DataTable({
+            searching: true,
+            "ordering": false
+        });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#color').addClass('active');
+
+    });
+</script>
+

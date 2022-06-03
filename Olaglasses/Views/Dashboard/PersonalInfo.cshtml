@@ -1,0 +1,162 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblUser
+@{
+    ViewBag.Title = "PersonalInfo";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <h2 class="breadcrumb-title">Profile Setting</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
+    <div class="card">
+        <div class="card-body">
+
+            @if (ViewBag.IsError != null && ViewBag.IsError != "")
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert" style="padding-right:0 !important" id="LinkCopy">
+                    @ViewBag.IsError
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            }
+            @using (Html.BeginForm("PersonalInfo", "Dashboard", FormMethod.Post, new
+            {
+                enctype = "multipart/form-data"
+            }))
+            {
+                <form >
+                    <input name="UserID" value="@Model.UserID" hidden>
+                    <input name="UserPass" value="@Model.UserPass" hidden>
+                    <input name="Role" value="@Model.Role" hidden>
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="change-avatar">
+                                    <div class="profile-img">
+                                        <img src=@Model.UserImage alt="User Image" id="UserImage">
+                                        <input type="text" name="UserImage" value="@Model.UserImage" hidden>
+                                    </div>
+                                    <div class="upload-img">
+                                        <div class="change-photo-btn">
+                                            <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                            <input type="file" class="upload" id="Image" name="Image" onchange="show(this)">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" readonly value="@Model.UserEmail" name="UserEmail">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="@Model.Firstname" name="Firstname">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" value="@Model.Lastname" name="Lastname">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" value="@Model.Phone" name="Phone">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select class="form-control select" name="Gender">
+                                    <option>Select</option>
+                                    @if (Model.Gender == "Male")
+                                    {
+                                        <option selected>Male</option>
+                                        <option>Female</option>
+                                        <option>Trans</option>
+                                    }
+                                    @if (Model.Gender == "Female")
+                                    {
+                                        <option>Male</option>
+                                        <option selected>Female</option>
+                                        <option>Trans</option>
+                                    }
+                                    @if (Model.Gender == "Trans")
+                                    {
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option selected>Trans</option>
+                                    }
+                                    else
+                                    {
+
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Trans</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        @*<div class="col-md-4">
+                            <div class="form-group mb-0">
+                                <label>Date of Birth</label>
+                                <input type="date" class="form-control" value="@Model.DateofBirth.Value.ToString("yyyy-MM-dd")" name="DateofBirth" required>
+                            </div>
+                        </div>*@
+                        <div class="col-md-4">
+                            <div class="form-group mb-0">
+                                <label>Address</label>
+                                <input type="text" class="form-control" value="@Model.Address" name="Address">
+                            </div>
+                        </div>
+                        <div class="submit-section submit-btn-bottom" style="margin-top:3% !important">
+                            <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
+            }
+            </div>
+    </div>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#UserImage').attr('src', e.target.result);
+
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#setting').addClass('active');
+
+    });
+</script>

@@ -1,0 +1,172 @@
+﻿@using Olaglasses.Models;
+@{
+    List<Sp_Get_Favourite_List_Result> sp_Get_Favourites = (List<Sp_Get_Favourite_List_Result>)ViewBag.favouritesList;
+
+}
+@{
+    ViewBag.Title = "Favourites";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="products-wishlist-hero-aria">
+
+
+    <div class="container-fluid custum-pd ">
+        <div class="products-wishlist-banner">
+            <h2>Favourites</h2>
+
+        </div>
+    </div>
+
+
+</section>
+<!-- ::::products-hero-aria  end:::::: -->
+<!-- ::::products start:::::: -->
+<section class="products products-page-two products-wishlist-blog" data-aos="fade-up" data-aos-duration="3000">
+    <!-- ::::products has-bg start:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/bg-3.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/bg-4.png" alt="img">
+        </div>
+    </div>
+    <!-- ::::products has-bg end:::::: -->
+    <div class="container custum-pd2">
+
+        <div class="product-bg bg-transparent p-0">
+            <div class="row g-4">
+                <!-- ::::products single item:::::: -->
+                @{int Duplicatecheck = 0;}
+                @foreach (var item in ViewBag.favouritesList)
+                {
+
+                    if (Duplicatecheck != @item.GlassID)
+                    {
+                        <div class="col-lg-3 col-md-6">
+                            <div class="product-item">
+                                <div class="img">
+
+                                    @if (item.Sticker == "Hot")
+                                    {
+                                        <a class="bg-danger wishlist-link" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-fire bg"></i> @item.Sticker</a>
+                                    }
+                                    @if (item.Sticker == "New Arrival")
+                                    {
+                                        <a class="wishlist-link bg-secondary" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Sticker</a>
+                                    }
+                                    @if (item.Sticker == "Top Seller")
+                                    {
+                                        <a class="wishlist-link wishlist-link-premium" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-crown bg"></i> @item.Sticker</a>
+                                    }
+
+
+                                    <img id="@item.GlassID-image-color" class="img-fluid" src="@item.ImagePath" alt="ig">
+                                </div>
+                                <div class="details">
+                                    <h6><a target="_blank" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Title </a></h6>
+                                    <p>$@item.Price</p>
+                                    <div class="color">
+                                        <ul>
+                                            @foreach (var colors in ViewBag.favouritesList)
+                                            {
+                                                Duplicatecheck = Convert.ToInt32(@item.GlassID);
+                                                if (@colors.ColorCode != "")
+                                                {
+                                                    if (item.GlassID == colors.GlassID)
+                                                    {
+                                                        <li onclick="Changecolour('@colors.GlassID-image-color','@colors.ImagePath')" style="background-color:@colors.ColorCode"></li>
+                                                    }
+                                                }
+
+                                            }
+                                        </ul>
+                                        <div class="icon"><a href="@Url.Action("Unfavourite","Dashboard",new { id=@item.Likestatus,userID=@ViewBag.UserID})"><i class="fas fa-times bg-danger"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                }
+
+            </div>
+            <!-- ::::products pagination:::::: -->
+            <div class="col-lg-7 mx-auto ">
+                <div class="pagination d-flex align-items-center justify-content-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ::::products end:::::: -->
+<!-- ::::servie start:::::: -->
+<section class="service products-service-2 products-wishlis-service">
+    <!-- ::::servie has-bg start:::::: -->
+    <div class="has-bg has-bg-two">
+        <div class="has-bg-19">
+            <img src="~/assets/img/Bg-right-1.png" alt="img">
+        </div>
+        <div class="has-bg-20">
+            <img src="~/assets/img/Bg-left-1.png" alt="img">
+        </div>
+    </div>
+    <!-- ::::servie has-bg end:::::: -->
+    <div class="container custum-pd2">
+        <div class="row">
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="icon">
+                        <img src="~/assets/img/service-icon.png" alt="icon">
+                    </div>
+                    <h4>30 – DAY MONEY BACK </h4>
+                    <p> We have a 30-day, no hassle return or exchange policy for our eyewear and accessories.</p>
+                </div>
+            </div>
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-up" data-aos-duration="3000">
+                    <div class="icon">
+                        <img src="~/assets/img/box.png" alt="icon">
+                    </div>
+                    <h4>FREE SHIPPING </h4>
+                    <p>
+                        All orders over $99.00 qualify for free shipping, which is one less thing for you to worry about.
+                    </p>
+                </div>
+            </div>
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-left" data-aos-duration="3000">
+                    <div class="icon">
+
+                        <img src="~/assets/img/eye-glasses1.png" alt="icon">
+
+                    </div>
+                    <h4>SUPERIOR LENSES</h4>
+                    <p> We know that as an eyeglass wearer you expect nothing but the best in terms of lens quality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+<script>
+    function Changecolour(colorid, imgurl) {
+
+
+        document.getElementById(colorid).src = imgurl;
+    }
+    $(document).ready(function () {
+
+        jQuery('.js-example-basic-single').select2();
+        $(".nav li").removeClass("active");
+        $('#fav').addClass('active');
+
+        
+    });
+</script>

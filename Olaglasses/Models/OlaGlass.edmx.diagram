@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1cbd5375d0b341109263fb32aa135ef6" Name="Diagram1">
+        <EntityTypeShape EntityType="OlaGlassesModel.tblCoupon" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblFavourite" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblglassPicture" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblOrderPrescription" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblProduct" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblReviewLike" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblReview" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblUser" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblVariation" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.ActivationCode" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.ForgetPassword" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblSize" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblSetting" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblColors" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblUserPrescription" Width="1.5" PointX="11.375" PointY="10.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblcart" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblOrder" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="OlaGlassesModel.tblOrderDetails" Width="1.5" PointX="2.75" PointY="13.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

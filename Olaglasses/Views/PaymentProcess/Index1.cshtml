@@ -1,0 +1,143 @@
+﻿@using Olaglasses.Models;
+@{
+    List<tblOrder> orders = (List<tblOrder>)ViewBag.OrderList;
+    List<tblcart> cart = (List<tblcart>)ViewBag.cart;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        h4 {
+            padding-bottom: 0px !important;
+        }
+
+        p {
+            padding-bottom: 0px !important;
+        }
+    </style>
+</head>
+<section class="products-wishlist-hero-aria">
+</section>
+<!-- ::::products-hero-aria  end:::::: -->
+
+
+
+
+
+<section class="user-area">
+    <div class="has-bg">
+        <div class="has-bg-user-left">
+            <img src="assets/img/user-information-left-bg.png" alt="">
+        </div>
+        <div class="has-bg-user-right">
+            <img src="assets/img/user-information-right-bg.png" alt="">
+        </div>
+    </div>
+    <div class="container-fluid custum-pd ">
+
+        <div class="user-bg d-flex justify-content-between flex-wrap">
+            <div class="user-item" style="width:60% !important">
+                <h2>Previous Orders</h2>
+                <a class="shopping-btn" href="@Url.Action("Checkout", "PaymentProcess", new { id = @ViewBag.UserID, OlderID = 0 })">
+                    <button style="width:50% !important " type="button" class="confirm-btn">Next</button>
+                </a>
+                <hr>
+                <div class="Cardholder input-area">
+
+                    <!-- <div class="my-cart-section"> -->
+                    @foreach (var item in orders)
+                    {
+                        <div class="row">
+                            <div class="col-md">
+                                <h4>Billing </h4>
+                                <p>
+                                    @item.BFname @item.BLname,<br> @item.BAddress, <br>@item.Bcity, @item.BState, <br>@item.BCountry (@item.BPostalCode)
+                                    <br>@item.BPhone
+                                    <br>@item.BEmail
+                                </p>
+
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Shipping </h4>
+                                <p>
+                                    @item.SFname @item.SLname,<br> @item.SAddress,<br> @item.Scity, @item.SState,<br> @item.SCountry (@item.SPostalCode)
+                                    <br>@item.SPhone
+                                    <br>@item.SEmail
+                                </p>
+
+                            </div>
+                            <div class="col-md-4">
+                                <a style="width:50% !important " class="shopping-btn" href="@Url.Action("Checkout", "PaymentProcess", new { id = item.userID, OlderID = item.OrderID })">
+                                    <button type="button" class="confirm-btn" onclick="Next()">Use to Fill Data</button>
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+                    }
+                </div>
+            </div>
+            <div class="user-order-item">
+                <h4>Order Summary</h4>
+                <div class="frame">
+                    @{ double subtotal = 0;}
+                    @foreach (var item in cart)
+                    {
+                        <ul>
+                            <li>@item.Title X @item.Quantity</li>
+                            <li>$@item.TotalAmount</li>
+                        </ul>
+                        if (item.LensType != null)
+                        {
+                            <ul>
+                                <li>@item.LensType</li>
+                                @if (item.LensType == "Standard")
+                                {
+                                    <li>$@item.39</li>
+                                }
+
+                                @if (item.LensType == "Enhanced")
+                                {
+                                    <li>$@item.49</li>
+                                }
+                            </ul>
+                        }
+                        if (item.UVProtection == "on")
+                        {
+                            <ul>
+                                <li>UV Protection</li>
+                                <li>$20</li>
+                            </ul>
+                        }
+                        subtotal = subtotal + item.TotalAmount;
+                    }
+                </div>
+                   <div class="Subtotal">
+                        <ul class="active">
+                            <li>Subtotal</li>
+                            <li>$@subtotal</li>
+                        </ul>
+                        <ul>
+                            <li>Shipping</li>
+                            <li>$9.00</li>
+                        </ul>
+                        <ul>
+                            <li>Discount</li>
+                            <li>$@ViewBag.txtdiscountamount</li>
+                        </ul>
+                        <ul>
+                            <li>tax</li>
+                            <li>$@ViewBag.tax</li>
+                        </ul>
+                    </div>
+                    <div class="total-order">
+                        <h6>order Total</h6>
+                        <h6>$@ViewBag.GrandAmount</h6>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+

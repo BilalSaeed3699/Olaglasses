@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<section class="sign-in-area">
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/bg-3.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/bg-4.png" alt="img">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto text-center">
+                <div class="sign-in-area-bg">
+                    <img class="img-fluid" src="~/assets/img/Logo-sm.png" alt="img">
+                    <h4>Create Account</h4>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                    {
+                        <small style="color:red !important;font-weight:bold;font-size:14px !important "> @ViewBag.Error</small>
+                        <br>
+                        <input name="Email" required class="form-control input" type="Email" placeholder="Enter  Email">
+
+                        <input name="Name" required class="form-control input" type="text" placeholder="Enter Name ">
+                        <input name="Password" required class="form-control input" type="password" placeholder="Password">
+
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#sign-in">
+                            Sign Up
+                        </button>
+
+
+
+                        <h5>or fast log in with</h5>
+                        <ul class="sign-with-social">
+                            <li> <a href="#"><img src="~/assets/img/google-logo.png" alt="img"></a></li>
+
+                        </ul>
+                        <p>
+                            Already Have An Account. <a href="@Url.Action("Login", "Account")" class="text-warning d-inline" ctype="button">
+                                Sign In Now
+                            </a>
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

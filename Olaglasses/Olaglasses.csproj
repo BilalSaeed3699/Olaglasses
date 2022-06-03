@@ -1,0 +1,1302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E921A501-2270-45CD-8D04-C1B9CDE89BBA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Olaglasses</RootNamespace>
+    <AssemblyName>Olaglasses</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44349</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Stripe.net, Version=39.84.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stripe.net.39.84.0\lib\net461\Stripe.net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccessorriesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ColorsController.cs" />
+    <Compile Include="Controllers\CouponsController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\GlassessController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PaymentProcessController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ActivationCode.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ForgetPassword.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OlaGlass.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OlaGlass.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OlaGlass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OlaGlass.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OlaGlass.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spgetorderDetails_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spgetorderDetails_Result1.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spgetorderDetails_Result2.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spgetorderDetails_Result3.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spgetorderDetails_Result4.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Get_Favourite_List_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Get_Five_Reviews_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Get_Product_List_Filter_Accessory_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Get_Product_List_Filter_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sp_Get_Product_List_Result.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblcart.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblColors.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCoupon.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblFavourite.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblglassPicture.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblOrder.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblOrderDetails.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblOrderPrescription.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProduct.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReview.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReviewLike.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSetting.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSize.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUser.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblUserPrescription.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblVariation.cs">
+      <DependentUpon>OlaGlass.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Utility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\all.min.css" />
+    <Content Include="assets\css\aos.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\responsive.css" />
+    <Content Include="assets\css\select2.min.css" />
+    <Content Include="assets\css\slick.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\venobox.css" />
+    <Content Include="assets\img\about-benner.png" />
+    <Content Include="assets\img\additional-right-img.png" />
+    <Content Include="assets\img\Alston 2.svg" />
+    <Content Include="assets\img\amazon.png" />
+    <Content Include="assets\img\Amazone2.png" />
+    <Content Include="assets\img\banner-img-two.png" />
+    <Content Include="assets\img\banner-img.png" />
+    <Content Include="assets\img\bear-img.png" />
+    <Content Include="assets\img\Bg -27.png" />
+    <Content Include="assets\img\Bg-10.png" />
+    <Content Include="assets\img\Bg-11.png" />
+    <Content Include="assets\img\Bg-12.png" />
+    <Content Include="assets\img\Bg-13.png" />
+    <Content Include="assets\img\Bg-14.png" />
+    <Content Include="assets\img\Bg-15.png" />
+    <Content Include="assets\img\Bg-16.png" />
+    <Content Include="assets\img\Bg-17.png" />
+    <Content Include="assets\img\Bg-18.png" />
+    <Content Include="assets\img\Bg-19.png" />
+    <Content Include="assets\img\Bg-20.png" />
+    <Content Include="assets\img\Bg-21.png" />
+    <Content Include="assets\img\Bg-22.png" />
+    <Content Include="assets\img\Bg-23 %281%29.png" />
+    <Content Include="assets\img\Bg-24.png" />
+    <Content Include="assets\img\Bg-25.png" />
+    <Content Include="assets\img\Bg-26.png" />
+    <Content Include="assets\img\Bg-28.png" />
+    <Content Include="assets\img\Bg-29.png" />
+    <Content Include="assets\img\bg-3.png" />
+    <Content Include="assets\img\Bg-30.png" />
+    <Content Include="assets\img\bg-4.png" />
+    <Content Include="assets\img\Bg-5.png" />
+    <Content Include="assets\img\Bg-6.png" />
+    <Content Include="assets\img\Bg-7 .png" />
+    <Content Include="assets\img\Bg-8.png" />
+    <Content Include="assets\img\Bg-9.png" />
+    <Content Include="assets\img\Bg-left-1.png" />
+    <Content Include="assets\img\Bg-left-2.png" />
+    <Content Include="assets\img\Bg-right-1.png" />
+    <Content Include="assets\img\Bg-right-2.png" />
+    <Content Include="assets\img\blog-img-one.png" />
+    <Content Include="assets\img\blog-img-three.png" />
+    <Content Include="assets\img\blog-img-two.png" />
+    <Content Include="assets\img\box.png" />
+    <Content Include="assets\img\card.png" />
+    <Content Include="assets\img\cart-icon.svg" />
+    <Content Include="assets\img\change.png" />
+    <Content Include="assets\img\change2.png" />
+    <Content Include="assets\img\chat.svg" />
+    <Content Include="assets\img\clos.png" />
+    <Content Include="assets\img\contact-us-bg.png" />
+    <Content Include="assets\img\country-ogo.png" />
+    <Content Include="assets\img\dawon-arwo.png" />
+    <Content Include="assets\img\deat.png" />
+    <Content Include="assets\img\details-one\product-details-two-onw.png" />
+    <Content Include="assets\img\details-one\product-details-two.png" />
+    <Content Include="assets\img\details-one\revew-1.png" />
+    <Content Include="assets\img\details-one\revew-2.png" />
+    <Content Include="assets\img\details-one\revew-3.png" />
+    <Content Include="assets\img\details-one\revew-4.png" />
+    <Content Include="assets\img\details-one\revew-5.png" />
+    <Content Include="assets\img\details-one\revew-6.png" />
+    <Content Include="assets\img\details-one\revew-7.png" />
+    <Content Include="assets\img\details-one\revew-8.png" />
+    <Content Include="assets\img\details-one\revew-gls-1.png" />
+    <Content Include="assets\img\details-one\revew-gls-2.png" />
+    <Content Include="assets\img\details-one\revew-gls-3.png" />
+    <Content Include="assets\img\details-one\revew-gls-4.png" />
+    <Content Include="assets\img\details-two\product-details-2.png" />
+    <Content Include="assets\img\details-two\product-details-3.png" />
+    <Content Include="assets\img\details-two\product-details-sm-1.png" />
+    <Content Include="assets\img\details-two\product-details-sm-2.png" />
+    <Content Include="assets\img\details-two\product-details-sm-4.png" />
+    <Content Include="assets\img\details-two\product-details-sm3.png" />
+    <Content Include="assets\img\dropdown-aro-icon.png" />
+    <Content Include="assets\img\dropdown-icon.png" />
+    <Content Include="assets\img\edit.png" />
+    <Content Include="assets\img\ennancement-blog-2.png" />
+    <Content Include="assets\img\ennancement-blog-img-1.png" />
+    <Content Include="assets\img\eye-glasses1.png" />
+    <Content Include="assets\img\facebook-logo.png" />
+    <Content Include="assets\img\fav-ivon.jpg" />
+    <Content Include="assets\img\footer-bg.png" />
+    <Content Include="assets\img\footer-left.png" />
+    <Content Include="assets\img\footer-Logo.png" />
+    <Content Include="assets\img\footer-right.png" />
+    <Content Include="assets\img\glasses-3.png" />
+    <Content Include="assets\img\glasses-five.png" />
+    <Content Include="assets\img\glasses-four.png" />
+    <Content Include="assets\img\glasses-man-img.png" />
+    <Content Include="assets\img\glasses-one.png" />
+    <Content Include="assets\img\glasses-six.png" />
+    <Content Include="assets\img\glasses-three.png" />
+    <Content Include="assets\img\glasses-two.png" />
+    <Content Include="assets\img\google-logo.png" />
+    <Content Include="assets\img\Group36.png" />
+    <Content Include="assets\img\Group37.png" />
+    <Content Include="assets\img\has-bg-product-left.png" />
+    <Content Include="assets\img\has-bg-product-right.png" />
+    <Content Include="assets\img\hawkins.png" />
+    <Content Include="assets\img\heart-icon.svg" />
+    <Content Include="assets\img\heart-shape.png" />
+    <Content Include="assets\img\index-bg\left-1.png" />
+    <Content Include="assets\img\index-bg\left-2.png" />
+    <Content Include="assets\img\index-bg\left-3.png" />
+    <Content Include="assets\img\index-bg\left-4.png" />
+    <Content Include="assets\img\index-bg\left-5.png" />
+    <Content Include="assets\img\index-bg\left-6.png" />
+    <Content Include="assets\img\index-bg\left-7.png" />
+    <Content Include="assets\img\index-bg\left-8.png" />
+    <Content Include="assets\img\index-bg\prouduct-1.png" />
+    <Content Include="assets\img\index-bg\prouduct-2.png" />
+    <Content Include="assets\img\index-bg\prouduct-3.png" />
+    <Content Include="assets\img\index-bg\prouduct-4.png" />
+    <Content Include="assets\img\index-bg\prouduct-5.png" />
+    <Content Include="assets\img\index-bg\prouduct-6.png" />
+    <Content Include="assets\img\index-bg\prouduct-7.png" />
+    <Content Include="assets\img\index-bg\prouduct-8.png" />
+    <Content Include="assets\img\index-bg\right-1.png" />
+    <Content Include="assets\img\index-bg\right-2.png" />
+    <Content Include="assets\img\index-bg\right-3.png" />
+    <Content Include="assets\img\index-bg\right-4.png" />
+    <Content Include="assets\img\index-bg\right-5.png" />
+    <Content Include="assets\img\index-bg\right-6.png" />
+    <Content Include="assets\img\index-bg\right-7.png" />
+    <Content Include="assets\img\index-bg\right-8.png" />
+    <Content Include="assets\img\inform-icon-gray.png" />
+    <Content Include="assets\img\Layer 0.svg" />
+    <Content Include="assets\img\leather-glasses-.png" />
+    <Content Include="assets\img\lens-cleaning-kit-product-sample1.png" />
+    <Content Include="assets\img\Leslie-img.png" />
+    <Content Include="assets\img\line-slider.png" />
+    <Content Include="assets\img\Logo-sm.png" />
+    <Content Include="assets\img\Logo.png" />
+    <Content Include="assets\img\model-img-gls.png" />
+    <Content Include="assets\img\model-slider-icon.png" />
+    <Content Include="assets\img\Morgan 1.png" />
+    <Content Include="assets\img\my-cart-bg-item-img.png" />
+    <Content Include="assets\img\navigation-bg2.png" />
+    <Content Include="assets\img\navigationbg-1.png" />
+    <Content Include="assets\img\news-blog-img-3.png" />
+    <Content Include="assets\img\news-blog-img-4.png" />
+    <Content Include="assets\img\news-blog-img-5.png" />
+    <Content Include="assets\img\news-blog-img-6.png" />
+    <Content Include="assets\img\news-blog-img-7.png" />
+    <Content Include="assets\img\news-blog-img-8.png" />
+    <Content Include="assets\img\news-blog-img-9.png" />
+    <Content Include="assets\img\news-details-left-img.png" />
+    <Content Include="assets\img\news-details-right-img-one.png" />
+    <Content Include="assets\img\news-details-right-img-two.png" />
+    <Content Include="assets\img\news-img-left.png" />
+    <Content Include="assets\img\news-img-right.png" />
+    <Content Include="assets\img\NicePng_dirty1.png" />
+    <Content Include="assets\img\note-icon.png" />
+    <Content Include="assets\img\olaglasses-item-img-five.png" />
+    <Content Include="assets\img\olaglasses-item-img-four.png" />
+    <Content Include="assets\img\olaglasses-item-img-one.png" />
+    <Content Include="assets\img\olaglasses-item-img-three.png" />
+    <Content Include="assets\img\olaglasses-item-img-two.png" />
+    <Content Include="assets\img\order-img.png" />
+    <Content Include="assets\img\ordering-details-left-img.png" />
+    <Content Include="assets\img\pay-logo.png" />
+    <Content Include="assets\img\PayPal2.png" />
+    <Content Include="assets\img\pbg-Image.png" />
+    <Content Include="assets\img\pepole-icon.svg" />
+    <Content Include="assets\img\pnghut_horse-equestrian-case-zipper-stable-glasses1.png" />
+    <Content Include="assets\img\presription-img-1.png" />
+    <Content Include="assets\img\presription-img-1.svg" />
+    <Content Include="assets\img\presription-img-2.png" />
+    <Content Include="assets\img\presription-img-2.svg" />
+    <Content Include="assets\img\presription-img-3.png" />
+    <Content Include="assets\img\presription-img-3.svg" />
+    <Content Include="assets\img\privcy&amp;faq-banner-img.png" />
+    <Content Include="assets\img\proccessing-left-img.png" />
+    <Content Include="assets\img\product-bg\left-1.png" />
+    <Content Include="assets\img\product-bg\left-2.png" />
+    <Content Include="assets\img\product-bg\left-3.png" />
+    <Content Include="assets\img\product-bg\left-4.png" />
+    <Content Include="assets\img\product-bg\left-5.png" />
+    <Content Include="assets\img\product-bg\Morgan 2.png" />
+    <Content Include="assets\img\product-bg\p-left-1.png" />
+    <Content Include="assets\img\product-bg\p-right-1.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-1.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-10.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-11.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-12.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-13.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-14.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-15.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-16.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-2.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-3.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-4.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-5.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-6.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-7.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-8.png" />
+    <Content Include="assets\img\product-bg\product-page-four-img-9.png" />
+    <Content Include="assets\img\product-bg\product-sm-1.png" />
+    <Content Include="assets\img\product-bg\product-sm-10.png" />
+    <Content Include="assets\img\product-bg\product-sm-11.png" />
+    <Content Include="assets\img\product-bg\product-sm-12.png" />
+    <Content Include="assets\img\product-bg\product-sm-13.png" />
+    <Content Include="assets\img\product-bg\product-sm-14.png" />
+    <Content Include="assets\img\product-bg\product-sm-15.png" />
+    <Content Include="assets\img\product-bg\product-sm-16.png" />
+    <Content Include="assets\img\product-bg\product-sm-2.png" />
+    <Content Include="assets\img\product-bg\product-sm-3.png" />
+    <Content Include="assets\img\product-bg\product-sm-4.png" />
+    <Content Include="assets\img\product-bg\product-sm-5.png" />
+    <Content Include="assets\img\product-bg\product-sm-6.png" />
+    <Content Include="assets\img\product-bg\product-sm-7.png" />
+    <Content Include="assets\img\product-bg\product-sm-8.png" />
+    <Content Include="assets\img\product-bg\product-sm-9.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-1.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-10.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-11.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-12.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-13.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-14.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-15.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-16.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-2.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-3.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-4.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-5.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-6.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-7.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-8.png" />
+    <Content Include="assets\img\product-bg\products-page-five-img-9.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-1.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-2.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-3.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-4.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-5.png" />
+    <Content Include="assets\img\product-bg\prouduct-big-6.png" />
+    <Content Include="assets\img\product-bg\right-1.png" />
+    <Content Include="assets\img\product-bg\right-2.png" />
+    <Content Include="assets\img\product-bg\right-3.png" />
+    <Content Include="assets\img\product-bg\right-4.png" />
+    <Content Include="assets\img\product-bg\right-5.png" />
+    <Content Include="assets\img\product-details-bg\left-1.png" />
+    <Content Include="assets\img\product-details-bg\left-2.png" />
+    <Content Include="assets\img\product-details-bg\left-3.png" />
+    <Content Include="assets\img\product-details-bg\left-4.png" />
+    <Content Include="assets\img\product-details-bg\right-1.png" />
+    <Content Include="assets\img\product-details-bg\right-2.png" />
+    <Content Include="assets\img\product-details-bg\right-3.png" />
+    <Content Include="assets\img\product-details-bg\right-4.png" />
+    <Content Include="assets\img\product-glasses-small-1.svg" />
+    <Content Include="assets\img\product-glasses-small-2.svg" />
+    <Content Include="assets\img\product-glasses-small-3.svg" />
+    <Content Include="assets\img\product-glasses-small-4.svg" />
+    <Content Include="assets\img\product-glasses-small-5.svg" />
+    <Content Include="assets\img\product-glasses-small-6.svg" />
+    <Content Include="assets\img\product-glasses-small-7.svg" />
+    <Content Include="assets\img\product-glasses-small-8.svg" />
+    <Content Include="assets\img\product-oe-one.png" />
+    <Content Include="assets\img\products-banner-glass-1.png" />
+    <Content Include="assets\img\products-banner-glass-2.png" />
+    <Content Include="assets\img\products-banner-glass-3.png" />
+    <Content Include="assets\img\products-banner-glass-4.png" />
+    <Content Include="assets\img\products-banner.png" />
+    <Content Include="assets\img\protfolio-banner.png" />
+    <Content Include="assets\img\protfolio-bg-left.png" />
+    <Content Include="assets\img\protfolio-bg-right.png" />
+    <Content Include="assets\img\protfolio-img.png" />
+    <Content Include="assets\img\provide-btn-img.png" />
+    <Content Include="assets\img\provide-dropdown-icon.png" />
+    <Content Include="assets\img\remove.png" />
+    <Content Include="assets\img\reviews-img-1.png" />
+    <Content Include="assets\img\reviews-img-2.png" />
+    <Content Include="assets\img\reviews-img-3.png" />
+    <Content Include="assets\img\reviews-img-4.png" />
+    <Content Include="assets\img\reviews-img-5.png" />
+    <Content Include="assets\img\reviews-img-6.png" />
+    <Content Include="assets\img\reviews-img-7.png" />
+    <Content Include="assets\img\reviews-img-8.png" />
+    <Content Include="assets\img\ronald-richards.png" />
+    <Content Include="assets\img\Sawyer-bg-img.png" />
+    <Content Include="assets\img\Sawyer-img.png" />
+    <Content Include="assets\img\sawyer-small-four.png" />
+    <Content Include="assets\img\sawyer-small-one.png" />
+    <Content Include="assets\img\sawyer-small-three.png" />
+    <Content Include="assets\img\sawyer-small-two.png" />
+    <Content Include="assets\img\search-icon.svg" />
+    <Content Include="assets\img\search.svg" />
+    <Content Include="assets\img\SERAFINA_CALI-O-BURGUNDY-Front 1.svg" />
+    <Content Include="assets\img\service-icon-one.svg" />
+    <Content Include="assets\img\service-icon-three.svg" />
+    <Content Include="assets\img\service-icon-two.svg" />
+    <Content Include="assets\img\service-icon.png" />
+    <Content Include="assets\img\sesson-model-four.png" />
+    <Content Include="assets\img\sesson-model-one.png" />
+    <Content Include="assets\img\sesson-model-three.png" />
+    <Content Include="assets\img\sesson-model-two.png" />
+    <Content Include="assets\img\shape-one %281%29.png" />
+    <Content Include="assets\img\shape-two.png" />
+    <Content Include="assets\img\size-lefr-shape-one.png" />
+    <Content Include="assets\img\size-lefr-shape-two.png" />
+    <Content Include="assets\img\size-left-main-img.png" />
+    <Content Include="assets\img\size-right-line-one.png" />
+    <Content Include="assets\img\size-right-line-two.png" />
+    <Content Include="assets\img\size-right-main-img.png" />
+    <Content Include="assets\img\size-shape.png" />
+    <Content Include="assets\img\small-1-r.png" />
+    <Content Include="assets\img\Stiles 4.svg" />
+    <Content Include="assets\img\subtotal-left-img.png" />
+    <Content Include="assets\img\subtotal-right-img.png" />
+    <Content Include="assets\img\table-bg.png" />
+    <Content Include="assets\img\table-sahpe.png" />
+    <Content Include="assets\img\thanks-left-img-bg.svg" />
+    <Content Include="assets\img\user-footer-bg-left.png" />
+    <Content Include="assets\img\user-footer-bg-right.png" />
+    <Content Include="assets\img\user-information-left-bg.png" />
+    <Content Include="assets\img\user-information-right-bg.png" />
+    <Content Include="assets\img\user-leder.png" />
+    <Content Include="assets\img\user-pnghut_horse.png" />
+    <Content Include="assets\img\uv-protection-shape-1.png" />
+    <Content Include="assets\img\uv-protection-shape-2.png" />
+    <Content Include="assets\img\ve1.png" />
+    <Content Include="assets\img\vedioo-img.png" />
+    <Content Include="assets\img\vesion-img.png" />
+    <Content Include="assets\img\vew-chart-clos.png" />
+    <Content Include="assets\img\view-chart-2.png" />
+    <Content Include="assets\img\virtu-img-left.png" />
+    <Content Include="assets\img\virtu-left-icon.png" />
+    <Content Include="assets\img\virtu-right-icon.png" />
+    <Content Include="assets\img\virtual-icon.svg" />
+    <Content Include="assets\img\virtual-right-img1.png" />
+    <Content Include="assets\img\virtual-right-img2.png" />
+    <Content Include="assets\img\VISA.png" />
+    <Content Include="assets\img\vission-img-1.png" />
+    <Content Include="assets\img\vission-img-2.png" />
+    <Content Include="assets\img\vission-img-3.png" />
+    <Content Include="assets\img\vr1.png" />
+    <Content Include="assets\img\vs1.png" />
+    <Content Include="assets\img\we0are-make-banner.png" />
+    <Content Include="assets\img\weare-img.png" />
+    <Content Include="assets\img\write-icon.svg" />
+    <Content Include="assets\js\aos.js" />
+    <Content Include="assets\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\js\jquery-1.12.4.min.js" />
+    <Content Include="assets\js\owl.carousel.min.js" />
+    <Content Include="assets\js\script.js" />
+    <Content Include="assets\js\slick.min.js" />
+    <Content Include="assets\js\venobox.min.js" />
+    <Content Include="assets\webfonts\fa-brands-400.svg" />
+    <Content Include="assets\webfonts\fa-regular-400.svg" />
+    <Content Include="assets\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Dashboardassets\assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Dashboardassets\assets\css\bootstrap.min.css" />
+    <Content Include="Dashboardassets\assets\css\style.css" />
+    <Content Include="Dashboardassets\assets\fonts\MaterialIcons-Regular.html" />
+    <Content Include="Dashboardassets\assets\img\banner-1.png" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-05.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-06.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-07.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-08.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-09.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-10.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-thumb-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-thumb-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-thumb-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-thumb-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\blog\blog-thumb-05.jpg" />
+    <Content Include="Dashboardassets\assets\img\category\1.png" />
+    <Content Include="Dashboardassets\assets\img\category\2.png" />
+    <Content Include="Dashboardassets\assets\img\category\3.png" />
+    <Content Include="Dashboardassets\assets\img\category\4.png" />
+    <Content Include="Dashboardassets\assets\img\category\5.png" />
+    <Content Include="Dashboardassets\assets\img\doc-slide-1.png" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-05.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-06.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-07.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-08.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-09.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-10.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-11.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-12.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-05.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-06.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-07.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-08.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-09.jpg" />
+    <Content Include="Dashboardassets\assets\img\doctors\doctor-thumb-10.jpg" />
+    <Content Include="Dashboardassets\assets\img\dr-slider.png" />
+    <Content Include="Dashboardassets\assets\img\favicon.png" />
+    <Content Include="Dashboardassets\assets\img\features\feature-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature-05.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature-06.jpg" />
+    <Content Include="Dashboardassets\assets\img\features\feature.png" />
+    <Content Include="Dashboardassets\assets\img\footer-logo.png" />
+    <Content Include="Dashboardassets\assets\img\google-map.png" />
+    <Content Include="Dashboardassets\assets\img\icon-01.png" />
+    <Content Include="Dashboardassets\assets\img\icon-02.png" />
+    <Content Include="Dashboardassets\assets\img\icon-03.png" />
+    <Content Include="Dashboardassets\assets\img\img-01.jpg" />
+    <Content Include="Dashboardassets\assets\img\img-02.jpg" />
+    <Content Include="Dashboardassets\assets\img\img-03.jpg" />
+    <Content Include="Dashboardassets\assets\img\img-04.jpg" />
+    <Content Include="Dashboardassets\assets\img\img-pharmacy1.jpg" />
+    <Content Include="Dashboardassets\assets\img\lab-image.jpg" />
+    <Content Include="Dashboardassets\assets\img\location.png" />
+    <Content Include="Dashboardassets\assets\img\login-banner.png" />
+    <Content Include="Dashboardassets\assets\img\logo.png" />
+    <Content Include="Dashboardassets\assets\img\medical-img1.jpg" />
+    <Content Include="Dashboardassets\assets\img\medical-img2.jpg" />
+    <Content Include="Dashboardassets\assets\img\medical-img3.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient1.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient10.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient11.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient2.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient3.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient4.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient5.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient6.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient7.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient8.jpg" />
+    <Content Include="Dashboardassets\assets\img\patients\patient9.jpg" />
+    <Content Include="Dashboardassets\assets\img\pattern.html" />
+    <Content Include="Dashboardassets\assets\img\products\product.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product1.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product10.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product11.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product12.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product13.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product14.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product15.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product2.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product3.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product4.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product5.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product6.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product7.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product8.jpg" />
+    <Content Include="Dashboardassets\assets\img\products\product9.jpg" />
+    <Content Include="Dashboardassets\assets\img\search-bg.png" />
+    <Content Include="Dashboardassets\assets\img\search.png" />
+    <Content Include="Dashboardassets\assets\img\slide1.jpg" />
+    <Content Include="Dashboardassets\assets\img\slide2.jpg" />
+    <Content Include="Dashboardassets\assets\img\slider-bg.jpg" />
+    <Content Include="Dashboardassets\assets\img\slider\slider-1.jpg" />
+    <Content Include="Dashboardassets\assets\img\slider\slider-2.jpg" />
+    <Content Include="Dashboardassets\assets\img\slider\slider-3.jpg" />
+    <Content Include="Dashboardassets\assets\img\specialities\specialities-01.png" />
+    <Content Include="Dashboardassets\assets\img\specialities\specialities-02.png" />
+    <Content Include="Dashboardassets\assets\img\specialities\specialities-03.png" />
+    <Content Include="Dashboardassets\assets\img\specialities\specialities-04.png" />
+    <Content Include="Dashboardassets\assets\img\specialities\specialities-05.png" />
+    <Content Include="Dashboardassets\assets\img\video-call.jpg" />
+    <Content Include="Dashboardassets\assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Dashboardassets\assets\js\bootstrap.min.js" />
+    <Content Include="Dashboardassets\assets\js\canvasjs.min.js" />
+    <Content Include="Dashboardassets\assets\js\Chart.bundle.js" />
+    <Content Include="Dashboardassets\assets\js\chart.js" />
+    <Content Include="Dashboardassets\assets\js\chart.morris.js" />
+    <Content Include="Dashboardassets\assets\js\circle-progress.min.js" />
+    <Content Include="Dashboardassets\assets\js\form-validation.js" />
+    <Content Include="Dashboardassets\assets\js\jquery-3.2.1.min.js" />
+    <Content Include="Dashboardassets\assets\js\jquery-3.5.1.js" />
+    <Content Include="Dashboardassets\assets\js\jquery.maskedinput.min.js" />
+    <Content Include="Dashboardassets\assets\js\jquery.min.js" />
+    <Content Include="Dashboardassets\assets\js\map.js" />
+    <Content Include="Dashboardassets\assets\js\mask.js" />
+    <Content Include="Dashboardassets\assets\js\moment.min.js" />
+    <Content Include="Dashboardassets\assets\js\popper.min.js" />
+    <Content Include="Dashboardassets\assets\js\profile-settings.js" />
+    <Content Include="Dashboardassets\assets\js\script.js" />
+    <Content Include="Dashboardassets\assets\js\select2.min.js" />
+    <Content Include="Dashboardassets\assets\js\slick.js" />
+    <Content Include="Dashboardassets\assets\plugins\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
+    <Content Include="Dashboardassets\assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <Content Include="Dashboardassets\assets\plugins\datatables\datatables.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\datatables\datatables.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\daterangepicker\daterangepicker.css" />
+    <Content Include="Dashboardassets\assets\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Dashboardassets\assets\plugins\dropzone\dropzone.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\dropzone\dropzone.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\fancybox\jquery.fancybox.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\fancybox\jquery.fancybox.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\css\all.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\css\fontawesome.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400.html" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400.html" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900.html" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Dashboardassets\assets\plugins\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\fullcalendar\jquery.fullcalendar.js" />
+    <Content Include="Dashboardassets\assets\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\select2\css\select2.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\select2\js\select2.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\swiper\css\swiper.min.css" />
+    <Content Include="Dashboardassets\assets\plugins\swiper\js\swiper.min.js" />
+    <Content Include="Dashboardassets\assets\plugins\theia-sticky-sidebar\ResizeSensor.js" />
+    <Content Include="Dashboardassets\assets\plugins\theia-sticky-sidebar\theia-sticky-sidebar.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\OlaGlass.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OlaGlass.Context.cs</LastGenOutput>
+      <DependentUpon>OlaGlass.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\OlaGlass.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OlaGlass.edmx</DependentUpon>
+      <LastGenOutput>OlaGlass.cs</LastGenOutput>
+    </Content>
+    <Content Include="ProjectImages\AccessoryImage\169226816_5560828417262459_1962329607513482880_n.jpg" />
+    <Content Include="ProjectImages\AccessoryImage\additional-right-img.png" />
+    <Content Include="ProjectImages\AccessoryImage\eye-glasses 1.png" />
+    <Content Include="ProjectImages\AccessoryImage\fav-ivon.jpg" />
+    <Content Include="ProjectImages\AccessoryImage\glasses-five.png" />
+    <Content Include="ProjectImages\AccessoryImage\glasses-four.png" />
+    <Content Include="ProjectImages\AccessoryImage\pnghut_horse-equestrian-case-zipper-stable-glasses 1.png" />
+    <Content Include="ProjectImages\Prescription\267225338_4329037017219750_2092798745402539115_n.jpg" />
+    <Content Include="ProjectImages\Prescription\EditProperty.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\199964992_4060973250686974_7252579122980800100_n.jpg" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\2.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\3.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\4.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\4373.jpg" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\5.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\Screenshot_1.png" />
+    <Content Include="ProjectImages\Uploads\Reviews\1\WhatsApp Image 2021-06-14 at 4.18.29 PM.jpeg" />
+    <Content Include="ProjectImages\UserImages\Abdul_1.jpg" />
+    <Content Include="ProjectImages\UserImages\user.jpg" />
+    <Content Include="ProjectImages\Variations\additional-right-img.png" />
+    <Content Include="ProjectImages\Variations\placeholder.jpg" />
+    <Content Include="ProjectImages\Variations\pnghut_horse-equestrian-case-zipper-stable-glasses 1.png" />
+    <Content Include="ProjectImages\Variations\user-pnghut_horse.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\TT Commons Bold.woff" />
+    <Content Include="assets\fonts\TT Commons Light.woff" />
+    <Content Include="assets\fonts\TT Commons Medium.woff" />
+    <Content Include="assets\fonts\TT Commons Regular.woff" />
+    <Content Include="assets\webfonts\fa-brands-400.eot" />
+    <Content Include="assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="assets\webfonts\fa-brands-400.woff" />
+    <Content Include="assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="assets\webfonts\fa-regular-400.eot" />
+    <Content Include="assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="assets\webfonts\fa-regular-400.woff" />
+    <Content Include="assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="assets\webfonts\fa-solid-900.eot" />
+    <Content Include="assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="assets\webfonts\fa-solid-900.woff" />
+    <Content Include="assets\webfonts\fa-solid-900.woff2" />
+    <EntityDeploy Include="Models\OlaGlass.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OlaGlass.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\OlaGlass.edmx.diagram">
+      <DependentUpon>OlaGlass.edmx</DependentUpon>
+    </Content>
+    <Content Include="Dashboardassets\assets\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="Dashboardassets\assets\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="Dashboardassets\assets\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-brands-400d41d.eot" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Dashboardassets\assets\plugins\fontawesome\webfonts\fa-solid-900d41d.eot" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Slider_Assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Slider_Assets\css\bootstrap.min.css" />
+    <Content Include="Slider_Assets\css\Dashboard_style.css" />
+    <Content Include="Slider_Assets\css\owl.carousel.min.css" />
+    <Content Include="Slider_Assets\css\owl.video.play.html" />
+    <Content Include="Slider_Assets\css\style.css" />
+    <Content Include="Slider_Assets\fonts\MaterialIcons-Regular.html" />
+    <Content Include="Slider_Assets\img\banner-1.png" />
+    <Content Include="Slider_Assets\img\banner-2.jpg" />
+    <Content Include="Slider_Assets\img\banner-3.jpg" />
+    <Content Include="Slider_Assets\img\blog-1.jpg" />
+    <Content Include="Slider_Assets\img\blog-2.jpg" />
+    <Content Include="Slider_Assets\img\blog-3.jpg" />
+    <Content Include="Slider_Assets\img\blog-4.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-01.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-02.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-03.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-04.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-05.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-06.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-07.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-08.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-09.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-10.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-thumb-01.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-thumb-02.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-thumb-03.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-thumb-04.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-thumb-05.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-wrap-01.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-wrap-02.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-wrap-03.jpg" />
+    <Content Include="Slider_Assets\img\blog\blog-wrap-04.jpg" />
+    <Content Include="Slider_Assets\img\category\1.png" />
+    <Content Include="Slider_Assets\img\category\2.png" />
+    <Content Include="Slider_Assets\img\category\3.png" />
+    <Content Include="Slider_Assets\img\category\4.png" />
+    <Content Include="Slider_Assets\img\category\5.png" />
+    <Content Include="Slider_Assets\img\clinic\clinic-1.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-10.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-2.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-3.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-4.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-5.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-6.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-7.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-8.jpg" />
+    <Content Include="Slider_Assets\img\clinic\clinic-9.jpg" />
+    <Content Include="Slider_Assets\img\clinic\spec-01.jpg" />
+    <Content Include="Slider_Assets\img\clinic\spec-02.jpg" />
+    <Content Include="Slider_Assets\img\clinic\spec-03.jpg" />
+    <Content Include="Slider_Assets\img\daughter.jpg" />
+    <Content Include="Slider_Assets\img\doc-slide-1.png" />
+    <Content Include="Slider_Assets\img\doctor-banner.html" />
+    <Content Include="Slider_Assets\img\doctor-banner1.png" />
+    <Content Include="Slider_Assets\img\doctors\book-doc-01.jpg" />
+    <Content Include="Slider_Assets\img\doctors\book-doc-02.jpg" />
+    <Content Include="Slider_Assets\img\doctors\book-doc-03.jpg" />
+    <Content Include="Slider_Assets\img\doctors\book-doc-04.jpg" />
+    <Content Include="Slider_Assets\img\doctors\book-doc-05.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-01.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-02.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-03.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-04.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-05.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-06.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-07.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-08.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-09.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-10.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-11.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-12.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-01.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-02.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-03.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-04.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-05.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-06.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-07.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-08.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-09.jpg" />
+    <Content Include="Slider_Assets\img\doctors\doctor-thumb-10.jpg" />
+    <Content Include="Slider_Assets\img\dr-slider.png" />
+    <Content Include="Slider_Assets\img\father.jpg" />
+    <Content Include="Slider_Assets\img\favicon.png" />
+    <Content Include="Slider_Assets\img\featured-bg.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-01.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-02.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-03.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-04.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-05.jpg" />
+    <Content Include="Slider_Assets\img\features\feature-06.jpg" />
+    <Content Include="Slider_Assets\img\features\feature.png" />
+    <Content Include="Slider_Assets\img\flag\gb.html" />
+    <Content Include="Slider_Assets\img\flag\india.html" />
+    <Content Include="Slider_Assets\img\flag\ng.html" />
+    <Content Include="Slider_Assets\img\flag\usa.html" />
+    <Content Include="Slider_Assets\img\footer-logo.png" />
+    <Content Include="Slider_Assets\img\google-map.png" />
+    <Content Include="Slider_Assets\img\icon-01.png" />
+    <Content Include="Slider_Assets\img\icon-02.png" />
+    <Content Include="Slider_Assets\img\icon-03.png" />
+    <Content Include="Slider_Assets\img\icons\browse-01.jpg" />
+    <Content Include="Slider_Assets\img\icons\browse-02.jpg" />
+    <Content Include="Slider_Assets\img\icons\browse-03.jpg" />
+    <Content Include="Slider_Assets\img\icons\browse-04.jpg" />
+    <Content Include="Slider_Assets\img\icons\browse-05.jpg" />
+    <Content Include="Slider_Assets\img\icons\cardiology.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-01.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-02.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-03.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-04.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-05.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-06.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-07.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-08.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-09.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-10.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-11.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-12.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-13.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-01.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-02.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-03.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-04.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-05.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-06.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-07.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-08.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-09.png" />
+    <Content Include="Slider_Assets\img\icons\clinic-hover-10.png" />
+    <Content Include="Slider_Assets\img\icons\doct-01.png" />
+    <Content Include="Slider_Assets\img\icons\doct-02.png" />
+    <Content Include="Slider_Assets\img\icons\down-arrow-gray-dark.svg" />
+    <Content Include="Slider_Assets\img\icons\down-arrow-gray.svg" />
+    <Content Include="Slider_Assets\img\icons\search-icon.svg" />
+    <Content Include="Slider_Assets\img\icons\set-cat-01.png" />
+    <Content Include="Slider_Assets\img\icons\set-cat-02.png" />
+    <Content Include="Slider_Assets\img\icons\set-cat-03.png" />
+    <Content Include="Slider_Assets\img\icons\tick-icon.svg" />
+    <Content Include="Slider_Assets\img\icons\visit-01.png" />
+    <Content Include="Slider_Assets\img\icons\visit-02.png" />
+    <Content Include="Slider_Assets\img\icons\visit-03.png" />
+    <Content Include="Slider_Assets\img\img-01.jpg" />
+    <Content Include="Slider_Assets\img\img-02.jpg" />
+    <Content Include="Slider_Assets\img\img-03.jpg" />
+    <Content Include="Slider_Assets\img\img-04.jpg" />
+    <Content Include="Slider_Assets\img\img-pharmacy1.jpg" />
+    <Content Include="Slider_Assets\img\lab-image.jpg" />
+    <Content Include="Slider_Assets\img\location.png" />
+    <Content Include="Slider_Assets\img\login-banner.png" />
+    <Content Include="Slider_Assets\img\login-btn.png" />
+    <Content Include="Slider_Assets\img\logo.png" />
+    <Content Include="Slider_Assets\img\medical-img1.jpg" />
+    <Content Include="Slider_Assets\img\medical-img2.jpg" />
+    <Content Include="Slider_Assets\img\medical-img3.jpg" />
+    <Content Include="Slider_Assets\img\mother.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient1.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient10.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient11.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient2.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient3.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient4.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient5.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient6.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient7.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient8.jpg" />
+    <Content Include="Slider_Assets\img\patients\patient9.jpg" />
+    <Content Include="Slider_Assets\img\products\product.jpg" />
+    <Content Include="Slider_Assets\img\products\product1.jpg" />
+    <Content Include="Slider_Assets\img\products\product10.jpg" />
+    <Content Include="Slider_Assets\img\products\product11.jpg" />
+    <Content Include="Slider_Assets\img\products\product12.jpg" />
+    <Content Include="Slider_Assets\img\products\product13.jpg" />
+    <Content Include="Slider_Assets\img\products\product14.jpg" />
+    <Content Include="Slider_Assets\img\products\product15.jpg" />
+    <Content Include="Slider_Assets\img\products\product2.jpg" />
+    <Content Include="Slider_Assets\img\products\product3.jpg" />
+    <Content Include="Slider_Assets\img\products\product4.jpg" />
+    <Content Include="Slider_Assets\img\products\product5.jpg" />
+    <Content Include="Slider_Assets\img\products\product6.jpg" />
+    <Content Include="Slider_Assets\img\products\product7.jpg" />
+    <Content Include="Slider_Assets\img\products\product8.jpg" />
+    <Content Include="Slider_Assets\img\products\product9.jpg" />
+    <Content Include="Slider_Assets\img\search-bg.png" />
+    <Content Include="Slider_Assets\img\search.png" />
+    <Content Include="Slider_Assets\img\shapes\alarm.png" />
+    <Content Include="Slider_Assets\img\shapes\blog-img01.jpg" />
+    <Content Include="Slider_Assets\img\shapes\blog-img01.png" />
+    <Content Include="Slider_Assets\img\shapes\blog-img02.jpg" />
+    <Content Include="Slider_Assets\img\shapes\blog-img03.jpg" />
+    <Content Include="Slider_Assets\img\shapes\bro-01.png" />
+    <Content Include="Slider_Assets\img\shapes\bro-02.png" />
+    <Content Include="Slider_Assets\img\shapes\bro-03.png" />
+    <Content Include="Slider_Assets\img\shapes\bro-04.png" />
+    <Content Include="Slider_Assets\img\shapes\bro-05.png" />
+    <Content Include="Slider_Assets\img\shapes\clinic-bg.png" />
+    <Content Include="Slider_Assets\img\shapes\consult.png" />
+    <Content Include="Slider_Assets\img\shapes\doctor-bg.jpg" />
+    <Content Include="Slider_Assets\img\shapes\doctor-right-bg.jpg" />
+    <Content Include="Slider_Assets\img\shapes\exper.png" />
+    <Content Include="Slider_Assets\img\shapes\graph-01.png" />
+    <Content Include="Slider_Assets\img\shapes\graph-02.png" />
+    <Content Include="Slider_Assets\img\shapes\graph-03.png" />
+    <Content Include="Slider_Assets\img\shapes\graph-04.png" />
+    <Content Include="Slider_Assets\img\shapes\map-plus.png" />
+    <Content Include="Slider_Assets\img\shapes\shape-1.png" />
+    <Content Include="Slider_Assets\img\shapes\shape-2.png" />
+    <Content Include="Slider_Assets\img\shapes\shape-3.png" />
+    <Content Include="Slider_Assets\img\shapes\shape-4.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-01.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-02.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-03.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-04.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-05.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-06.png" />
+    <Content Include="Slider_Assets\img\shapes\spec-07.png" />
+    <Content Include="Slider_Assets\img\shapes\spec.png" />
+    <Content Include="Slider_Assets\img\slide1.jpg" />
+    <Content Include="Slider_Assets\img\slide2.jpg" />
+    <Content Include="Slider_Assets\img\slider-bg.jpg" />
+    <Content Include="Slider_Assets\img\slider\banner-01.jpg" />
+    <Content Include="Slider_Assets\img\slider\banner-02.jpg" />
+    <Content Include="Slider_Assets\img\slider\blue-bg.png" />
+    <Content Include="Slider_Assets\img\slider\doctor-bg.jpg" />
+    <Content Include="Slider_Assets\img\slider\feature-img.jpg" />
+    <Content Include="Slider_Assets\img\slider\patient-bg.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-1.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-2.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-3.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-4.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-5.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-6.jpg" />
+    <Content Include="Slider_Assets\img\slider\slider-7.jpg" />
+    <Content Include="Slider_Assets\img\son.jpg" />
+    <Content Include="Slider_Assets\img\special-banner.jpg" />
+    <Content Include="Slider_Assets\img\specialist-bg.jpg" />
+    <Content Include="Slider_Assets\img\specialities\pt-dashboard-01.png" />
+    <Content Include="Slider_Assets\img\specialities\pt-dashboard-02.png" />
+    <Content Include="Slider_Assets\img\specialities\pt-dashboard-03.png" />
+    <Content Include="Slider_Assets\img\specialities\pt-dashboard-04.png" />
+    <Content Include="Slider_Assets\img\specialities\specialities-01.png" />
+    <Content Include="Slider_Assets\img\specialities\specialities-02.png" />
+    <Content Include="Slider_Assets\img\specialities\specialities-03.png" />
+    <Content Include="Slider_Assets\img\specialities\specialities-04.png" />
+    <Content Include="Slider_Assets\img\specialities\specialities-05.png" />
+    <Content Include="Slider_Assets\img\upload-icon.png" />
+    <Content Include="Slider_Assets\img\video-call.jpg" />
+    <Content Include="Slider_Assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Slider_Assets\js\bootstrap.min.js" />
+    <Content Include="Slider_Assets\js\circle-progress.min.js" />
+    <Content Include="Slider_Assets\js\jquery.min.js" />
+    <Content Include="Slider_Assets\js\map.js" />
+    <Content Include="Slider_Assets\js\moment.min.js" />
+    <Content Include="Slider_Assets\js\owl.carousel.min.js" />
+    <Content Include="Slider_Assets\js\popper.min.js" />
+    <Content Include="Slider_Assets\js\profile-settings.js" />
+    <Content Include="Slider_Assets\js\script.js" />
+    <Content Include="Slider_Assets\js\select2.min.js" />
+    <Content Include="Slider_Assets\js\slick.js" />
+    <Content Include="Slider_Assets\plugins\apex\apexcharts.css" />
+    <Content Include="Slider_Assets\plugins\apex\apexcharts.min.js" />
+    <Content Include="Slider_Assets\plugins\bootstrap-tagsinput\css\bootstrap-tagsinput.css" />
+    <Content Include="Slider_Assets\plugins\bootstrap-tagsinput\js\bootstrap-tagsinput.js" />
+    <Content Include="Slider_Assets\plugins\daterangepicker\daterangepicker.css" />
+    <Content Include="Slider_Assets\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="Slider_Assets\plugins\dropzone\dropzone.min.css" />
+    <Content Include="Slider_Assets\plugins\dropzone\dropzone.min.js" />
+    <Content Include="Slider_Assets\plugins\fancybox\jquery.fancybox.min.css" />
+    <Content Include="Slider_Assets\plugins\fancybox\jquery.fancybox.min.js" />
+    <Content Include="Slider_Assets\plugins\fontawesome\css\all.min.css" />
+    <Content Include="Slider_Assets\plugins\fontawesome\css\fontawesome.min.css" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400.html" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400.html" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900.html" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Slider_Assets\plugins\fullcalendar\fullcalendar.min.css" />
+    <Content Include="Slider_Assets\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Slider_Assets\plugins\fullcalendar\jquery.fullcalendar.js" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_444444_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_555555_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_777620_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_777777_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\jquery-ui.min.css" />
+    <Content Include="Slider_Assets\plugins\jquery-ui\jquery-ui.min.js" />
+    <Content Include="Slider_Assets\plugins\select2\css\select2.min.css" />
+    <Content Include="Slider_Assets\plugins\select2\js\select2.min.js" />
+    <Content Include="Slider_Assets\plugins\swiper\css\swiper.min.css" />
+    <Content Include="Slider_Assets\plugins\swiper\js\swiper.min.js" />
+    <Content Include="Slider_Assets\plugins\theia-sticky-sidebar\ResizeSensor.js" />
+    <Content Include="Slider_Assets\plugins\theia-sticky-sidebar\theia-sticky-sidebar.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\eyeglassess.cshtml" />
+    <Content Include="Views\Home\Sunglassess.cshtml" />
+    <Content Include="Views\Home\Accessories.cshtml" />
+    <Content Include="Views\Home\OurStory.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Products\Product_Details.cshtml" />
+    <Content Include="Views\Shared\_DashboardLayout.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Glassess\Index.cshtml" />
+    <Content Include="Views\Glassess\Create.cshtml" />
+    <Content Include="Views\Dashboard\ChangePassword.cshtml" />
+    <Content Include="Views\Dashboard\PersonalInfo.cshtml" />
+    <Content Include="Views\Accessorries\Index.cshtml" />
+    <Content Include="Views\Accessorries\Create.cshtml" />
+    <Content Include="Views\Glassess\VariationCreate.cshtml" />
+    <Content Include="Views\Glassess\VariationIndex.cshtml" />
+    <Content Include="Views\Prescription\Index.cshtml" />
+    <Content Include="Views\Prescription\Create.cshtml" />
+    <Content Include="Views\Dashboard\Users.cshtml" />
+    <Content Include="Views\Dashboard\Orders.cshtml" />
+    <Content Include="Views\Coupons\Index.cshtml" />
+    <Content Include="Views\Coupons\Create.cshtml" />
+    <Content Include="Views\Dashboard\OrderDetails.cshtml" />
+    <Content Include="Views\Dashboard\Favourites.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\OrderProcess.cshtml" />
+    <Content Include="Views\Colors\Index.cshtml" />
+    <Content Include="Views\Account\Changewebpassword.cshtml" />
+    <Content Include="Views\Account\Forgetpassword.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="Views\Products\MovetoOrdercart.cshtml" />
+    <Content Include="Views\Products\Orderprocessing.cshtml" />
+    <Content Include="Slider_Assets\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="Slider_Assets\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="Slider_Assets\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-brands-400d41d.eot" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-regular-400d41d.eot" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Slider_Assets\plugins\fontawesome\webfonts\fa-solid-900d41d.eot" />
+    <Content Include="Views\PaymentProcess\Index.cshtml" />
+    <Content Include="Views\PaymentProcess\Checkout.cshtml" />
+    <Content Include="Views\PaymentProcess\OrderDetails.cshtml" />
+    <Content Include="Views\PaymentProcess\Index1.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56919</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44349/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

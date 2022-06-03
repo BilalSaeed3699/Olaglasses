@@ -1,0 +1,465 @@
+﻿
+@{
+    ViewBag.Title = "Sunglassess";
+    List<string> genderlist = new List<string>();
+    List<string> materiallist = new List<string>();
+    List<string> sizelist = new List<string>();
+    List<string> shapelist = new List<string>();
+}
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .contact-btn {
+            display: inline-block !important;
+            /* padding: 14px 24px; */
+            width: 135px;
+            height: 50px;
+            border-radius: 28px;
+            background-color: var(--yellow);
+            color: var(--white);
+            border: 1px solid var(--yellow);
+            font-size: 16px;
+            transition: .4s;
+            margin-top: 38px;
+            margin-bottom: 15px;
+        }
+
+
+
+
+    </style>
+</head>
+
+<!-- ::::products-hero-aria  start:::::: -->
+<section class="products-hero-aria hero-banner-img custum-mg">
+    <!-- ::::hero-banner-img start:::::: -->
+    <div class="content-product hero-banner-img">
+        <h1 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">Working on this graphics </h1>
+    </div>
+    <!-- ::::hero-banner-img end:::::: -->
+</section>
+<!-- ::::products-hero-aria  end:::::: -->
+<!-- ::::products start:::::: -->
+<section class="products products-page">
+    <!-- ::::products has-bg start:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-five">
+            <img src="~/assets/img/product-bg/left-1.png" alt="img">
+        </div>
+        <div class="has-bg-six">
+            <img src="~/assets/img/product-bg/right-1.png" alt="img">
+        </div>
+    </div>
+    <div class="has-bg has-bg2">
+        <div class="has-bg-five">
+            <img src="~/assets/img/product-bg/right-2.png" alt="img">
+        </div>
+        <div class="has-bg-six">
+            <img src="~/assets/img/product-bg/left-2.png" alt="img">
+        </div>
+    </div>
+
+    <!-- ::::products has-bg end:::::: -->
+    <div class="container custum-pd2">
+
+        <div class="product-bg  products-page-one-bg p-0">
+            <!-- ::::products product-details start:::::: -->
+            <!-- ::::products product-details start:::::: -->
+            <div class="product-details">
+                <!-- ::::products product-details item:::::: -->
+                @using (Html.BeginForm("eyeglassess", "Home", FormMethod.Get))
+                {
+                    <ul class="product-details-list">
+
+
+
+                        <li class="product-details-item">
+                            @if (ViewBag.StateGendervalue != null)
+                            {
+                                foreach (var genders in ViewBag.StateGendervalue)
+                                {
+
+                                    genderlist.Add(genders);
+
+                                }
+                            }
+
+                            <span>Gender</span>
+                            <div class="dropdown">
+                                <select id="ddlgender" multiple name="ddlgender" class="form-control js-example-basic-single ddl">
+                                    @foreach (var item in ViewBag.Genderlist)
+                                    {
+                                        if (genderlist.Contains(item))
+                                        {
+                                            <option selected value="@item">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+
+                                    }
+
+                                </select>
+                            </div>
+                        </li>
+
+                        <li class="product-details-item">
+                            @if (ViewBag.StateMaterial != null)
+                            {
+                                foreach (var materials in ViewBag.StateMaterial)
+                                {
+
+                                    materiallist.Add(materials);
+
+                                }
+                            }
+                            <span>Material</span>
+                            <div class="dropdown">
+                                <select id="ddlMaterial" multiple name="ddlMaterial" class="form-control js-example-basic-single ddl">
+                                    @foreach (var item in ViewBag.Material)
+                                    {
+                                        if (materiallist.Contains(item))
+                                        {
+                                            <option selected value="@item">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </li>
+                        <li class="product-details-item">
+
+                            @if (ViewBag.StateAvailableSize != null)
+                            {
+                                foreach (var sizes in ViewBag.StateAvailableSize)
+                                {
+
+                                    sizelist.Add(sizes);
+
+                                }
+                            }
+                            <span>Size</span>
+                            <div class="dropdown">
+                                <select id="ddlAvailableSize" multiple name="ddlAvailableSize" class="form-control js-example-basic-single ddl">
+                                    @foreach (var item in ViewBag.AvailableSize)
+                                    {
+
+                                        if (sizelist.Contains(item))
+                                        {
+                                            <option selected value="@item">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </li>
+
+                        <li class="product-details-item">
+
+                            @if (ViewBag.Stateshape != null)
+                            {
+                                foreach (var shapes in ViewBag.Stateshape)
+                                {
+
+                                    shapelist.Add(shapes);
+
+                                }
+                            }
+                            <span>Shape</span>
+                            <div class="dropdown">
+                                <select id="ddlshape" multiple name="ddlshape" class="form-control js-example-basic-single ddl">
+                                    @foreach (var item in ViewBag.shape)
+                                    {
+                                        if (shapelist.Contains(item))
+                                        {
+                                            <option selected value="@item">@item</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                        </li>
+                        @*<li class="product-details-item">
+                        <span>Color</span>
+                        <div class="dropdown">
+                            <select id="ddlcolor" multiple name="ddlcolor" class="form-control js-example-basic-single ddl">
+                                @foreach (var item in ViewBag.Colors)
+                                {
+                                    <option value="@item[1]">@item[0]</option>
+                                }
+
+                            </select>
+                        </div>
+                    </li>*@
+
+                        <li>
+                            <button class="contact-btn form-inline" type="submit" style=" margin-top: 11%; margin-left: 12%;">Apply Filter</button>
+                        </li>
+
+
+                    </ul>
+
+                }
+            </div>
+            <!-- ::::products product-details end:::::: -->
+            <!-- ::::products display-by start:::::: -->
+            <div class="display-by">
+                <ul class="prooduct-design">
+                    @if (ViewBag.StateGendervalue != null)
+                    {
+                        foreach (var genders in ViewBag.StateGendervalue)
+                        {
+
+                            <li>@genders</li>
+
+                        }
+                    }
+
+                    @if (ViewBag.StateMaterial != null)
+                    {
+                        foreach (var materials in ViewBag.StateMaterial)
+                        {
+
+                            <li>@materials</li>
+
+                        }
+                    }
+
+                    @if (ViewBag.StateAvailableSize != null)
+                    {
+                        foreach (var sizes in ViewBag.StateAvailableSize)
+                        {
+
+                            <li>@sizes</li>
+
+                        }
+                    }
+
+                    @if (ViewBag.Stateshape != null)
+                    {
+                        foreach (var shapes in ViewBag.Stateshape)
+                        {
+
+                            <li>@shapes</li>
+
+                        }
+                    }
+                </ul>
+
+            </div>
+            <!-- ::::products display-by end:::::: -->
+            <!--  -->
+            <div class="row g-4">
+                <!-- ::::products single item:::::: -->
+
+
+                @{int Duplicatecheck = 0;}
+                @if (ViewBag.ProductList != null)
+                {
+                    foreach (var item in ViewBag.ProductList)
+                    {
+
+                        if (Duplicatecheck != @item.GlassID)
+                        {
+                            <div class="col-lg-4 col-md-4">
+                                <div class="product-item" id="Product_Items">
+                                    <div class="img">
+                                        @if (item.Sticker == "Hot")
+                                        {
+                                            <a class="bg-danger wishlist-link" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-fire bg"></i> @item.Sticker</a>
+                                        }
+                                        @if (item.Sticker == "New Arrival")
+                                        {
+                                            <a class="wishlist-link bg-secondary" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Sticker</a>
+                                        }
+                                        @if (item.Sticker == "Top Seller")
+                                        {
+                                            <a class="wishlist-link wishlist-link-premium" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-crown bg"></i> @item.Sticker</a>
+                                        }
+                                        <img id="@item.GlassID-image-color" class="img-fluid" src="@item.ImagePath" alt="ig">
+
+                                    </div>
+
+
+                                    <div class="details">
+                                        <h6><a target="_blank" href="@Url.Action("Product_Details","Products",new { Productid=@item.GlassID})">@item.Title </a></h6>
+                                        <p>$@item.Price</p>
+                                        <div class="color">
+                                            <ul>
+                                                @foreach (var colors in ViewBag.ProductList)
+                                                {
+                                                    Duplicatecheck = Convert.ToInt32(@item.GlassID);
+                                                    if (item.GlassID == colors.GlassID)
+                                                    {
+                                                        <li onclick="Changecolour('@colors.GlassID-image-color','@colors.ImagePath')" style="background-color: @colors.ColorCode"></li>
+                                                    }
+
+                                                }
+
+
+                                            </ul>
+                                            <div class="icon">
+                                                @{int likecount = 0; }
+                                                @foreach (var likes in ViewBag.ProductList)
+                                                {
+                                                    if (item.GlassID == likes.GlassID && likes.Likestatus == 1)
+                                                    {
+                                                        likecount = 1;
+                                                        <a href="@Url.Action("ProductFavourite", "Home", new { id=item.GlassID,type="E" })"> <i style="background-color:red !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+                                                        break;
+                                                    }
+
+                                                }
+                                                @if (likecount == 0)
+                                                {<a href="@Url.Action("ProductFavourite", "Home", new { id=item.GlassID,type="E" })"> <i style="background-color:black !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!--::::::products single item:::::: -->
+
+                    }
+                }
+
+
+
+
+
+            </div>
+            <div class="col-lg-8 mx-auto ">
+                <div class="pagination pagination-bg d-flex align-items-center justify-content-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ::::products end:::::: -->
+<!-- ::::season start:::::: -->
+<section class="season">
+    <!-- ::::season has-bg start:::::: -->
+    <div class="has-bg ">
+        <div class="has-bg-17 ">
+            <img src="~/assets/img/product-bg/right-3.png" alt="img">
+        </div>
+        <div class="has-bg-18">
+            <img src="~/assets/img/product-bg/left-3.png" alt="img">
+        </div>
+    </div>
+    <!-- ::::season has-bg ebd:::::: -->
+
+    <div class="container-fluid custum-pd ">
+       
+    </div>
+
+
+</section>
+<!-- ::::season end:::::: -->
+<!-- ::::servie start:::::: -->
+<section class="service ">
+    <!-- ::::servie has-bg start:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-19">
+            <img src="~/assets/img/product-bg/right-4.png" alt="img">
+        </div>
+        <div class="has-bg-20">
+            <img src="~/assets/img/product-bg/left-4.png" alt="img">
+        </div>
+    </div>
+    <!-- ::::servie has-bg end:::::: -->
+    <div class="container custum-pd2">
+        <div class="row">
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="icon">
+                        <img src="~/assets/img/service-icon.png" alt="icon">
+                    </div>
+                    <h4>30 – DAY MONEY BACK </h4>
+                    <p> We have a 30-day, no hassle return or exchange policy for our eyewear and accessories.</p>
+                </div>
+            </div>
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-up" data-aos-duration="3000">
+                    <div class="icon">
+                        <img src="~/assets/img/box.png" alt="icon">
+                    </div>
+                    <h4>FREE SHIPPING </h4>
+                    <p>
+                        All orders over $99.00 qualify for free shipping, which is one less thing for you to worry about.
+                    </p>
+                </div>
+            </div>
+            <!-- ::::servie single item:::::: -->
+            <div class="col-lg-4">
+                <div class="service-item" data-aos="fade-left" data-aos-duration="3000">
+                    <div class="icon">
+
+                        <img src="~/assets/img/eye-glasses1.png" alt="icon">
+
+                    </div>
+                    <h4>SUPERIOR LENSES</h4>
+                    <p> We know that as an eyeglass wearer you expect nothing but the best in terms of lens quality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<!-- ::::servie end:::::: -->
+<!-- ::::  has-radious:::::: -->
+<div class="has-radious">
+    <div class="radious-one">
+        <a href="#">
+
+            <img src="~/assets/img/chat.svg" alt="chat">
+        </a>
+    </div>
+</div>
+<!-- ::::  has-radious end:::::: -->
+<!-- ::::  has-radious end:::::: -->
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        jQuery('.js-example-basic-single').select2();
+        $("ul li a").removeClass("active");
+        $('#Eyeglassess').addClass('active');
+
+       
+    });
+    function Changecolour(colorid, imgurl) {
+
+        /*        $("#Product_Items img").remove();*/
+        /*var img = document.createElement('img');*/
+        /*img.src = "/assets/img/index-bg/prouduct-7.png";*/
+        /*$("#Product_Items .img").append("<img class='img-fluid' src='" + img.src + "' alt='ig' />");*/
+        document.getElementById(colorid).src = imgurl;
+    }
+
+</script>

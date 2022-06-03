@@ -1,0 +1,599 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblProduct
+@{
+    ViewBag.Title = "OrderProcess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="proccessing-aria">
+    <div class="has-bg">
+        <div class="has-bg-user-left">
+            <img src="assets/img/user-information-left-bg.png" alt="">
+        </div>
+        <div class="has-bg-user-right">
+            <img src="assets/img/user-information-right-bg.png" alt="">
+        </div>
+    </div>
+    <div class="container-fluid custum-pd">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="proccessing-left-aria">
+                    <img class="img-fluid img" src="assets/img/proccessing-left-img.png" alt="img">
+                    <h3>@Model.Title</h3>
+                    <span>$@Model.Price</span>
+                </div>
+            </div>
+            <div class="col-lg-6 ">
+                <div class="proccessing-right-aria">
+                    <h3 class=" proccessing-right-hadding">
+                        Processing To Buy
+                    </h3>
+                    <img class="img-fluid hadding-line" src="assets/img/line-slider.png" alt="im">
+                    <div class="proccessing-right-slider  bg-white">
+
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>Vision</h3>
+                                <p class="headding-pragarph">Choose a lens enhancement for your everyday needs</p>
+                            </div>
+                            <div class="vision-blog d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="vission-blog-item">
+                                    <h4>reading Single Vision</h4>
+                                    <p>
+                                        One Prescription that covers the whole lens
+                                        for close-up tasks, like reading
+                                    </p>
+                                    <img class="img-fluid" src="assets/img/vission-img-1.png" alt="">
+                                </div>
+                                <div class="vission-blog-item">
+                                    <h4>Distance Single Vision</h4>
+                                    <p>
+                                        One Prescription that covers the whole lens
+                                        for close-up tasks, like reading
+                                    </p>
+                                    <img class="img-fluid" src="assets/img/vission-img-2.png" alt="">
+                                </div>
+                                <div class="vission-blog-item">
+                                    <h4>No Prescription</h4>
+                                    <p>
+                                        Non prescription lenses, for fashion cosmetic
+                                        wear.
+                                    </p>
+                                    <img class="img-fluid" src="assets/img/vission-img-3.png" alt="">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>Presription</h3>
+                                <p class="headding-pragarph">How will you provide your prescription?</p>
+                            </div>
+                            <div class="vision-blog d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="vission-blog-item presription-blog-item">
+                                    <svg width="60" height="68" viewBox="0 0 60 68" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M45.0239 10.8448H14.9778V13.0431H45.0239V10.8448Z"
+                                              fill="#009B95" />
+                                        <path d="M45.0239 21.4515H14.9778V23.6498H45.0239V21.4515Z"
+                                              fill="#009B95" />
+                                        <path d="M34.6212 30.7209H14.9778V32.9192H34.6212V30.7209Z"
+                                              fill="#009B95" />
+                                        <path d="M29.6592 0H26.0994V2.19828H29.6592V0Z" fill="#FFAC00" />
+                                        <path d="M56.9752 46.9149H54.7619V11.3944L45.761 2.19828H34.2332V0H46.7016L56.9752 10.5151V46.9149Z"
+                                              fill="#009B95" />
+                                        <path d="M5.23873 47.153H3.02539V0H22.6872V2.19828H5.23873V47.153Z"
+                                              fill="#009B95" />
+                                        <path d="M34.934 54.4989H25.0662V56.6972H34.934V54.4989Z" fill="#009B95" />
+                                        <path d="M46.4061 68C38.9176 68 32.8125 61.9547 32.8125 54.4989C32.8125 47.0431 38.8992 40.9978 46.4061 40.9978C53.913 40.9978 59.9997 47.0431 59.9997 54.4989C59.9997 61.9547 53.913 68 46.4061 68ZM46.4061 43.2144C40.135 43.2144 35.0443 48.2705 35.0443 54.4989C35.0443 60.7274 40.135 65.7834 46.4061 65.7834C52.6772 65.7834 57.7679 60.7274 57.7679 54.4989C57.7679 48.2705 52.6772 43.2144 46.4061 43.2144Z"
+                                              fill="#009B95" />
+                                        <path d="M13.5936 68C6.08669 68 0 61.9364 0 54.4989C0 47.0614 6.08669 40.9978 13.5936 40.9978C21.1005 40.9978 27.1872 47.0431 27.1872 54.4989C27.1872 61.9547 21.0821 68 13.5936 68ZM13.5936 43.2144C7.32247 43.2144 2.23179 48.2705 2.23179 54.4989C2.23179 60.7274 7.32247 65.7834 13.5936 65.7834C19.8647 65.7834 24.9554 60.7274 24.9554 54.4989C24.9554 48.2705 19.8463 43.2144 13.5936 43.2144Z"
+                                              fill="#009B95" />
+                                    </svg>
+                                    <h4 class="text-active presription-box-hedding">Enter Prescription Now</h4>
+                                    <p class="text-black ">
+                                        Add new prescription,
+                                        this will be saved for future use.
+                                    </p>
+                                </div>
+                                <div class="vission-blog-item presription-blog-item">
+                                    <svg width="60" height="75" viewBox="0 0 60 75" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M59.9997 73.0636H57.5997V33.3178L47.5797 23.0171H34.7197V20.6016H48.5797L59.9997 32.3397V73.0636Z"
+                                              fill="#0068AB" />
+                                        <path d="M60 75H0V57.2332H2.4V72.6045H57.6V57.2332H60V75Z" fill="#0068AB" />
+                                        <path d="M2.4 73.0636H0V20.6016H25.04V23.0171H2.4V73.0636Z"
+                                              fill="#0068AB" />
+                                        <path d="M47.7801 56.774H14.3201V59.1696H47.7801V56.774Z" fill="#008EC5" />
+                                        <path d="M47.7801 44.8962H14.3201V47.2917H47.7801V44.8962Z"
+                                              fill="#008EC5" />
+                                        <path d="M31.2005 2.89459H28.8005V33.3977H31.2005V2.89459Z"
+                                              fill="#FFAC00" />
+                                        <path d="M40.4803 14.3532L30.0003 3.47352L19.5203 14.3532L17.8003 12.6763L30.0003 0L42.2203 12.6763L40.4803 14.3532Z"
+                                              fill="#FFAC00" />
+                                    </svg>
+
+                                    <h4 class="presription-box-hedding">Upload Prescription</h4>
+                                    <p>
+                                        Take a photo of your paper prescription
+                                        and your glasses will ship faster!ng
+                                    </p>
+                                </div>
+                                <div class="vission-blog-item presription-blog-item">
+                                    <svg width="60" height="75" viewBox="0 0 60 75" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.6415 0H25.6753V2.4642H29.6415V0Z" fill="#008EC5" />
+                                        <path d="M59.9999 52.4431H57.5316V12.7422L47.5316 2.4642H34.7046V0H48.5653L59.9999 11.7523V52.4431Z"
+                                              fill="#0068AB" />
+                                        <path d="M60 54.4019H0V36.6259H2.46835V51.9377H57.5316V36.6259H60V54.4019Z"
+                                              fill="#0068AB" />
+                                        <path d="M2.46835 52.4431H0V0H21.8776V2.4642H2.46835V52.4431Z"
+                                              fill="#0068AB" />
+                                        <path d="M45.6548 15.7961H12.2371V18.2603H45.6548V15.7961Z"
+                                              fill="#008EC5" />
+                                        <path d="M45.6548 27.6748H12.2371V30.139H45.6548V27.6748Z" fill="#008EC5" />
+                                        <path d="M31.222 41.5754H28.7537V72.0514H31.222V41.5754Z" fill="#FFAC00" />
+                                        <path d="M29.9994 75L17.7842 62.2999L19.5563 60.5939L29.9994 71.4406L40.4424 60.5939L42.2146 62.2999L29.9994 75Z"
+                                              fill="#FFAC00" />
+                                    </svg>
+                                    <h4 class="presription-box-hedding ">Use Saved Prescription</h4>
+                                    <p>
+                                        Load a previously saved prescription
+                                        from your account, requires login
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>Provide Your Prescription</h3>
+                                <p class="headding-pragarph">How will you provide your prescription?</p>
+
+                            </div>
+
+                            <div class="provide">
+                                <div class="provide-item">
+                                    <div class="eye-size d-flex align-items-center justify-content-lg-between flex-wrap">
+                                        <h5>Right Eye</h5>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <span>SPH</span>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span>CYL</span>
+                                                <div class="dropdown">
+                                                    <button class="btn  dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span>AXIS</span>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <span>ADD</span>
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="eye-size d-flex align-items-center justify-content-lg-between flex-wrap">
+                                        <h5 class="eye-size-headding-2">Left Eye</h5>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+
+                                                <div class="dropdown">
+                                                    <button class="btn  dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="list-inline-item">
+
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                        0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                   alt="icon">
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                        <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                        <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="provide-item provide-item2">
+
+                                    <div class="eye-size d-flex align-items-center justify-content-lg-between flex-wrap">
+                                        <div class="row">
+                                            <div class="col-lg-2 col-sm-4">
+                                                <h5>
+                                                    Pupillary Distance <br>
+                                                    (PD)
+                                                </h5>
+                                            </div>
+                                            <div class="col-lg-10 col-sm-8">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span>PD</span>
+                                                        <div class="dropdown">
+                                                            <button class="btn dropdown-toggle" type="button"
+                                                                    id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                                                    aria-expanded="false">
+                                                                0.000 <img src="assets/img/provide-dropdown-icon.png"
+                                                                           alt="icon">
+                                                            </button>
+                                                            <ul class="dropdown-menu"
+                                                                aria-labelledby="dropdownMenuButton1">
+                                                                <li><a class="dropdown-item" href="#">0.00</a></li>
+                                                                <li><a class="dropdown-item" href="#">0.00 </a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input type="checkbox"> Two PD numbers
+                                                        </div>
+
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="uploded-btn-area ">
+                                                            <label class="provide-btn">
+                                                                <input class="form-control" type="file" />
+                                                                upload Pd phot
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="uploded-btn-area ">
+                                                            <label class="provide-btn me-btn">
+                                                                <input class="form-control" type="file" />
+                                                                <img src="assets/img/provide-btn-img.png" alt="img">
+                                                                uMeasure my
+                                                                Pd
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-4">
+                                        <h5 class="whois-the">
+                                            Who is the <br>
+                                            Prescription For*
+                                        </h5>
+                                        <h5 class="mt-4 pt-3 whois-the">Save Prescription *</h5>
+
+
+                                        <h5 class="mt-4 pt-3 whois-the">Upload <br> Prescription *</h5>
+                                    </div>
+                                    <div class="col-lg-9 col-sm-8">
+                                        <form action="">
+                                            <div class="row ju">
+                                                <div class="col-lg-6 mb-4">
+                                                    <label for="fname">
+                                                        First Name*
+                                                    </label> <br>
+                                                    <input class="input form-control " type="text"
+                                                           placeholder="Enter First name">
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <label for="fname">Last Name*</label> <br>
+                                                    <input class="input form-control" type="text"
+                                                           placeholder="Enter Last name">
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <label for="fname">
+                                                        Save Your Prescription For Future Use
+                                                    </label> <br>
+                                                    <input class="input form-control" type="text"
+                                                           placeholder="Prescription Name">
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <label for="fname">Date Of Prescription * </label> <br>
+                                                    <input class="input form-control" type="text"
+                                                           placeholder="Date">
+                                                </div>
+
+                                                <div class="col-md-6 mb-4 mt-2">
+
+                                                    <div class="uploded-btn-area d-flex">
+                                                        <label class="provide-btn measure btn">
+                                                            <input class="form-control" type="file" />
+                                                            Upload Prescription Here
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-4 mt-3">
+
+                                                    <div class="uploded-btn-area d-flex">
+                                                        <p class="text-aria">Allowed Types (JPG, PDF, PNG, JPEG)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="upload-area">
+                                    <div class="eye-size d-flex align-items-center justify-content-lg-between flex-wrap">
+
+
+                                    </div>
+                                </div>
+                                <div class="confirm-btn-aria">
+                                    <a class="provide-btn d-block" href="#">confirm now</a>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>Lens Ennancement</h3>
+                                <p class="headding-pragarph">Choose a lens enhancement for your everyday needs</p>
+                            </div>
+                            <div class="ennancement-blog">
+                                <div class="row g-4">
+                                    <div class="col-sm-6">
+                                        <div class="ennancement-bg h-100">
+                                            <h4>
+                                                Standard lens <br>
+                                                $39
+                                            </h4>
+                                            <img class="img-fluid" src="assets/img/ennancement-blog-img-1.png"
+                                                 alt="img">
+                                            <p>Clear plastic Lens</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="ennancement-bg">
+                                            <h4>
+                                                Enhanced lens <br>
+                                                $49
+                                            </h4>
+                                            <img class="img-fluid" src="assets/img/ennancement-blog-2.png"
+                                                 alt="img">
+                                            <div class="d-flex justify-content-around">
+                                                <p>
+                                                    Anti glare coat <br>
+                                                    Scratch Resistant
+                                                </p>
+                                                <p>
+                                                    Anti glare coat <br>
+                                                    Scratch Resistant
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>UV Protection</h3>
+                                <p class="headding-pragarph">Make your lenses transition in sunligh</p>
+                            </div>
+                            <div class="uv-protection">
+                                <div class="uv-protection-img position-relative ">
+                                    <div class="img">
+                                        <img class="img-fluid" src="assets/img/blog-img-three.png" alt="img">
+                                        <a class="position-absolute skip-btn" href="#">or skip</a>
+                                    </div>
+                                    <div class="uv-protection-shape position-absolute">
+                                        <div class="shape-1">
+                                            <img src="assets/img/uv-protection-shape-1.png"
+                                                 alt="img">
+                                        </div>
+                                        <div class="shape-details ">
+                                            <div class="shape-2 position-relative ">
+                                                <img src="assets/img/uv-protection-shape-2.png" alt="img">
+                                                <h4 class="position-absolute">For only <br>$20</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="proccessing-item">
+                            <div class="slider-headding">
+                                <h3>Frame</h3>
+                                <p class="headding-pragarph">How will you provide your prescription?</p>
+                            </div>
+                            <div class="frame-item">
+                                <h4 class="frame-headding">Frame</h4>
+                                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Pacific</li>
+                                        <li class="list-inline-item">Striped Blue</li>
+                                        <li class="list-inline-item">L</li>
+                                    </ul>
+                                    <h4>$145.00</h4>
+                                </div>
+
+                                <h4>Your prescription</h4>
+
+
+                                <div class="table-aria">
+                                    <table class="table table-bordered text-center">
+
+                                        <tbody>
+                                            <tr class="table-headding">
+                                                <td></td>
+                                                <td>SPH</td>
+                                                <td>CYL</td>
+                                                <td>AXIS</td>
+                                                <td>ADD</td>
+                                                <td>PD</td>
+                                            </tr>
+                                            <tr>
+                                                <td>OD</td>
+                                                <td>-0.75</td>
+                                                <td>0.00</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td rowspan="2" class="alinment">63</td>
+                                            </tr>
+                                            <tr class="table-bg">
+                                                <td>OD</td>
+                                                <td>-0.50</td>
+                                                <td>-0.25</td>
+                                                <td></td>
+                                                <td></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="prescription-list">
+                                    <li class="d-flex justify-content-between flex-wrap align-items-center">
+                                        Single
+                                        vision Distance <span>Free</span>
+                                    </li>
+                                    <li>Your Prescription</li>
+                                    <li>Clear Lens</li>
+                                    <li class="d-flex justify-content-between flex-wrap align-items-center">
+                                        Standard
+                                        Lenses <span>$7.58</span>
+                                    </li>
+                                </ul>
+
+                                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                    <h3>Subtotal</h3>
+                                    <h3>$42.95</h3>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                    <div class="subtotal-blog">
+                                        <img class="img-fluid" src="assets/img/subtotal-left-img.png" alt="img">
+                                        <h5>PD Image</h5>
+                                    </div>
+                                    <div class="subtotal-blog">
+                                        <img class="img-fluid" src="assets/img/subtotal-right-img.png" alt="img">
+                                        <h5>RX Image</h5>
+                                    </div>
+                                </div>
+
+
+                                <div class="subtotal-chakbox">
+
+                                    <label class="container">
+                                        I confirm that the prescription I entered is correct.
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+
+                                </div>
+
+
+                                <a class="cart-button d-block text-center" href="#">add to cart</a>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

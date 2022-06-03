@@ -1,0 +1,1709 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblProduct
+
+@{
+    ViewBag.Title = "Orderprocessing";
+}
+
+<head>
+    <style>
+        /*disable slick slider from click */
+        .proccessing-aria .proccessing-right-aria .slick-dots {
+            pointer-events: none !important;
+        }
+
+
+
+        .proccessing-item {
+            padding-top: 0px !important;
+        }
+    </style>
+
+</head>
+
+<div class="modal fade" id="cameramodal" aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body lg">
+                <div class="modal-item">
+                    <div class="text-center">
+                        <h3 style="font-weight:bold">Follow the steps below:</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="~/assets/img/JinJin.gif" />
+
+                            </div>
+                            <div class="col-md-6">
+                                <img style="height:100% !important;width:100% !important" src="~/assets/img/Jin_2.jpeg" />
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <br />
+                            <p style="float:left !important;margin-left:5% !important">1. Take off your glasses. Make sure the image is well-lit.</p>
+                            <p style="float:left !important;margin-left:5% !important">2. Adjust your screen or phone so it is at the same height as your face, approximately 15inches away.</p>
+                            <p style="float:left !important;margin-left:5% !important">3. Look at the camera not the screen</p>
+                            <p style="float:left !important;margin-left:5% !important">4. Place any card with a magnetic strip under your nose, facing the camera.</p>
+                            <br />
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-primary" onclick="opencamera()">i am ready</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="measuremodal" aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-item">
+                    <div class="text-center">
+                        <h3 style="font-weight:bold">What is PD?</h3>
+                        <img src="~/assets/img/measure.png" />
+                        <span style="border-bottom:0px !important" id="product-name"></span>
+                        <p class="text-center">
+                            D or Pupillary distance, is the distance between the center of each pupil and the bridge of your nose measured in millimeters.
+
+                        </p>
+                        <p class="text-center">  This measurement is critical to making prescription glasses.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="ValidationModal" tabindex="-1" aria-labelledby="sign-in" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <div class="sign-in-area-bg">
+                    <img class="img-fluid" src="~/assets/img/Logo-sm.png" alt="img">
+                    <br />
+                    <h4>Extra Charges ($15)</h4>
+                    <p>
+                        The combination of your prescription and PD value is not suitable for this product.  Please select another product that supports a wider range of PD values
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6" ><button class="btn btn-primary" type="button" onclick="AddExtrcharges()"> Pay charges</button></div>
+                        <div class="col-md-6">
+                            <button class="btn btn-danger" onclick="HideValidatioModal()">Cancel</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cameraopening" aria-hidden="true"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("Product_Details", "Products"))
+{
+    <form>
+        @Html.AntiForgeryToken()
+        <section class="proccessing-aria">
+            <div class="has-bg">
+                <div class="has-bg-user-left">
+                    <img src="~/assets/img/user-information-left-bg.png" alt="">
+                </div>
+                <div class="has-bg-user-right">
+                    <img src="~/assets/img/user-information-right-bg.png" alt="">
+                </div>
+            </div>
+            <div class="container-fluid custum-pd">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="proccessing-left-aria">
+                            <img style="width:548px !important;height:279px" class="img-fluid img" src="@ViewBag.Image" alt="img">
+                            <h3>@Model.Title</h3>
+                            <span>$@Model.Price</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="proccessing-right-aria">
+                            <input name="GlassID" id="GlassID" value="@Model.GlassID" hidden/>
+                            <input name="Variationid" id="Variationid" value="@ViewBag.VariationId" hidden/>
+                            <input name="ProductImagePath" id="ProductImagePath" value="@ViewBag.Image" hidden/>
+                            <input name="Size" id="Size" value="@ViewBag.size" hidden/>
+                            <input name="Colour" id="Colour" value="@ViewBag.colorname" hidden/>
+                            <input name="Title" id="Title" value="@Model.Title" hidden/>
+                            <input name="price" id="Productprice" value="@Model.Price" hidden/>
+                            <input name="Quantity" id="Quantity" value="1" hidden/>
+                            <input name="LensType" id="LensType" hidden/>
+                            <input name="VisionType" id="VisionType" hidden/>
+                            <input name="TotalAmount" id="TotalAmount" value="0" hidden/>
+                            <input name="Productcategory" id="Productcategory" value="@ViewBag.Productcategory" hidden/>
+                            <input name="UserID" id="Userid" value="@ViewBag.UserID" hidden/>
+                            <input name="Shape" id="Shape" value="@ViewBag.Shape"hidden />
+                            <input name="pd" id="pd" value="0" hidden/>
+                            <input name="pdimage" id="pdimage" value="" hidden/>
+                            <input name="pdprescriptionimage" id="pdprescriptionimage" value="" hidden/>
+
+                            <input name="FrameAWidth" id="FrameAWidth" value="@ViewBag.FrameAWidth" hidden/>
+                            <input name="FrameDBBridger" id="FrameDBBridger" value="@ViewBag.FrameDBBridger"hidden />
+                            <input name="FrameED" id="FrameED" value="@ViewBag.FrameED" hidden/>
+                            <input name="Extracharges" id="Extracharges" value="0" hidden/>
+
+                            <h3 class=" proccessing-right-hadding" style="height:10px !important">
+                                Processing To Buy
+                            </h3>
+
+
+
+
+
+                            <input id="fromwhichtype" hidden/>
+                            <input id="stage" hidden/>
+                            <input id="price" value="0" hidden/> <br />
+                            <input id="UVProtection" name="UVProtection" value="0" hidden/>
+                            <input id="noprescriptionstatus" hidden/>
+                            <input id="txtenterprescription" value="0" hidden/>
+                            <input id="isusedsaveprescription" name="isusedsaveprescription" value="0" hidden/>
+                            <button type="button" onclick="getback()" class="btn btn-primary"><i class="fa fa-backward"></i> back</button>
+                            <div class="proccessing-item" id="one">
+                                <div class="slider-headding">
+                                    <h3>Vision</h3>
+                                    <p class="headding-pragarph">Choose a lems enhancement for your everyday needs</p>
+                                </div>
+                                <div class="vision-blog d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="vission-blog-item" onclick="slidersteps('Reading')">
+                                        <h4>reading Single Vision</h4>
+                                        <p>
+                                            One Prescription that covers the whole lens
+                                            for close-up tasks, like reading
+                                        </p>
+                                        <img class="img-fluid" src="~/assets/img/vission-img-1.png" alt="">
+                                    </div>
+                                    <div class="vission-blog-item" onclick="slidersteps('Distance')">
+                                        <h4>Distance Single Vision</h4>
+                                        <p>
+                                            One Prescription that covers the whole lens
+                                            for close-up tasks, like reading
+                                        </p>
+                                        <img class="img-fluid" src="~/assets/img/vission-img-2.png" alt="">
+                                    </div>
+                                    <div class="vission-blog-item" id="#Noprescription" onclick="slidersteps('nop')">
+                                        <h4>No Prescription</h4>
+                                        <p>
+                                            Non prescription lenses, for fashion cosmetic
+                                            wear.
+                                        </p>
+                                        <img class="img-fluid" src="~/assets/img/vission-img-3.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" class="proccessing-item slick-slide slick-current slick-active" tabindex="0" aria-hidden="false" id="two">
+                                <div class="slider-headding">
+                                    <h3>Presription</h3>
+                                    <p class="headding-pragarph">How will you provide your prescription?</p>
+                                </div>
+                                <div class="vision-blog d-flex flex-wrap justify-content-between align-items-center">
+                                    <div class="vission-blog-item presription-blog-item" onclick="slidersteps('enterprescription')">
+                                        <svg width="60" height="68" viewBox="0 0 60 68" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M45.0239 10.8448H14.9778V13.0431H45.0239V10.8448Z" fill="#009B95" />
+                                            <path d="M45.0239 21.4515H14.9778V23.6498H45.0239V21.4515Z" fill="#009B95" />
+                                            <path d="M34.6212 30.7209H14.9778V32.9192H34.6212V30.7209Z" fill="#009B95" />
+                                            <path d="M29.6592 0H26.0994V2.19828H29.6592V0Z" fill="#FFAC00" />
+                                            <path d="M56.9752 46.9149H54.7619V11.3944L45.761 2.19828H34.2332V0H46.7016L56.9752 10.5151V46.9149Z"
+                                                  fill="#009B95" />
+                                            <path d="M5.23873 47.153H3.02539V0H22.6872V2.19828H5.23873V47.153Z" fill="#009B95" />
+                                            <path d="M34.934 54.4989H25.0662V56.6972H34.934V54.4989Z" fill="#009B95" />
+                                            <path d="M46.4061 68C38.9176 68 32.8125 61.9547 32.8125 54.4989C32.8125 47.0431 38.8992 40.9978 46.4061 40.9978C53.913 40.9978 59.9997 47.0431 59.9997 54.4989C59.9997 61.9547 53.913 68 46.4061 68ZM46.4061 43.2144C40.135 43.2144 35.0443 48.2705 35.0443 54.4989C35.0443 60.7274 40.135 65.7834 46.4061 65.7834C52.6772 65.7834 57.7679 60.7274 57.7679 54.4989C57.7679 48.2705 52.6772 43.2144 46.4061 43.2144Z"
+                                                  fill="#009B95" />
+                                            <path d="M13.5936 68C6.08669 68 0 61.9364 0 54.4989C0 47.0614 6.08669 40.9978 13.5936 40.9978C21.1005 40.9978 27.1872 47.0431 27.1872 54.4989C27.1872 61.9547 21.0821 68 13.5936 68ZM13.5936 43.2144C7.32247 43.2144 2.23179 48.2705 2.23179 54.4989C2.23179 60.7274 7.32247 65.7834 13.5936 65.7834C19.8647 65.7834 24.9554 60.7274 24.9554 54.4989C24.9554 48.2705 19.8463 43.2144 13.5936 43.2144Z"
+                                                  fill="#009B95" />
+                                        </svg>
+                                        <h4 class="text-active presription-box-hedding">Enter Prescription Now</h4>
+                                        <p class="text-black ">
+                                            Add new prescription,
+                                            this will be saved for future use.
+                                        </p>
+                                    </div>
+                                    @*<div class="vission-blog-item presription-blog-item"  >
+                                            <svg  width="60" height="75" viewBox="0 0 60 75" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M59.9997 73.0636H57.5997V33.3178L47.5797 23.0171H34.7197V20.6016H48.5797L59.9997 32.3397V73.0636Z"
+                                                      fill="#0068AB" />
+                                                <path d="M60 75H0V57.2332H2.4V72.6045H57.6V57.2332H60V75Z" fill="#0068AB" />
+                                                <path d="M2.4 73.0636H0V20.6016H25.04V23.0171H2.4V73.0636Z" fill="#0068AB" />
+                                                <path d="M47.7801 56.774H14.3201V59.1696H47.7801V56.774Z" fill="#008EC5" />
+                                                <path d="M47.7801 44.8962H14.3201V47.2917H47.7801V44.8962Z" fill="#008EC5" />
+                                                <path d="M31.2005 2.89459H28.8005V33.3977H31.2005V2.89459Z" fill="#FFAC00" />
+                                                <path d="M40.4803 14.3532L30.0003 3.47352L19.5203 14.3532L17.8003 12.6763L30.0003 0L42.2203 12.6763L40.4803 14.3532Z"
+                                                      fill="#FFAC00" />
+                                            </svg>
+                                            <h4 class="presription-box-hedding">Upload Prescription</h4>
+                                            <p>
+                                                Take a photo of your paper prescription
+                                                and your glasses will ship faster!ng
+                                            </p>
+                                        </div>*@
+                                    <div class="vission-blog-item presription-blog-item" onclick="slidersteps('SavePrescription')">
+                                        <svg width="60" height="75" viewBox="0 0 60 75" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M29.6415 0H25.6753V2.4642H29.6415V0Z" fill="#008EC5" />
+                                            <path d="M59.9999 52.4431H57.5316V12.7422L47.5316 2.4642H34.7046V0H48.5653L59.9999 11.7523V52.4431Z"
+                                                  fill="#0068AB" />
+                                            <path d="M60 54.4019H0V36.6259H2.46835V51.9377H57.5316V36.6259H60V54.4019Z"
+                                                  fill="#0068AB" />
+                                            <path d="M2.46835 52.4431H0V0H21.8776V2.4642H2.46835V52.4431Z" fill="#0068AB" />
+                                            <path d="M45.6548 15.7961H12.2371V18.2603H45.6548V15.7961Z" fill="#008EC5" />
+                                            <path d="M45.6548 27.6748H12.2371V30.139H45.6548V27.6748Z" fill="#008EC5" />
+                                            <path d="M31.222 41.5754H28.7537V72.0514H31.222V41.5754Z" fill="#FFAC00" />
+                                            <path d="M29.9994 75L17.7842 62.2999L19.5563 60.5939L29.9994 71.4406L40.4424 60.5939L42.2146 62.2999L29.9994 75Z"
+                                                  fill="#FFAC00" />
+                                        </svg>
+                                        <h4 class="presription-box-hedding ">Use Saved Prescription</h4>
+                                        <p>
+                                            Load a previously saved prescription
+                                            from your account, requires login
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" class="proccessing-item slick-slide slick-current slick-active" tabindex="0" aria-hidden="false" id="two1">
+                                <div class="slider-headding">
+                                    <h3>Save Presription</h3>
+                                    <p class="headding-pragarph">Please select one  </p>
+                                    <p id="saveprescriptionerrormessage" style="color:red;"></p>
+                                </div>
+                                <div class="table-three-table">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+
+                                                <td>R_SPH</td>
+                                                <td>R_CYL</td>
+                                                <td>R_AXIS</td>
+                                                <td>R_ADD</td>
+                                                <td>L_SPH</td>
+                                                <td>L_CYL</td>
+                                                <td>L_AXIS</td>
+                                                <td>L_ADD</td>
+                                                <td>PD</td>
+                                                <td>PD Photo</td>
+                                                <td>Prescription Photo</td>
+                                                <td></td>
+                                            </tr>
+
+
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.UserPrescription)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.r_sph
+                                                    </td>
+                                                    <td>
+                                                        @item.r_cyl
+
+                                                    </td>
+                                                    <td>@item.r_axis</td>
+                                                    <td>@item.r_add</td>
+                                                    <td>@item.l_sph</td>
+                                                    <td>@item.l_cyl </td>
+                                                    <td>@item.l_axis</td>
+                                                    <td>@item.l_add</td>
+                                                    <td>@item.PD</td>
+                                                    <td><a href="@item.PDImage"><i class="fa fa-file"></i></a></td>
+                                                    <td><a href="@item.PrescriptionImage"><i class="fa fa-file"></i></a></td>
+                                                    <td>
+                                                        <button onclick="slidersteps('PrescriptionList'); Yourprescription('table',@item.r_sph,@item.r_cyl,@item.r_axis,@item.r_add,
+    @item.l_sph,@item.l_cyl,@item.l_axis,@item.l_add,@item.PD,'@item.PDImage','@item.PrescriptionImage')" class="btn btn-primary">
+                                                            Select
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style="display:none" class="proccessing-item" id="three">
+                                <div class="slider-headding">
+                                    <h3>Provide Your Prescription</h3>
+                                    <p class="headding-pragarph">How will you provide your prescription?</p>
+                                    <p id="prescriptionerrormessage" style="color:red;"></p>
+                                </div>
+                                <div class="provide">
+                                    <div class="provide-item">
+                                        <div class="eye-size">
+                                            <div class="row justify-content-between align-items-center flex-wrap">
+                                                <div class="col-lg-3">
+                                                    <h5>Right Eye</h5>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <span>SPH</span>
+                                                            <div class="dropdown">
+                                                                @*ViewBag.SPH = dbEntities.tblSizes.Where(x => x.Type == "SPH").ToList();
+                                                                    ViewBag.CYL = dbEntities.tblSizes.Where(x => x.Type == "CYL").ToList();
+                                                                    ViewBag.ADD = dbEntities.tblSizes.Where(x => x.Type == "ADD").ToList();
+                                                                    ViewBag.PD = dbEntities.tblSizes.Where(x => x.Type == "PD").ToList();*@
+                                                                <select onchange="slidersteps('confirmnow')" id="ddlrsph" name="ddlrsph" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.SPH)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>CYL</span>
+                                                            <div class="dropdown">
+                                                                <select id="ddlrcyl" name="ddlrcyl" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.CYL)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>AXIS</span>
+                                                            <div class="dropdown">
+
+                                                                <input id="txtraxis" name="txtraxis" type="text" class="form-control" />
+
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>ADD</span>
+                                                            <div class="dropdown">
+                                                                <select id="ddlradd" name="ddlradd" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.ADD)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-between align-items-center flex-wrap mt-3">
+                                                <div class="col-lg-3">
+                                                    <h5>Left Eye</h5>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <span>SPH</span>
+                                                            <div class="dropdown">
+
+                                                                <select  onchange="slidersteps('confirmnow')" id="ddllsph" name="ddllsph" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.SPH)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>CYL</span>
+                                                            <div class="dropdown">
+                                                                <select id="ddllcyl" name="ddllcyl" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.CYL)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>AXIS</span>
+                                                            <div class="dropdown">
+
+                                                                <input id="txtlaxis" name="txtlaxis" type="text" class="form-control" />
+
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span>ADD</span>
+                                                            <div class="dropdown">
+                                                                <select id="ddlladd" name="ddlladd" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.ADD)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="provide-item provide-item2">
+                                        <div class="eye-size">
+                                            <div class="row justify-content-between align-items-center flex-wrap">
+                                                <div class="col-lg-3 col-sm-4">
+                                                    <h5>
+                                                        Pupillary Distance <br>
+                                                        (PD)
+                                                    </h5>
+                                                </div>
+                                                <div class="col-lg-9 col-sm-8">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <span>PD</span>
+                                                            <div class="dropdown">
+                                                                <select onchange="slidersteps('confirmnow')" id="ddllPD" name="ddllPD" class="form-control js-example-basic-single ddl">
+                                                                    @foreach (var item in ViewBag.PD)
+                                                                    {
+
+                                                                        <option value="@item.TypeValue">@item.TypeValue</option>
+
+                                                                    }
+
+                                                                </select>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <div class="uploded-btn-area " onclick="opencameramodal()">
+                                                                <label class="provide-btn">
+
+                                                                    upload Pd phot
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-inline-item" onclick="openmeasuremodal()">
+                                                            <div class="uploded-btn-area">
+                                                                <label class="provide-btn me-btn">
+
+                                                                    <img src="~/assets/img/provide-btn-img.png" alt="img">
+                                                                    uMeasure my
+                                                                    Pd
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="prescription-form">
+                                        <div class="row justify-content-between align-items-start flex-wrap">
+                                            <div class="col-lg-3 col-sm-4">
+                                                <h5 class="pt-3 whois-the custom-mt d-sm-block d-none">
+                                                    Who is the <br>
+                                                    Prescription For*
+                                                </h5>
+                                                <h5 class="mt-4 pt-5 whois-the custom-mt3  d-sm-block d-none">
+                                                    Save Prescription *
+                                                </h5>
+                                                <h5 class="mt-4 pt-2 whois-the custom-mt2 d-sm-block d-none">
+                                                    Upload <br>
+                                                    Prescription *
+                                                </h5>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-8">
+
+                                                <div class="row align-items-center">
+                                                    <h5 class="whois-the custom-mt d-block d-sm-none">
+                                                        Who is the <br>
+                                                        Prescription For*
+                                                    </h5>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <label for="name">
+                                                            First Name*
+                                                        </label> <br>
+                                                        <input id="name" class="input form-control " type="text"
+                                                               placeholder="Enter First name">
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <label for="lname">Last Name*</label> <br>
+                                                        <input id="lname" class="input form-control" type="text"
+                                                               placeholder="Enter Last name">
+                                                    </div>
+                                                    <h5 class="mt-sm-4 pt-sm-4 mt-1 pt-1 whois-the custom-mt3 d-block d-sm-none">
+                                                        Save Prescription *
+                                                    </h5>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <label for="prescription">
+                                                            Save Your Prescription For Future Use
+                                                        </label> <br>
+                                                        
+                                                        <select  id="prescription" name="prescription" class="form-control js-example-basic-single ddl">
+                                                            <option selected value="Yes">Yes</option>
+                                                            <option  value="No">No</option>
+
+
+
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6  mb-sm-4  mb-2">
+                                                        <label for="date">Date Of Prescription * </label> <br>
+                                                        <input required id="presctiptiondate" class="input form-control" type="date" placeholder="Date">
+                                                    </div>
+                                                    <h5 class="mt-4 pt-3 whois-the custom-mt2 d-block d-sm-none">
+                                                        Upload <br>
+                                                        Prescription *
+                                                    </h5>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <div class="uploded-btn-area">
+                                                            <label for="uplod" class="provide-btn measure btn">
+                                                                <input id="uplod" class="form-control" type="file" onchange="show(this)" />
+                                                                Upload Prescription Here
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <div class="uploded-btn-area">
+
+                                                            <p class="text-aria">Allowed Types (JPG, PDF, PNG, JPEG)</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 mb-sm-4  mb-2">
+                                                        <div class="profile-img">
+
+                                                            <img style="width:50% !important" src="~/assets/img/placeholder.jpg" id="ImagePath">
+                                                            <input type="text" name="ImagePath" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="upload-area">
+                                    </div>
+                                    <div class="confirm-btn-aria">
+                                        <a class="provide-btn d-block" onclick="slidersteps('confirmnow')" href="#">confirm now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" class="proccessing-item" id="four">
+                                <div class="slider-headding">
+                                    <h3>Lens Ennancement</h3>
+                                    <p class="headding-pragarph">Choose a lems enhancement for your everyday needs</p>
+                                </div>
+                                <div class="ennancement-blog">
+                                    <div class="row g-4">
+                                        <div class="col-sm-6">
+                                            <div class="ennancement-bg h-100" onclick="slidersteps('Standardlens')">
+                                                <h4>
+                                                    Standard lens <br>
+                                                    $39
+                                                </h4>
+                                                <img class="img-fluid" src="~/assets/img/ennancement-blog-img-1.png" alt="img">
+                                                <p>Clear plastic Lens</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="ennancement-bg" onclick="slidersteps('Enhancedlens')">
+                                                <h4>
+                                                    Enhanced lens <br>
+                                                    $49
+                                                </h4>
+                                                <img class="img-fluid" src="~/assets/img/ennancement-blog-2.png" alt="img">
+                                                <div class="d-flex justify-content-around">
+                                                    <p>
+                                                        Anti glare coat <br>
+                                                        Scratch Resistant
+                                                    </p>
+                                                    <p>
+                                                        Anti glare coat <br>
+                                                        Scratch Resistant
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" class="proccessing-item" id="five">
+                                <div class="slider-headding">
+                                    <h3>UV Protection</h3>
+                                    <p class="headding-pragarph">Make your lenses transition in sunligh</p>
+                                </div>
+                                <div class="uv-protection">
+                                    <div class="uv-protection-img position-relative ">
+                                        <div class="img">
+                                            <img class="img-fluid" src="~/assets/img/blog-img-three.png" alt="img" onclick="slidersteps('UVProtection')">
+                                            <a class="position-absolute skip-btn" href="#" onclick="slidersteps('Skip')">or skip</a>
+                                        </div>
+                                        <div class="uv-protection-shape position-absolute">
+                                            <div class="shape-1"> <img src="~/assets/img/uv-protection-shape-1.png" alt="img"></div>
+                                            <div class="shape-details ">
+                                                <div class="shape-2 position-relative ">
+                                                    <img src="~/assets/img/uv-protection-shape-2.png" alt="img">
+                                                    <h4 class="position-absolute">For only <br>$20</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none" id="six" class="proccessing-item">
+                                <div class="slider-headding">
+                                    <h3>Frame</h3>
+                                    <p class="headding-pragarph">How will you provide your prescription?</p>
+                                </div>
+                                <div class="frame-item">
+                                    <h4 class="frame-headding">Frame</h4>
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                        <ul class="list-inline">
+
+                                            <li class="list-inline-item">@ViewBag.colorname</li>
+                                            <li class="list-inline-item">@ViewBag.size</li>
+                                        </ul>
+                                        <h4>$@Model.Price</h4>
+                                    </div>
+                                    <div id="no_prescription_content">
+                                        <h4>Your prescription</h4>
+                                        <div class="table-aria">
+                                            <table class="table table-bordered text-center">
+                                                <tbody>
+                                                    <tr class="table-headding">
+                                                        <td></td>
+                                                        <td>SPH</td>
+                                                        <td>CYL</td>
+                                                        <td>AXIS</td>
+                                                        <td>ADD</td>
+                                                        <td>PD</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Left</td>
+                                                        <td id="lsph"></td>
+                                                        <td id="lcyl"></td>
+                                                        <td id="laxis"></td>
+                                                        <td id="ladd"></td>
+                                                        <td id="tpd" rowspan="2" class="alinment"></td>
+                                                    </tr>
+                                                    <tr class="table-bg">
+                                                        <td>Right</td>
+                                                        <td id="rsph"></td>
+                                                        <td id="rcyl"></td>
+                                                        <td id="raxis"></td>
+                                                        <td id="radd"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <ul class="prescription-list" id="addtocartproducts">
+                                        @*<li class="d-flex justify-content-between flex-wrap align-items-center">
+                                                Single vision Distance <span>Free</span>
+                                            </li>*@
+
+                                    </ul>
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                        <h3>Subtotal</h3>
+                                        <h3 id="Subtotal">$42.95</h3>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap" id="PDRXImage">
+                                        <div class="subtotal-blog" id="divimgpd">
+                                            <img id="imgpd" class="img-fluid" src="/assets/img/placeholder.jpg" alt="img">
+                                            <h5>PD Image</h5>
+                                        </div>
+                                        <div class="subtotal-blog" id="divimgrx">
+                                            <img id="imgrx" class="img-fluid" src="/assets/img/placeholder.jpg" alt="img">
+                                            <h5>Prescription Image</h5>
+                                        </div>
+                                    </div>
+                                    <div class="subtotal-chakbox">
+                                        <label class="container">
+                                            I confirm that the prescription I entered is correct.
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    @*<button type="submit" class="cart-button text-center">add to cart</button>*@
+                                    <button type="submit" class="cart-button d-block text-center" onclick="Addtocart()">add to cart</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+}
+<!-- ::::proccessing end:::::: -->
+<!-- :::: ctl start:::::: -->
+<section class="ctl">
+    <div class="container custum-pd2">
+        <div class="cta-bg position-relative">
+            <div class="ctl-bg ">
+                <div class="row justify-content-center align-items-center">
+                    <!-- :::: ctl single item:::::: -->
+                    <div class="col-lg-6">
+                        <div class="title">
+                            <h2>Newsletter</h2>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mau faucibus velit vitae id.
+                                Elementum est id eleifend lacus
+                            </p>
+                        </div>
+                    </div>
+                    <!-- :::: ctl single item:::::: -->
+                    <div class="col-lg-6">
+
+                        <input type="email" class="form-control" placeholder="Email Address">
+                        <button type="submit">subscribe now</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- :::: ctl end:::::: -->
+
+<script type="text/javascript">
+
+    function AddExtrcharges() {
+        $("#Extracharges").val(15);
+
+
+    
+        
+
+        $("#ValidationModal").modal("hide");
+        document.getElementById("prescriptionerrormessage").innerHTML = "";
+    }
+    function HideValidatioModal() {
+        $("#ValidationModal").modal("hide");
+    }
+
+
+    function opencamera() {
+        $("#cameramodal").modal("show");
+    }
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#ImagePath').attr('src', e.target.result);
+
+                
+                document.getElementById("pdimage").src = e.target.result;
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script>
+
+    function opencameramodal() {
+        $("#cameramodal").modal("show");
+    }
+
+    function openmeasuremodal() {
+        $("#measuremodal").modal("show");
+    }
+
+    function getback() {
+        var fromwhichtype = $("#fromwhichtype").val();
+        var stage = $("#stage").val();
+
+        if (fromwhichtype == "nop") {
+            if (stage == "4") {
+                if ($("#noprescriptionstatus").val() != 0) {
+                    $("#one").fadeIn();
+                    $("#four").fadeOut();
+                    $("#fromwhichtype").val("");
+                    $("#stage").val("");
+                }
+                else if ($("#noprescriptionstatus").val() == 0) {
+                    $("#two1").fadeIn();
+                    $("#four").fadeOut();
+                    $("#fromwhichtype").val("");
+                    $("#stage").val("3");
+                    $("#fromwhichtype").val("SavePrescription");
+                }
+
+            }
+        }
+        else if (fromwhichtype == "Standardlens" || fromwhichtype == "Enhancedlens") {
+
+            $("#LensType").val("");
+            if (stage == "5") {
+
+                if ($("#noprescriptionstatus").val() != 0) {
+                    $("#four").fadeIn();
+                    $("#five").fadeOut();
+                    $("#fromwhichtype").val("nop");
+                    $("#stage").val("4");
+                    $("#price").val(0);
+                    /*$("#noprescriptionstatus").val(0);*/
+                }
+
+                if ($("#noprescriptionstatus").val() == 0) {
+                    $("#four").fadeIn();
+                    $("#five").fadeOut();
+                    $("#fromwhichtype").val("PrescriptionList");
+                    $("#stage").val("4");
+                    $("#price").val(0);
+                    $("#noprescriptionstatus").val(0);
+                }
+
+
+            }
+        }
+
+        else if (fromwhichtype == "UVProtection") {
+            $("#TotalAmount").val(0);
+            if (stage == "6") {
+                $("#five").fadeIn();
+                $("#six").fadeOut();
+                $("#fromwhichtype").val("Standardlens");
+                $("#stage").val("5");
+                $("#UVProtection").val(0);
+
+                $("#addtocartproducts #liextracharges").remove();
+            }
+
+            
+        }
+        else if (fromwhichtype == "Skip") {
+            if (stage == "6") {
+                $("#five").fadeIn();
+                $("#six").fadeOut();
+                $("#fromwhichtype").val("Standardlens");
+                $("#stage").val("5");
+                $("#UVProtection").val(0);
+
+            }
+        }
+
+        else if (fromwhichtype == "Reading" || fromwhichtype == "Distance") {
+            $("#VisionType").val(" ");
+            if (stage == "2") {
+                $("#one").fadeIn();
+                $("#two").fadeOut();
+                $("#fromwhichtype").val("");
+                $("#stage").val("");
+                $("#noprescriptionstatus").val("0");
+            }
+        }
+        else if (fromwhichtype == "enterprescription") {
+            if (stage == "3") {
+                $("#two").fadeIn();
+                $("#three").fadeOut();
+                $("#fromwhichtype").val("Reading");
+                $("#stage").val("2");
+            }
+            $("#txtenterprescription").val("0");
+
+            $("#Extracharges").val(0);
+            $("#addtocartproducts #liextracharges").remove();
+            document.getElementById("prescriptionerrormessage").innerHTML = "";
+        }
+
+        else if (fromwhichtype == "confirmnow") {
+
+            $("#three").fadeIn();
+            $("#four").fadeOut();
+            $("#fromwhichtype").val("enterprescription");
+            $("#stage").val("3");
+
+
+        }
+        else if (fromwhichtype == "SavePrescription") {
+
+
+            $("#two1").fadeOut();
+            $("#two").fadeIn();
+
+            $("#fromwhichtype").val("Reading");
+            $("#stage").val(2);
+            $("#noprescriptionstatus").val("0");
+            $("#isusedsaveprescription").val("0");
+
+            $("#pd").val("0");
+            $("#pdimage").val("");
+            $("#pdprescriptionimage").val("");
+
+
+            $("#Extracharges").val(0);
+            $("#addtocartproducts #liextracharges").remove();
+
+        }
+
+        else if (fromwhichtype == "PrescriptionList") {
+
+            if ($("#txtenterprescription").val() == "1") {
+                $("#three").fadeIn();
+                $("#four").fadeOut();
+
+                $("#fromwhichtype").val("confirmnow");
+                $("#stage").val(3);
+                $("#noprescriptionstatus").val("0");
+
+            }
+            else {
+                $("#two1").fadeIn();
+                $("#four").fadeOut();
+
+                $("#fromwhichtype").val("SavePrescription");
+                $("#stage").val(3);
+                $("#noprescriptionstatus").val("0");
+            }
+
+        }
+
+
+    }
+
+
+    function Yourprescription(type,r_sph, r_cyl, r_axis, r_add, l_sph, l_cyl, l_axis, l_add, PD, PDImage, PrescriptionImage) {
+
+        //if use saved prescriotion is selected
+        if (type = 'table') {
+
+
+            document.getElementById("imgpd").src = "";
+            document.getElementById("imgrx").src = "";
+
+
+            var FrameAWidth = $("#FrameAWidth").val();
+            var FrameDBBridger = $("#FrameDBBridger").val();
+            var FrameED = $("#FrameED").val();
+            var PDValidationResult = 0;
+            var PDValidationLeftResult = 0;
+            var PDValidationRightResult = 0;
+
+
+
+
+
+
+
+            /*PD Validation formulas*/
+
+
+            /*if both are right sph and left sph are postivie*/
+            if (parseFloat(l_sph) > 0 && parseFloat(r_sph) > 0) {
+
+                PDValidationResult = 0;
+                PDValidationResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+
+                if (PD <= parseFloat(PDValidationResult) && parseInt($("#Extracharges").val()) == 0) {
+
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+                }
+                else {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+            /*if both are right sph and left sph are negative*/
+            else if (parseFloat(l_sph) < 0 && parseFloat(r_sph) < 0) {
+                PDValidationResult = 0;
+                PDValidationResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+
+                if (PD <= parseFloat(PDValidationResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+
+                }
+                else {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+
+            }
+            /*if  right sph postitive and left sph are negative*/
+            else if (parseFloat(l_sph) > 0 && parseFloat(r_sph) < 0) {
+                PDValidationResult = 0;
+                PDValidationLeftResult = 0;
+                PDValidationRightResult = 0;
+
+                PDValidationLeftResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+                PDValidationRightResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+
+                PDValidationResult = parseFloat(PDValidationLeftResult) + parseFloat(PDValidationRightResult);
+
+                if (PD <= parseFloat(PDValidationLeftResult) || pd <= parseFloat(PDValidationRightResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+
+                    }
+
+                }
+
+                else {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+            /*if  right sph negative and left sph are postitive*/
+            else if (parseFloat(l_sph) < 0 && parseFloat(r_sph) > 0) {
+                PDValidationResult = 0;
+                PDValidationLeftResult = 0;
+                PDValidationRightResult = 0;
+
+                PDValidationLeftResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+                PDValidationRightResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+
+                PDValidationResult = parseFloat(PDValidationLeftResult) + parseFloat(PDValidationRightResult);
+
+                if (PD <= parseFloat(PDValidationLeftResult) || pd <= parseFloat(PDValidationRightResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+
+                }
+                else {
+                    document.getElementById("saveprescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+
+
+
+            document.getElementById("lsph").innerHTML = l_sph;
+            document.getElementById("lcyl").innerHTML = l_cyl;
+            document.getElementById("laxis").innerHTML = l_axis;
+            document.getElementById("ladd").innerHTML = l_add;
+            document.getElementById("rsph").innerHTML = r_sph;
+            document.getElementById("rcyl").innerHTML = r_cyl;
+            document.getElementById("raxis").innerHTML = r_axis;
+            document.getElementById("radd").innerHTML = r_add;
+            document.getElementById("tpd").innerHTML = PD;
+
+            $("#pd").val(PD);
+            $("#pdimage").val(PDImage);
+            $("#pdprescriptionimage").val(PrescriptionImage);
+            document.getElementById("imgpd").src = PDImage;
+            document.getElementById("imgrx").src = PrescriptionImage;
+
+
+             $("#two1").fadeOut();
+            $("#four").fadeIn();
+
+            $("#fromwhichtype").val('PrescriptionList');
+            $("#stage").val(4);
+            $("#noprescriptionstatus").val("0");
+
+        }
+
+
+
+
+
+
+
+    }
+    function slidersteps(fromwhichtype) {
+        /*$("#slick-dots li slick-active ")*/
+        //$(".slick-dots li ").removeClass("slick-active");
+        //$(".slick-dots li:nth-child(4)").addClass("slick-active");
+
+
+        /*No Prescription proceeding steps*/
+    /*if click on first slide*/
+
+        if (fromwhichtype == "PrescriptionList") {
+
+
+            //$("#two1").fadeOut();
+            //$("#four").fadeIn();
+
+            //$("#fromwhichtype").val(fromwhichtype);
+            //$("#stage").val(4);
+            //$("#noprescriptionstatus").val("0");
+        }
+        if (fromwhichtype == "SavePrescription") {
+
+
+
+
+            $("#two").fadeOut();
+            $("#two1").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(3);
+            $("#noprescriptionstatus").val("0");
+
+            $("#isusedsaveprescription").val("1");
+        }
+
+        if (fromwhichtype == "confirmnow") {
+
+
+            /*Prescription Calculation formula*/
+            var lsph = 0;
+            var lcyl = 0;
+            var laxis = 0
+            var ladd = 0
+            var rsph = 0
+            var rcyl = 0
+            var raxis = 0
+            var radd = 0
+            var pd = 0;
+            var pdimage = "";
+            var pdprescriptionimage = "";
+
+            var Fname = $("#name").val();
+            var lname = $("#lname").val();
+            var prescription = $("#prescription").val();
+            var presctiptiondate = $("#presctiptiondate").val();
+
+            var FrameAWidth = $("#FrameAWidth").val();
+            var FrameDBBridger = $("#FrameDBBridger").val();
+            var FrameED = $("#FrameED").val();
+            var PDValidationResult = 0;
+            var PDValidationLeftResult = 0;
+            var PDValidationRightResult = 0;
+
+
+            lsph = $("#ddllsph").val();
+            lcyl = $("#ddllcyl").val();
+            laxis = $("#txtlaxis").val();
+            ladd = $("#ddlladd").val();
+            rsph= $("#ddlrsph").val();
+            rcyl = $("#ddlrcyl").val();
+            raxis = $("#txtraxis").val();
+            radd = $("#ddlradd").val();
+            pd = $("#ddllPD").val();
+
+            /*Right eye validation*/
+            if (parseFloat(rsph) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Right Eye SPH";
+                return;
+            }
+            else if (parseFloat(rcyl) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Right Eye CYL";
+                return;
+            }
+            else if (raxis == "") {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Enter Right Eye AXIS";
+                return;
+            }
+            else if (parseFloat(radd) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Right Eye Add";
+                return;
+            }
+            /*Left eye validation*/
+            if (parseFloat(lsph) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Left Eye SPH";
+                return;
+            }
+            else if (parseFloat(lcyl) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Left Eye CYL";
+                return;
+            }
+            else if (laxis == "") {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Enter Left  Eye AXIS";
+                return;
+            }
+            else if (parseFloat(ladd) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Left Eye Add";
+                return;
+            }
+            else if (parseFloat(pd) == 0) {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Select Eye PD";
+                return;
+            }
+
+
+
+
+        /*PD Validation formulas*/
+
+
+            /*if both are right sph and left sph are postivie*/
+            if (parseFloat(lsph) > 0 && parseFloat(rsph) > 0) {
+
+                PDValidationResult = 0;
+                PDValidationResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+
+                if (pd <= parseFloat(PDValidationResult) && parseInt($("#Extracharges").val()) == 0) {
+
+                    document.getElementById("prescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+                }
+                else {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+            /*if both are right sph and left sph are negative*/
+            else if (parseFloat(lsph) < 0 && parseFloat(rsph) < 0) {
+                PDValidationResult = 0;
+                PDValidationResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+
+                if (pd <= parseFloat(PDValidationResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+
+                }
+                else {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+
+            }
+            /*if  right sph postitive and left sph are negative*/
+            else if (parseFloat(lsph) > 0 && parseFloat(rsph) < 0) {
+                PDValidationResult = 0;
+                PDValidationLeftResult = 0;
+                PDValidationRightResult = 0;
+
+                PDValidationLeftResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+                PDValidationRightResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+
+                PDValidationResult = parseFloat(PDValidationLeftResult) + parseFloat(PDValidationRightResult);
+
+                if (pd <= parseFloat(PDValidationLeftResult) || pd <= parseFloat(PDValidationRightResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+
+                    }
+
+                }
+
+                else {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+            /*if  right sph negative and left sph are postitive*/
+            else if (parseFloat(lsph) < 0 && parseFloat(rsph) > 0) {
+                PDValidationResult = 0;
+                PDValidationLeftResult = 0;
+                PDValidationRightResult = 0;
+
+                PDValidationLeftResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(75);
+                PDValidationRightResult = parseFloat(FrameAWidth) + parseFloat(FrameDBBridger) + parseFloat(FrameED) - parseFloat(65);
+
+                PDValidationResult = parseFloat(PDValidationLeftResult) + parseFloat(PDValidationRightResult);
+
+                if (pd <= parseFloat(PDValidationLeftResult) || pd <= parseFloat(PDValidationRightResult) && parseInt($("#Extracharges").val()) == 0) {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "The combination of your prescription and\
+                    PD value is not suitable for this product.Please select another product that supports a wider range of PD values";
+
+                    if ($("#Extracharges").val() == "" || parseInt($("#Extracharges").val()) == 0) {
+                        $("#ValidationModal").modal("show");
+                        return;
+                    }
+
+                }
+                else {
+                    document.getElementById("prescriptionerrormessage").innerHTML = "";
+                    $("#Extrcharges").val(0);
+                }
+            }
+
+             if (Fname.trim() == "") {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Enter First Name";
+                $("#name").focus();
+
+                return;
+            }
+            else if (lname == "") {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Enter Last Name";
+                $("#lname").focus();
+                return;
+            }
+            else if (prescription == "") {
+                document.getElementById("prescriptionerrormessage").innerHTML = "Enter Prescription Name";
+                $("#prescription").focus();
+                return;
+            }
+             else if (presctiptiondate == "") {
+                 document.getElementById("prescriptionerrormessage").innerHTML = "Select Prescription Date";
+                 $("#prescription").focus();
+                 return;
+             }
+            /*set prescription values */
+            document.getElementById("lsph").innerHTML = lsph;
+            document.getElementById("lcyl").innerHTML = lcyl;
+            document.getElementById("laxis").innerHTML = laxis;
+            document.getElementById("ladd").innerHTML = ladd;
+            document.getElementById("rsph").innerHTML = rsph;
+            document.getElementById("rcyl").innerHTML = rcyl;
+            document.getElementById("raxis").innerHTML = raxis;
+            document.getElementById("radd").innerHTML = radd;
+            $("#pd").val(pd);
+
+            //$("#pdimage").val(PDImage);
+            //$("#pdprescriptionimage").val(PrescriptionImage);
+
+            //if (PDImage != "") {
+            //    $("#PDRXImage #divimgpd img").remove();
+            //    var img = document.createElement('img');
+            //    $("#PDRXImage #divimgpd ").append("<img id='imgpd' class='img-fluid' src='" + PDImage + "' alt='ig' />");
+            //}
+
+            //if (PrescriptionImage != "") {
+            //    $("#PDRXImage #divimgrx img").remove();
+            //    var img = document.createElement('img');
+            //    $("#PDRXImage #divimgrx").append("<img id='imgrx' class='img-fluid' src='" + PrescriptionImage + "' alt='ig' />");
+            //}
+
+
+            if (parseInt($("#Extracharges").val() > 0)) {
+                $("#addtocartproducts #uvprotection_cart_list").remove();
+                $("#addtocartproducts").append('<li id="uvprotection_cart_list" class="d-flex justify-content-between flex-wrap align-items-center">UV Protection<span> $20</span ></li >');
+            }
+
+            $("#three").fadeOut();
+            $("#four").fadeIn();
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(4);
+            $("#noprescriptionstatus").val("0");
+        }
+        if (fromwhichtype == "nop") {
+
+
+            $("#one").fadeOut();
+            $("#four").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(4);
+            $("#noprescriptionstatus").val("1");
+
+            var x = document.querySelectorAll("#PDRXImage");
+            x[0].style.setProperty("display", "none", "important");
+        }
+        /*if click on second slide*/
+        else if (fromwhichtype == "Standardlens") {
+            $("#four").fadeOut();
+            $("#five").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(5);
+            $("#price").val(39);
+            $("#addtocartproducts li").remove();
+            $("#addtocartproducts").append('<li class="d-flex justify-content-between flex-wrap align-items-center">Standard Lens <span> $39</span ></li >');
+
+            $("#LensType").val("Standard");
+        }
+        /*if click on second slide*/
+        else if (fromwhichtype == "Enhancedlens") {
+            $("#four").fadeOut();
+            $("#five").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(5);
+            $("#price").val(49);
+            $("#addtocartproducts li").remove();
+            $("#addtocartproducts").append('<li  class="d-flex justify-content-between flex-wrap align-items-center">Enhanced Lens <span> $49</span ></li >');
+            $("#LensType").val("Enhanced");
+
+
+        }
+
+        /*if click on fifth slide*/
+        else if (fromwhichtype == "UVProtection") {
+
+
+            /*$("#addtocartproducts").remove();*/
+
+
+
+            $("#five").fadeOut();
+            $("#six").fadeIn();
+
+            if ($("#noprescriptionstatus").val() == "1") {
+
+                $("#no_prescription_content").fadeOut();
+
+
+            }
+            else if ($("#noprescriptionstatus").val() == "0") {
+
+            }
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(6);
+
+            $("#UVProtection").val(20);
+            var txtFirstNo = document.getElementById('price').value;
+            var txtSecondNo = document.getElementById('UVProtection').value;
+            var result = parseInt(txtFirstNo) + parseInt(txtSecondNo) + parseInt(@Model.Price);
+            var Extracharges = 15;
+
+
+            $("#addtocartproducts #uvprotection_cart_list").remove();
+            $("#addtocartproducts").append('<li id="uvprotection_cart_list" class="d-flex justify-content-between flex-wrap align-items-center">UV Protection<span> $20</span ></li >');
+
+            if (parseFloat($("#Extracharges").val()) > 0) {
+                $("#addtocartproducts #liextracharges").remove();
+                $("#addtocartproducts").append('<li id="liextracharges"  class="d-flex justify-content-between flex-wrap align-items-center">Extra Charges<span> $15</span ></li >');
+                result = parseInt(txtFirstNo) + parseInt(txtSecondNo) + parseInt(@Model.Price) + parseInt(15);
+            }
+            else {
+                $("#addtocartproducts #liextracharges").remove();
+                result = parseInt(txtFirstNo) + parseInt(txtSecondNo) + parseInt(@Model.Price);
+            }
+
+
+            if (!isNaN(result)) {
+                document.getElementById("Subtotal").innerHTML = "$" + result;
+                $("#TotalAmount").val(result);
+            }
+
+
+        }
+        else if (fromwhichtype == "Skip") {
+            $("#five").fadeOut();
+            $("#six").fadeIn();
+            if ($("#noprescriptionstatus").val() == "1")
+            {
+                $("#no_prescription_content").fadeOut();
+                /*$("#PDRXImage").fadeIn();*/
+
+
+            }
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(6);
+
+            $("#UVProtection").val(0);
+
+            var txtFirstNo = document.getElementById('price').value;
+            var txtSecondNo = document.getElementById('UVProtection').value;
+            var result = parseInt(txtFirstNo) + parseInt(txtSecondNo)+ parseInt(@Model.Price);
+            if (!isNaN(result)) {
+                document.getElementById("Subtotal").innerHTML = "$" + result;
+                $("#TotalAmount").val(result);
+            }
+
+            $("#addtocartproducts  #uvprotection_cart_list").remove();
+
+        }
+
+
+        /*Reading/Distance proceeding steps*/
+        /*if click on first slide*/
+        if (fromwhichtype == "Reading" || fromwhichtype == "Distance")  {
+            $("#one").fadeOut();
+            $("#two").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(2);
+            $("#noprescriptionstatus").val("0");
+            $("#VisionType").val(fromwhichtype);
+
+            var x = document.querySelectorAll("#PDRXImage");
+            x[0].style.setProperty("display", "flex", "important");
+        }
+
+
+        else if (fromwhichtype == "enterprescription") {
+            $("#two").fadeOut();
+            $("#three").fadeIn();
+
+            $("#fromwhichtype").val(fromwhichtype);
+            $("#stage").val(3);
+            $("#noprescriptionstatus").val("0");
+            $("#txtenterprescription").val("1");
+
+
+
+        }
+
+
+
+
+
+
+
+
+        //$(".slick-track div").removeClass("slick-active");
+        //$(".slick-track div:nth-child(1)").addClass("slick-active");
+        //$('#index').addClass('active');
+
+    }
+
+    function Addtocart() {
+
+        var UVProtection = $("#UVProtection").val();
+
+        if (UVProtection != "0" || UVProtection != "") {
+            UVProtection = "on"
+        }
+        else {
+            UVProtection="off"
+        }
+
+        var VisionType = $("#VisionType").val();
+        if (VisionType == "") {
+            VisionType = " ";
+        }
+
+        var lsph = 0;
+        var lcyl = 0;
+        var laxis =0
+        var ladd = 0
+        var rsph = 0
+        var rcyl = 0
+        var raxis =0
+        var radd = 0
+        var pd = 0;
+        var pdimage = "";
+        var pdprescriptionimage = "";
+
+        var name = "";
+        var lname = "";
+        var prescription = "";
+        var presctiptiondate = "";
+        var Extracharges = 0;
+
+    /*get prescription values */
+        if ($("#noprescriptionstatus").val() == "0") {
+            lsph = document.getElementById("lsph").innerHTML;
+            lcyl = document.getElementById("lcyl").innerHTML;
+            laxis = document.getElementById("laxis").innerHTML;
+            ladd = document.getElementById("ladd").innerHTML;
+            rsph = document.getElementById("rsph").innerHTML;
+            rcyl = document.getElementById("rcyl").innerHTML;
+            raxis = document.getElementById("raxis").innerHTML;
+            radd = document.getElementById("radd").innerHTML;
+            pd = $("#pd").val();
+            pdimage = $("#pdimage").val();
+            pdprescriptionimage = $("#pdprescriptionimage").val();
+
+
+
+        }
+
+         var model = {
+             GlassID: $("#GlassID").val(),
+             Variationid: $("#Variationid").val(),
+             Quantity: $("#Quantity").val(),
+             LensType: $("#LensType").val(),
+             VisionType: VisionType,
+             UVProtection: UVProtection,
+             TotalAmount: $("#TotalAmount").val(),
+             Userid: $("#Userid").val(),
+             r_sph: rsph,
+             r_cyl: rcyl,
+             r_axis: raxis,
+             r_add: radd,
+             l_sph: lsph,
+             l_cyl: lcyl,
+             l_axis: laxis,
+             l_add: ladd,
+             lensType1: '',
+             PD: pd,
+             PDImage: pdimage,
+             PrescriptionImage: pdprescriptionimage,
+             Title: $("#Title").val(),
+             shape: $("#Shape").val(),
+             Colour: $("#Colour").val(),
+             Price: $("#Productprice").val(),
+             ProductImagePath: $("#ProductImagePath").val(),
+             Size: $("#Size").val(),
+             Productcategory: $("#Productcategory").val(),
+             isusedsaveprescription: $("#GlassID").val(),
+             Fname : $("#name").val(),
+             Lname : $("#lname").val(),
+             prescription : $("#prescription").val(),
+             prescriptionDate : $("#presctiptiondate").val(),
+             Extracharges : $("#Extracharges").val(),
+             Actioncalltype:1
+        };
+
+
+          $.ajax({
+            type: "POST",
+            url: '@Url.Action("OrderprocessingAddtoCart", "Products")',
+              data: JSON.stringify(model),
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+            success: function (result) {
+
+                    window.location.href = result.url;
+
+            }
+        });
+    }
+
+</script>

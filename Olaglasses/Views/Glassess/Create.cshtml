@@ -1,0 +1,448 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblProduct
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    @if (Model.GlassID > 0)
+                    {
+                        <h2 class="breadcrumb-title">Edit Glass Info</h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">Add Glass Info</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="doc-review review-listing custom-edit-service">
+
+
+    <!-- Add Blog -->
+    <div class="card">
+        <div class="card-body">
+
+            <form method="post" action="@Url.Action("Create","Glassess")">
+                <input type="hidden" name="GlassID" value="@Model.GlassID">
+
+                <div class="service-fields">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Title <span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="text" name="Title" id="Title" value="@Model.Title" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Price ($)<span class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="Price" id="Price" value="@Model.Price" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Cost ($)<span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="number" name="Cost" id="Cost" value="@Model.Cost" required="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="service-fields">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Manufacturer <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Manufacturer" id="Manufacturer" value="@Model.Manufacturer" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>MGF-Code <span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="text" name="Mgf_Code" id="Mgf_Code" value="@Model.Mgf_Code" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Ola Product Code <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="OrignalCode" id="OrignalCode" value="@Model.OrignalCode" required="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-fields">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Sell in Clinic <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="SellinClinic">
+
+                                    @if (Model.SellinClinic == "Yes")
+                                    {
+                                        <option selected>Yes</option>
+                                        <option>No</option>
+
+                                    }
+                                    @if (Model.SellinClinic == "No")
+                                    {
+                                        <option>Yes</option>
+                                        <option selected>No</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected>Yes</option>
+                                        <option>No</option>
+                                    }
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Feature <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="Feature">
+
+                                    @if (Model.Feature == "Nose Pad")
+                                    {
+                                        <option selected>Nose Pad</option>
+                                        <option>Spring Hinge</option>
+
+                                    }
+                                    @if (Model.Feature == "Spring Hinge")
+                                    {
+                                        <option>Nose Pad</option>
+                                        <option selected>Spring Hinge</option>
+                                    }
+                                    @if (Model.Feature == "")
+                                    {
+
+                                        <option selected>Nose Pad</option>
+                                        <option>Spring Hinge</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Rim<span class="text-danger">*</span></label>
+
+                                <select class="form-control select" name="Rim">
+
+                                    @if (Model.Rim == "Rimless")
+                                    {
+                                        <option selected>Rimless</option>
+                                        <option>Semi-Rim</option>
+                                        <option>Full Rim</option>
+
+                                    }
+                                    @if (Model.Rim == "Full Rim")
+                                    {
+                                        <option>Rimless</option>
+                                        <option>Semi-Rim</option>
+                                        <option selected>Full Rim</option>
+
+                                    }
+                                    @if (Model.Rim == "Semi-Rim")
+                                    {
+                                        <option>Rimless</option>
+                                        <option selected>Semi-Rim</option>
+                                        <option>Full Rim</option>
+
+                                    }
+                                    @if (Model.Rim == "")
+                                    {
+                                        <option>Rimless</option>
+                                        <option>Semi-Rim</option>
+                                        <option>Full Rim</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-fields">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Shape <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="shape">
+
+                                    @if (Model.shape == "Rectangle")
+                                    {
+                                        <option selected>Rectangle</option>
+                                        <option>Round</option>
+                                        <option>Square</option>
+                                        <option>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "Round")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option selected>Round</option>
+                                        <option>Square</option>
+                                        <option>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "Square")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option>Round</option>
+                                        <option selected>Square</option>
+                                        <option>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "Aviator")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option>Round</option>
+                                        <option>Square</option>
+                                        <option selected>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "Polygon")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option>Round</option>
+                                        <option>Square</option>
+                                        <option>Aviator</option>
+                                        <option selected>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "Cat Eye")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option>Round</option>
+                                        <option>Square</option>
+                                        <option>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option selected>Cat Eye</option>
+                                    }
+                                    @if (Model.shape == "")
+                                    {
+                                        <option>Rectangle</option>
+                                        <option>Round</option>
+                                        <option>Square</option>
+                                        <option>Aviator</option>
+                                        <option>Polygon</option>
+                                        <option>Cat Eye</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Material<span class="text-danger">*</span></label>
+
+                                <select class="form-control select" name="Material">
+
+                                    @if (Model.Material == "Metal")
+                                    {
+                                        <option selected>Metal</option>
+                                        <option>Titanium</option>
+                                        <option>Plastic</option>
+                                        <option>Plastic Metal</option>
+                                    }
+                                    @if (Model.Material == "Titanium")
+                                    {
+                                        <option>Metal</option>
+                                        <option selected>Titanium</option>
+                                        <option>Plastic</option>
+                                        <option>Plastic Metal</option>
+                                    }
+                                    @if (Model.Material == "Plastic")
+                                    {
+                                        <option>Metal</option>
+                                        <option>Titanium</option>
+                                        <option selected>Plastic</option>
+                                        <option>Plastic Metal</option>
+                                    }
+                                    @if (Model.Material == "Plastic Metal")
+                                    {
+                                        <option>Metal</option>
+                                        <option>Titanium</option>
+                                        <option>Plastic</option>
+                                        <option selected>Plastic Metal</option>
+                                    }
+                                    @if (Model.Material == "")
+                                    {
+                                        <option>Metal</option>
+                                        <option>Titanium</option>
+                                        <option>Plastic</option>
+                                        <option>Plastic Metal</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Gender <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="Gender">
+
+                                    @if (Model.Gender == "Men")
+                                    {
+                                        <option selected>Men</option>
+                                        <option>Women</option>
+                                        <option>UniSex</option>
+                                    }
+                                    @if (Model.Gender == "Women")
+                                    {
+                                        <option>Men</option>
+                                        <option selected>Women</option>
+                                        <option>UniSex</option>
+                                    }
+                                    @if (Model.Gender == "UniSex")
+                                    {
+                                        <option>Men</option>
+                                        <option>Women</option>
+                                        <option selected>UniSex</option>
+                                    }
+                                    @if (Model.Gender == "")
+                                    {
+
+                                        <option selected>Men</option>
+                                        <option>Women</option>
+                                        <option>UniSex</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-fields">
+                    <div class="row">
+                        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Related to<span class="text-danger">*</span></label>
+                <select class="form-control select" name="ReleatedTo">
+                    @foreach (var item in ViewBag.ProductList)
+                    {
+                        if (Model.ReleatedTo == @item.GlassID)
+                        {
+                            <option value="@item.GlassID" selected >@item.Title</option>
+                        }
+                        else
+                        {
+                            <option value="@item.GlassID">@item.Title</option>
+                        }
+
+                    }
+                </select>
+                @*<input class="form-control" type="text" name="service_title" id="service_title" required="">*@
+            </div>
+        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Sticker <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="Sticker">
+
+                                    @if (Model.Sticker == "Hot")
+                                    {
+                                        <option selected>Hot</option>
+                                        <option>New Arrival</option>
+                                        <option>Top Seller</option>
+                                    }
+                                    @if (Model.Sticker == "New Arrival")
+                                    {
+                                        <option>Hot</option>
+                                        <option selected>New Arrival</option>
+                                        <option>Top Seller</option>
+                                    }
+                                    @if (Model.Sticker == "Top Seller")
+                                    {
+                                        <option>Hot</option>
+                                        <option>New Arrival</option>
+                                        <option selected>Top Seller</option>
+                                    }
+                                    @if (Model.Sticker == "")
+                                    {
+
+                                        <option>Hot</option>
+                                        <option>New Arrival</option>
+                                        <option>Top Seller</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Glass Type <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="ProductCategory">
+
+                                    @if (Model.ProductCategory == "Sunglass")
+                                    {
+                                        <option selected>Sunglass</option>
+                                        <option>Eyeglass</option>
+
+                                    }
+                                    @if (Model.ProductCategory == "Eyeglass")
+                                    {
+                                        <option>Sunglass</option>
+                                        <option selected>Eyeglass</option>
+                                    }
+
+                                    @if (Model.ProductCategory == "")
+                                    {
+
+                                        <option>Sunglass</option>
+                                        <option>Eyeglass</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="margin-top:3%">
+                            <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
+                            <a href="@Url.Action("Index","Glassess")"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                        </div>
+                        </div>
+                    </div>
+                <div class="submit-section">
+                   
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- /Add Blog -->
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#glass').addClass('active');
+
+    });
+</script>
+
+
+
+

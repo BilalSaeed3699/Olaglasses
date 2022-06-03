@@ -1,0 +1,394 @@
+﻿  <!-- :::: hero aria start:::::: -->
+<section class="hero-aria hero-gradian">
+    <div class="container custum-pd-two">
+        <div class="">
+            <div class="hero-aria-bg">
+                <div class="hero-aria-item">
+                    <div class="banner-title" data-aos="fade-down" data-aos-duration="1500">
+                        <img class="d-lg-none img-fluid" src="~/assets/img/banner-img.png" alt="img">
+                        <h1> <span>Buying Quality </span> <br> Glasses Should be Easy</h1>
+                        <p>
+                            At Direct Vision, we provide you with great glasses at affordable prices.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm">explore all </button>
+                    </div>
+                </div>
+                <div class="hero-aria-item">
+                    <div class="banner-title">
+                        <img class="d-lg-none img-fluid" src="~/assets/img/banner-img.png" alt="img">
+                        <h1> <span>Buying Quality </span> <br> Glasses Should be Easy</h1>
+                        <p>
+                            At Direct Vision, we provide you with great glasses at affordable prices.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm">explore all </button>
+                    </div>
+                </div>
+                <div class="hero-aria-item">
+                    <div class="banner-title">
+                        <img class="d-lg-none img-fluid" src="~/assets/img/banner-img.png" alt="img">
+                        <h1> <span>Buying Quality </span> <br> Glasses Should be Easy</h1>
+                        <p>
+                            At Direct Vision, we provide you with great glasses at affordable prices. 
+                        </p>
+                        <button type="button" class="btn btn-primary btn-sm">explore all </button>
+                    </div>
+                </div>
+            </div>
+            <!--::::::hero-aria-item:::::: -->
+        </div>
+        <!--::::::hero-aria-item end:::::: -->
+        <!--::::::hero-aria-item end:::::: -->
+    </div>
+
+</section>
+<!-- :::: glasses start:::::: -->
+<section class="glasses">
+    <!-- :::: glasses has-bg:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-3">
+            <img src="~/assets/img/index-bg/right-1.png" alt="img">
+        </div>
+        <div class="has-bg-4">
+            <img src="~/assets/img/index-bg/left-1.png" alt="img">
+        </div>
+    </div>
+    <!-- :::: glasses has-bg end:::::: -->
+    <div class="container custum-pd-two">
+        <!-- :::: glasses title::::: -->
+        <div class="glasses-title">
+            <h2>Professional Stylish Glasses at <strong>Affordable Price</strong></h2>
+            <p>
+                we believe glasses shouldn't be expensive. <br>
+                Quality prescription eyeglasses and sunglasses, Virtual Try-on, 24/7 Live Chat, Worldwide
+                Shipping... <br>
+                From factory to your doorstep, we are here to meet all your optical needs.
+            </p>
+        </div>
+        
+    </div>
+</section>
+<!-- :::: glasses end:::::: -->
+<!-- :::: products start:::::: -->
+<section class="products product-bg-index custum-mg">
+    <!-- :::: products has-bg:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-five">
+            <img src="~/assets/img/index-bg/left-2.png" alt="img">
+        </div>
+        <div class="has-bg-six">
+            <img src="~/assets/img/index-bg/right-2.png" alt="img">
+        </div>
+    </div>
+    <div class="has-bg has-bg2">
+        <div class="has-bg-five">
+            <img src="~/assets/img/index-bg/left-3.png" alt="img">
+        </div>
+        <div class="has-bg-six">
+            <img src="~/assets/img/index-bg/right-3.png" alt="img">
+        </div>
+    </div>
+    <!-- :::: products has-bg end:::::: -->
+    <div class="product-bg">
+        <div class="container custum-pd-two">
+            <!-- :::: products products-title:::::: -->
+            <!-- :::: products products-title:::::: -->
+            <div class="products-title d-flex justify-content-between align-items-center">
+                <div class="product-heading">
+                    <h2>Our Products</h2>
+                </div>
+                <div class="product-button ">
+                    <a class="btn" href="@Url.Action("index", "Home", new { sticker = "Top Seller" })"> best Sellers</a>
+                    <a class="btn btn-2" href="@Url.Action("index", "Home", new { sticker = "New Arrival" })"> new arrivals</a>
+                </div>
+            </div>
+            <div class="row g-4" data-aos="fade-up" data-aos-duration="1800">
+
+                @{int Duplicatecheck = 0;}
+                @foreach (var item in ViewBag.ProductList)
+                {
+
+                    if (Duplicatecheck != @item.GlassID)
+                    {
+                        <div class="col-lg-3 col-md-6">
+                            <div class="product-item" id="Product_Items">
+                                <div class="img">
+                                    @if (item.Sticker == "Hot")
+                                    {
+                                        <a class="bg-danger wishlist-link" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-fire bg"></i> @item.Sticker</a>
+                                    }
+                                    @if (item.Sticker == "New Arrival")
+                                    {
+                                        <a class="wishlist-link bg-secondary" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })">@item.Sticker</a>
+                                    }
+                                    @if (item.Sticker == "Top Seller")
+                                    {
+                                        <a class="wishlist-link wishlist-link-premium" href="@Url.Action("Product_Details", "Products", new { Productid = @item.GlassID })"><i class="fas fa-crown bg"></i> @item.Sticker</a>
+                                    }
+
+                                    <img id="@item.GlassID-image-color" class="img-fluid" src="@item.ImagePath" alt="ig" style="width:200px; height:109px">
+
+                                </div>
+
+
+                                <div class="details">
+                                    <h6><a target="_blank" href="@Url.Action("Product_Details","Products",new { Productid=@item.GlassID})">@item.Title </a></h6>
+                                    <p>$@item.Price</p>
+                                    <div class="color">
+                                        <ul>
+                                            @foreach (var colors in ViewBag.ProductList)
+                                            {
+                                                Duplicatecheck = Convert.ToInt32(@item.GlassID);
+                                                if (item.GlassID == colors.GlassID)
+                                                {
+                                                    <li onclick="Changecolour('@colors.GlassID-image-color','@colors.ImagePath')" style="background-color: @colors.ColorCode"></li>
+                                                }
+
+                                            }
+
+
+                                        </ul>
+                                        <div class="icon">
+                                            @{int likecount = 0; }
+                                            @foreach (var likes in ViewBag.ProductList)
+                                            {
+                                                if (item.GlassID == likes.GlassID && likes.Likestatus == 1)
+                                                {
+                                                    likecount = 1;
+                                                    <a href="@Url.Action("ProductFavourite", "Home", new { id=item.GlassID,type="H" })"> <i style="background-color:red !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+                                                    break;
+                                                }
+
+                                            }
+                                            @if (likecount == 0)
+                                            {<a href="@Url.Action("ProductFavourite", "Home", new { id=item.GlassID,type="H" })"> <i style="background-color:black !important;color:white !important" class="far fa-heart heart-icon"></i></a>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!--::::::products single item:::::: -->
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- :::: products end:::::: -->
+<!-- :::: virtualy start:::::: -->
+<section class="virtualy virtualy-bg custum-mg ">
+    <div class="has-bg">
+        <div class="has-bg-9">
+            <img src="~/assets/img/index-bg/left-4.png" alt="img">
+        </div>
+        <div class="has-bg-10">
+            <img src="~/assets/img/index-bg/right-4.png" alt="img">
+        </div>
+    </div>
+    <div class="content virtualy-bg">
+        <div class="row align-items-center justify-content-center" data-aos="fade-up" data-aos-duration="2200">
+            <!--::::::virtualy single item:::::: -->
+            <div class="col-lg-6 order-1 order-lg-0">
+                <div class="details">
+                    <h3>
+                        Try Our <br>
+                        Best Glasses Virtualy
+                    </h3>
+                    <p>
+                        At Direct Vision, we provide you with great glasses at affordable prices.
+                        We pride ourselves on quality frames and lenses
+                        that are well-made, fashion-forward and original.
+                    </p>
+                    <a class="virtual-btn" href="#">
+                        <img src="~/assets/img/virtual-icon.svg" alt="img"> Virtual
+                        Try
+                    </a>
+                </div>
+            </div>
+            <!--::::::virtualy single item:::::: -->
+            <div class="col-lg-5 order-0 order-lg-1">
+                <div class="img">
+                    <img src="~/assets/img/glasses-man-img.png" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- :::: virtualy end:::::: -->
+<!-- :::: Video start:::::: -->
+<section class="video">
+    <!-- :::: Video has-bg start:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-11">
+            <img src="~/assets/img/index-bg/left-5.png" alt="img">
+        </div>
+        <div class="has-bg-12">
+            <img src="~/assets/img/index-bg/right-5.png" alt="img">
+        </div>
+    </div>
+    <!-- :::: Video has-bg end:::::: -->
+    <div class="container custum-pd-two" data-aos="fade-up" data-aos-duration="2600">
+        <!--::::::Video title start:::::: -->
+        <div class="col-lg-6 mx-auto text-center">
+            <div class="title">
+                <h2>Video Guide</h2>
+                <p>
+                    we believe glasses shouldn't be expensive. <br>
+                    Quality prescription eyeglasses and sunglasses<br>
+                    From factory to your doorstep, we are here to meet all your optical needs.
+                </p>
+            </div>
+        </div>
+        <!--::::::Video title end:::::: -->
+        <div class="col-lg-12 mx-auto">
+            <div class="row">
+                <!--::::::Video single item:::::: -->
+                <div class="col-md-4">
+                    <div class="video-item">
+                        <div class="img">
+                            <img src="~/assets/img/vedioo-img.png" alt="img">
+                            <a class="venobox" data-autoplay="true" data-vbtype="video"
+                               href="https://www.youtube.com/watch?v=KUs7ZH5uWl4">
+                                <i class="fas fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h6> Video A</h6>
+                            <p>How to measure your pd.</p>
+                        </div>
+                    </div>
+                </div>
+                <!--::::::Video single item:::::: -->
+                <div class="col-md-4">
+                    <div class="video-item">
+                        <div class="img">
+                            <img src="~/assets/img/vedioo-img.png" alt="img">
+                            <a class="venobox" data-autoplay="true" data-vbtype="video"
+                               href="https://www.youtube.com/watch?v=KUs7ZH5uWl4">
+                                <i class="fas fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h6> Video B</h6>
+                            <p>How to read a Prescription.</p>
+                        </div>
+                    </div>
+                </div>
+                <!--::::::Video single item:::::: -->
+                <div class="col-md-4">
+                    <div class="video-item">
+                        <div class="img">
+                            <img src="~/assets/img/vedioo-img.png" alt="img">
+                            <a class="venobox" data-autoplay="true" data-vbtype="video"
+                               href="https://www.youtube.com/watch?v=KUs7ZH5uWl4">
+                                <i class="fas fa-play-circle"></i>
+                            </a>
+                        </div>
+                        <div class="details">
+                            <h6> Video C</h6>
+                            <p>How to order glasses online.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- :::: Video start:::::: -->
+<!-- :::: olaglasses start:::::: -->
+<section class="olaglasses">
+    <!-- :::: olaglasses has-bg start:::::: -->
+    <div class="has-bg">
+        <div class="has-bg-13">
+            <img src="~/assets/img/index-bg/left-6.png" alt="img">
+        </div>
+        <div class="has-bg-14">
+            <img src="~/assets/img/index-bg/right-6.png" alt="img">
+        </div>
+    </div>
+    <!-- :::: olaglasses has-bg start:::::: -->
+    <div class="olaglasses-item-content">
+        <div class="custum-mg" data-aos="fade-up" data-aos-duration="2800">
+            <div class="main-item-content">
+                <!--::::::olaglasses title start:::::: -->
+                <div class="col-lg-6 mx-auto text-center">
+                    <div class="title">
+                        <h2>#olaglasses</h2>
+                        <p>Our customers have style, <span>get Inspired.</span></p>
+                    </div>
+                </div>
+                <!--::::::olaglasses title end:::::: -->
+                <div class="olaglasses-item">
+                    <!--::::::olaglasses-item-img"::::: -->
+                    @foreach (var item in ViewBag.ClientReviews)
+                    {
+                        <div class="olaglasses-item-img">
+                            <a onclick="ClientReviewInfo(@item.GlassID,'@item.ReviewImage','@item.Title',@item.Price,'@item.Review',@item.TotalReviews,@item.AverageRating)" data-bs-toggle="modal" href="#ReviewsModal" role="button">
+
+                                <img src="@item.ReviewImage" alt="olaglasses-imge" style="width:259px; height:311px">
+                            </a>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- :::: olaglasses end:::::: -->
+<!-- :::: blog start:::::: -->
+<section class="blog blog-bg custum-mg">
+  
+
+</section>
+<!-- :::: blog end:::::: -->
+
+<script src="~/assets/js/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("ul li a").removeClass("active");
+
+        $('#index').addClass('active');
+    });
+
+    function Changecolour(colorid, imgurl) {
+
+        /*        $("#Product_Items img").remove();*/
+        /*var img = document.createElement('img');*/
+        /*img.src = "/assets/img/index-bg/prouduct-7.png";*/
+        /*$("#Product_Items .img").append("<img class='img-fluid' src='" + img.src + "' alt='ig' />");*/
+        document.getElementById(colorid).src = imgurl;
+    }
+
+    function ClientReviewInfo(GlassId, ReviewImage, Title, Price, Review, TotalReviews, AverageRating) {
+        var list = "";
+        $("#AverageReviewList li").remove();
+        for (var i = 0; i < 5; i++) {
+            if (i < AverageRating) {
+                list = '<li><i style="color:orange" class="fa fa-star"></i></li>';
+            }
+            else {
+                list = '<li><i style="color:lightgrey" class="fa fa-star"></i></li>';
+            }
+
+            $("#AverageReviewList").append(list);
+        }
+
+        $("#AverageReviewList").append('<li id="Totalreviews">' + TotalReviews + '</li>');
+
+        document.getElementById("UserImage").src = ReviewImage;
+        document.getElementById("product-name").innerHTML = Title;
+        document.getElementById("Product-price").innerHTML = "$" + Price;
+        document.getElementById("Totalreviews").innerHTML = TotalReviews;
+        document.getElementById("UserReviews").innerHTML = Review;
+
+        document.getElementById("shopnow").href = "./Products/Product_Details?Productid=" + GlassId + "";
+
+
+    }
+</script>

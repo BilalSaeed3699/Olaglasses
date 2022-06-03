@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Hello!</strong> @Session["userName"] <a href="@Url.Action("Logout", "Account")" class="alert-link"> (Logout)</a>
+    <br>
+    This is your portal from where will be able to do alot of things in the upcoming sprints.
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#dashboard').addClass('active');
+
+    });
+</script>

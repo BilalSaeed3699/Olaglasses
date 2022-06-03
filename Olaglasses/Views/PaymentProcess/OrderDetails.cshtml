@@ -1,0 +1,329 @@
+﻿@using Olaglasses.Models;
+@{
+    List<spgetorderDetails_Result4> spgetorderDetails = (List<spgetorderDetails_Result4>)ViewBag.OrderDetails;
+}
+@{
+    ViewBag.Title = "OrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="ordering-hero-aria">
+    <div class="container-fluid custum-pd">
+        <div class="ordering-bg">
+            <!-- <div class="heart-shapes">
+               <img src="assets/img/heart-shape.png" alt="img">
+            </div> -->
+            <div class="ordering-hero-aria-details">
+                <h1>Thanks for ordering</h1>
+                <h4>We’re getting your order ready to be shipped</h4>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- ::::ordering-hero-aria  end:::::: -->
+<!-- ::::ordering-details start:::::: -->
+
+<section class="user-area">
+    <br>
+    <div class="has-bg has-bg2">
+        <div class="has-bg-user-left">
+            <img src="assets/img/user-information-left-bg.png" alt="">
+        </div>
+        <div class="has-bg-user-right">
+            <img src="assets/img/user-information-right-bg.png" alt="">
+        </div>
+    </div>
+    <div class="container-fluid custum-pd ">
+        <!-- <div class="my-cart-section"> -->
+        <div class="user-bg d-flex justify-content-between flex-wrap">
+            <div class="customer-details">
+                <div class="customer-details-heading d-flex justify-content-between align-items-center">
+
+                    <h4>Customer Details</h4>
+                    
+                </div>
+                @{ string orderID = "";}
+                @{ int Acc = 0; int Frame = 0;}
+                @foreach (var item in spgetorderDetails)
+                {
+                    if (item.ProductVariation > 0)
+                    { Frame = Frame + 1; }
+                    else
+                    {
+                        Acc = Acc + 1;
+                    }
+                }
+                @foreach (var item in spgetorderDetails)
+                {
+                    <ul>
+                        <li>First Name:</li>
+                        <li>@item.SFname</li>
+                    </ul>
+                    <ul>
+                        <li>Last Name:</li>
+                        <li>@item.SLname</li>
+                    </ul>
+                    <ul>
+                        <li>Shipping Address:</li>
+                        <li>@item.SAddress @item.SCity @item.SState <br>@item.SCountry (@item.SPostalCode)</li>
+                    </ul>
+                    <ul>
+                        <li>Email ID:</li>
+                        <li>@item.UserEmail</li>
+                    </ul>
+                    <ul>
+                        <li>Phone number:</li>
+                        <li>@item.SPhone</li>
+                    </ul>
+                    orderID = item.OrderID.ToString();
+                    break;
+                }
+            </div>
+
+            <div class="glassess-order">
+                <h4>Order Details</h4>
+                @if (Frame > 0)
+                {
+
+                    <div class="d-flex justify-content-between">
+                        <h5>Frame Order</h5>
+                        <h5 class="yellow">Order Id #@orderID</h5>
+                    </div>
+                    foreach (var item in spgetorderDetails)
+                    {
+                        if (item.ProductVariation > 0)
+                        {
+
+                            <div class="table-one">
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Frame Title</td>
+                                            <td>@item.Productname</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Frame Color</td>
+                                            <td>@item.FrameColor</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" class="text-center">
+                                                <img src="@item.ProductImage" alt="img">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        if (item.ProductVariation != 0)
+                        {
+                            <h5>Lenses Order</h5>
+                            <div class="table-two">
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-two-aling">Lense Type</td>
+                                            <td>@item.LensType</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-two-aling">Lens Enhancement</td>
+                                            <td>@item.Vision</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-two-aling">UV Protection</td>
+                                            <td>@item.UV_Protection</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <h5>prescription</h5>
+                            <div class="table-three">
+                                <div class="d-flex justify-content-between">
+                                    <div class="table-three-table">
+                                        <table class="table table-bordered">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>SPH</td>
+                                                    <td>CYL</td>
+                                                    <td>AXIS</td>
+                                                    <td>ADD</td>
+                                                    <td>PD</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>LEFT</td>
+                                                    <td>@item.l_sph</td>
+                                                    <td>@item.l_cyl</td>
+                                                    <td>@item.l_axis</td>
+                                                    <td>@item.l_add</td>
+                                                    <td rowspan="2" class="alinment">@item.PD</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>RIGHT</td>
+                                                    <td>@item.r_sph</td>
+                                                    <td>@item.r_cyl</td>
+                                                    <td>@item.r_axis</td>
+                                                    <td>@item.r_add</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="add-button">
+                                        <label class="btn">
+
+                                            PD<br>
+                                            PHOTO
+                                        </label>
+                                        <label class="btn">
+
+                                            Prescription<br>
+                                            PHOTO
+                                        </label>
+
+
+                                    </div>
+                                    <div class="arrow">
+                                        <button type="submit">
+                                            <div class="arrow-icon">
+                                                <a href="@item.PDImage" target="_blank"><img src="~/assets/img/dawon-arwo.png" alt="img"></a>
+                                            </div>
+                                        </button>
+                                        <button type="submit">
+
+                                            <div class="arrow-icon">
+                                                <a href="@item.PrescriptionImage" target="_blank">  <img src="~/assets/img/dawon-arwo.png" alt="img"></a>
+                                            </div>
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    }
+                }
+
+
+                @if (Acc > 0)
+                {
+                    <div class="d-flex justify-content-between">
+                        <h5>Accsories</h5>
+                        <h5 class="yellow">Order Id #@orderID</h5>
+                    </div>
+                    foreach (var item in spgetorderDetails)
+                    {
+                        if (item.ProductVariation == 0)
+                        {
+
+                            <div class="table-four">
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td class="table-four-left-w">
+                                            </td>
+                                            <td>Accessory title</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="table-four-left-w">
+                                                <img src="@item.ProductImage" alt="img">
+                                            </td>
+                                            <td>@item.Productname</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+            <div class="user-order-item user-order-item-two">
+                <h4>Order Summary</h4>
+                @foreach (var item in spgetorderDetails)
+                {
+                    if (item.ProductVariation != 0)
+                    {
+                        <div class="frame">
+                            <ul>
+                                <li>@item.Productname X @item.quantity</li>
+                                <li>$@item.ProductPrice</li>
+                            </ul>
+
+                            <ul>
+                                <li>Frame</li>
+                                <li>$@item.ProductPrice</li>
+                            </ul>
+                            @if (item.LensType != null && item.LensType != "")
+                            {
+                                <ul>
+                                    <li>Lenses</li>
+                                    @if (item.LensType == "Standard")
+                                    {
+                                        <li>$39</li>
+                                    }
+                                    @if (item.LensType == "Enhanced")
+                                    {
+                                        <li>$49</li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    }
+                    if (item.ProductVariation == 0)
+                    {
+                        <div class="frame">
+                            <ul>
+                                <li>@item.Productname X @item.quantity</li>
+                                <li>$@item.ProductPrice</li>
+                            </ul>
+
+                        </div>
+                    }
+                    <div class="Subtotal">
+                        <ul class="active">
+                            <li c>Subtotal</li>
+                            <li>$@item.Subtotal</li>
+                        </ul>
+                    </div>
+                }
+                @foreach (var item in spgetorderDetails)
+                {
+                    <div class="Subtotal">
+                        <ul>
+                            <li>Shipping</li>
+                            <li>$@item.ShippingAmount</li>
+                        </ul>
+                        <ul>
+                            <li>Discount</li>
+                            <li>$@item.Discount</li>
+                        </ul>
+                        <ul>
+                            <li>tax</li>
+                            <li>$@item.TaxAmount</li>
+                        </ul>
+
+                        <div class="total-order">
+                            <h6>order Total</h6>
+                            <h6>$@item.TotalAmount</h6>
+                        </div>
+
+                    </div>
+                    break;
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+

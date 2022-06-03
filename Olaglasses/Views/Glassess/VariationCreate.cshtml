@@ -1,0 +1,349 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblVariation
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    @if (Model.VariationID > 0)
+                    {
+                        <h2 class="breadcrumb-title">Edit Variation Info</h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">Add Variation Info</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="doc-review review-listing custom-edit-service">
+
+
+    <!-- Add Blog -->
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("VariationCreate", "Glassess", FormMethod.Post, new
+            {
+                enctype = "multipart/form-data"
+            }))
+            {
+                <form>
+                   
+                        <input type="hidden" name="VariationID" value="@Model.VariationID">
+                        <input type="hidden" name="ProductID" id="ProductID" value="@Model.ProductID">
+                        <div class="service-fields">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Color Code <span class="text-danger">*</span></label>
+
+                                        <input class="form-control" type="text" name="ColorCode" id="ColorCode" value="@Model.ColorCode" required="" onchange="AddGetCode()">
+                                        <div class="help-block" style="color:red; display:none" id="Adderror"> Enter unique Code </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Color 1 <span class="text-danger">*</span></label>
+                                        <select class="form-control select" name="Color1">
+                                            @foreach (var item in ViewBag.color)
+                                            {
+                                                if (Model.Color1 == item.hexacode)
+                                                {
+                                                    <option value="@item.hexacode" selected>@item.colorname</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.hexacode">@item.colorname</option>
+                                                }
+                                            }
+                                            @*@if (Model.Color1 == "Black")
+        {
+            <option selected>Black</option>
+            <option>Antique</option>
+            <option>Burgundy</option>
+        }
+        @if (Model.Color1 == "Antique")
+        {
+            <option>Black</option>
+            <option selected>Antique</option>
+            <option>Burgundy</option>
+        }
+        @if (Model.Color1 == "Burgundy")
+        {
+            <option>Black</option>
+            <option>Antique</option>
+            <option selected>Burgundy</option>
+
+        }
+        @if (Model.Color1 == "")
+        {
+            <option selected>Black</option>
+            <option>Antique</option>
+            <option>Burgundy</option>
+        }*@
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Color 2 <span class="text-danger">*</span></label>
+
+                                        <select class="form-control select" name="Color2">
+                                            @foreach (var item in ViewBag.color)
+                                            {
+                                                if (Model.Color2 == item.hexacode)
+                                                {
+                                                    <option value="@item.hexacode" selected>@item.colorname</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.hexacode" >@item.colorname</option>
+                                                }
+                                            }
+                                            @*@if (Model.Color2 == "Black")
+                                            {
+                                                <option selected>Black</option>
+                                                <option>Antique</option>
+                                                <option>Burgundy</option>
+                                            }
+                                            @if (Model.Color2 == "Antique")
+                                            {
+                                                <option>Black</option>
+                                                <option selected>Antique</option>
+                                                <option>Burgundy</option>
+                                            }
+                                            @if (Model.Color2 == "Burgundy")
+                                            {
+                                                <option>Black</option>
+                                                <option>Antique</option>
+                                                <option selected>Burgundy</option>
+
+                                            }
+                                            @if (Model.Color2 == "")
+                                            {
+                                                <option selected>Black</option>
+                                                <option>Antique</option>
+                                                <option>Burgundy</option>
+                                            }*@
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="service-fields">
+                            <div class="row">
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Size <span class="text-danger">*</span></label>
+
+                                        <select class="form-control select" name="size">
+
+                                            @if (Model.size == "Small")
+                                            {
+                                                <option selected>Small</option>
+                                                <option>Medium</option>
+                                                <option>Large</option>
+                                            }
+                                            @if (Model.size == "Medium")
+                                            {
+                                                <option>Small</option>
+                                                <option selected>Medium</option>
+                                                <option>Large</option>
+                                            }
+                                            @if (Model.size == "Large")
+                                            {
+                                                <option>Small</option>
+                                                <option>Medium</option>
+                                                <option selected>Large</option>
+
+                                            }
+                                            @if (Model.size == "")
+                                            {
+                                                <option selected>Small</option>
+                                                <option>Medium</option>
+                                                <option>Large</option>
+                                            }
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame A-Width <span class="text-danger">*</span></label>
+
+                                        <input class="form-control" type="text" name="FrameAWidth" id="FrameAWidth" value="@Model.FrameAWidth" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame B-Width <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="FrameBHeight" id="FrameBHeight" value="@Model.FrameBHeight" required="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-fields">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame ED <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="FrameED" id="FrameED" value="@Model.FrameED" required="">
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame DB Bridge <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="FrameDBBridger" id="FrameDBBridger" value="@Model.FrameDBBridger" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame Temple Legs<span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="FrameTempleLegs" id="FrameTempleLegs" value="@Model.FrameTempleLegs" required="">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-fields">
+                            <div class="row">
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Frame Total Width <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="FrameTotalWidth" id="FrameTotalWidth" value="@Model.FrameTotalWidth" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Minimum PD: +SP<span class="text-danger">*</span></label>
+
+                                        <input class="form-control" type="text" name="MinPDPositive" id="MinPDPositive" value="@Model.MinPDPositive" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Minimum PD: -SP <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="MinPDNeg" id="MinPDNeg" value="@Model.MinPDNeg" required="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-fields">
+                            <div class="row">
+                                @*<div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>File <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="file" id="TemplateImages" name="TemplateImages" accept="image/jpeg, image/png, image/gif,">
+                                    <small class="form-text text-muted">Allowed images: jpg, gif, png. Maximum 10 images only.</small>
+                                </div>
+                            </div>*@
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="change-avatar">
+                                            <div class="profile-img">
+                                                <img src=@Model.ImagePath alt="User Image" id="ImagePath">
+                                                <input type="text" name="ImagePath" value="@Model.ImagePath" hidden>
+                                            </div>
+                                            <div class="upload-img">
+                                                <div class="change-photo-btn">
+                                                    <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                                    <input type="file" class="upload" id="Image" name="Image" onchange="show(this)">
+
+                                                </div>
+                                                <small class="form-text text-muted">Allowed images: size 191 * 112.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="margin-top:3%">
+                                    <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit" id="Register">Submit</button>
+                                    <a href="@Url.Action("VariationIndex","Glassess",new { id=@Model.ProductID})"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+            }
+            </div>
+    </div>
+    <!-- /Add Blog -->
+
+</div>
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#ImagePath').attr('src', e.target.result);
+
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#glass').addClass('active');
+
+    });
+</script>
+<script>
+    function AddGetCode() {
+
+
+        var item = document.getElementById("ColorCode");
+        var item1 = document.getElementById("ProductID");
+        $.ajax({
+            type: "get",
+            url: "/Glassess/GetCoode",
+            data: { code: item.value ,glassID: item1.value},
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'text',
+
+            success: function (d) {
+                console.log(d);
+                //var d = JSON.parse(d).d;
+                //var data = JSON.parse(d);
+                if (d == 1) {
+                    $('#AddEmailError').addClass('has-error');
+                    $('#Adderror').show();
+                    document.getElementById("Register").disabled = true;
+                }
+                if (d == 0) {
+                    $('#AddEmailError').removeClass('has-error');
+                    $('#Adderror').hide();
+                    document.getElementById("Register").disabled = false;
+                }
+            },
+            error: function () {
+
+            }
+        });
+
+    }</script>

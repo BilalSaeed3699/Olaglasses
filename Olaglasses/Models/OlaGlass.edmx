@@ -1,0 +1,1599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OlaGlassesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OlaGlasses.dbo.ActivationCode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ActivationCode">
+          <Key>
+            <PropertyRef Name="UID" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OlaGlasses.dbo.ForgetPassword' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ForgetPassword">
+          <Key>
+            <PropertyRef Name="UID" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblcart">
+          <Key>
+            <PropertyRef Name="Cartid" />
+          </Key>
+          <Property Name="Cartid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GlassID" Type="int" Nullable="false" />
+          <Property Name="Variationid" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="LensType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VisionType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UVProtection" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalAmount" Type="float" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="r_sph" Type="float" />
+          <Property Name="r_cyl" Type="float" />
+          <Property Name="r_axis" Type="float" />
+          <Property Name="r_add" Type="float" />
+          <Property Name="l_sph" Type="float" />
+          <Property Name="l_cyl" Type="float" />
+          <Property Name="l_axis" Type="float" />
+          <Property Name="l_add" Type="float" />
+          <Property Name="lensType1" Type="varchar" MaxLength="50" />
+          <Property Name="PD" Type="float" />
+          <Property Name="PDImage" Type="varchar" MaxLength="500" />
+          <Property Name="PrescriptionImage" Type="varchar" MaxLength="500" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="shape" Type="varchar" MaxLength="50" />
+          <Property Name="Colour" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+          <Property Name="ProductImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="Productcategory" Type="varchar" MaxLength="50" />
+          <Property Name="TaxAmount" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Shippingamount" Type="float" />
+          <Property Name="GranTotal" Type="float" />
+          <Property Name="Fname" Type="varchar" MaxLength="50" />
+          <Property Name="Lname" Type="varchar" MaxLength="50" />
+          <Property Name="prescription" Type="varchar" MaxLength="50" />
+          <Property Name="prescriptionDate" Type="date" />
+          <Property Name="Extracharges" Type="int" />
+        </EntityType>
+        <EntityType Name="tblColors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hexacode" Type="nvarchar" MaxLength="255" />
+          <Property Name="colorname" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblCoupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CouponCode" Type="nchar" MaxLength="100" />
+          <Property Name="DiscountType" Type="varchar" MaxLength="50" />
+          <Property Name="Discount" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="CouponStatus" Type="varchar" MaxLength="50" />
+          <Property Name="CouponLink" Type="varchar" MaxLength="100" />
+          <Property Name="CouponColor" Type="varchar" MaxLength="50" />
+          <Property Name="TimesUsed" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="Text" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblFavourite">
+          <Key>
+            <PropertyRef Name="FavouriteID" />
+          </Key>
+          <Property Name="FavouriteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblglassPicture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="glassID" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+          <Property Name="IsPaid" Type="int" />
+          <Property Name="Total" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="Vision" Type="varchar" MaxLength="50" />
+          <Property Name="LensType" Type="varchar" MaxLength="50" />
+          <Property Name="OrderComments" Type="varchar" MaxLength="1000" />
+          <Property Name="OrderDate" Type="date" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="500" />
+          <Property Name="BFname" Type="varchar" MaxLength="100" />
+          <Property Name="BLname" Type="varchar" MaxLength="100" />
+          <Property Name="BAddress" Type="varchar" MaxLength="1000" />
+          <Property Name="Bcity" Type="varchar" MaxLength="100" />
+          <Property Name="BState" Type="varchar" MaxLength="100" />
+          <Property Name="BPostalCode" Type="varchar" MaxLength="100" />
+          <Property Name="BCountry" Type="varchar" MaxLength="100" />
+          <Property Name="BPhone" Type="varchar" MaxLength="100" />
+          <Property Name="BEmail" Type="varchar" MaxLength="100" />
+          <Property Name="SFname" Type="varchar" MaxLength="100" />
+          <Property Name="SLname" Type="varchar" MaxLength="100" />
+          <Property Name="SAddress" Type="varchar" MaxLength="1000" />
+          <Property Name="Scity" Type="varchar" MaxLength="100" />
+          <Property Name="SState" Type="varchar" MaxLength="100" />
+          <Property Name="SPostalCode" Type="varchar" MaxLength="100" />
+          <Property Name="SCountry" Type="varchar" MaxLength="100" />
+          <Property Name="SPhone" Type="varchar" MaxLength="100" />
+          <Property Name="SEmail" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblOrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Productname" Type="varchar" MaxLength="50" />
+          <Property Name="ProductPrice" Type="varchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Vision" Type="varchar" MaxLength="50" />
+          <Property Name="LensType" Type="varchar" MaxLength="50" />
+          <Property Name="UV_Protection" Type="varchar" MaxLength="50" />
+          <Property Name="Total" Type="varchar" MaxLength="50" />
+          <Property Name="ProductVariation" Type="int" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="TaxAmount" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="FrameColor" Type="varchar" MaxLength="50" />
+          <Property Name="ProductImage" Type="varchar" MaxLength="500" />
+          <Property Name="ShippingAmount" Type="float" />
+          <Property Name="Subtotal" Type="float" />
+        </EntityType>
+        <EntityType Name="tblOrderPrescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="r_sph" Type="float" />
+          <Property Name="r_cyl" Type="float" />
+          <Property Name="r_axis" Type="float" />
+          <Property Name="r_add" Type="float" />
+          <Property Name="l_sph" Type="float" />
+          <Property Name="l_cyl" Type="float" />
+          <Property Name="l_axis" Type="float" />
+          <Property Name="l_add" Type="float" />
+          <Property Name="lensType" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="Fname" Type="varchar" MaxLength="50" />
+          <Property Name="Lname" Type="varchar" MaxLength="50" />
+          <Property Name="prescription" Type="varchar" MaxLength="50" />
+          <Property Name="prescriptionDate" Type="date" />
+          <Property Name="PD" Type="float" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PDImage" Type="varchar" MaxLength="500" />
+          <Property Name="PrescriptionImage" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="GlassID" />
+          </Key>
+          <Property Name="GlassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="500" />
+          <Property Name="shape" Type="varchar" MaxLength="50" />
+          <Property Name="Colour" Type="varchar" MaxLength="50" />
+          <Property Name="Material" Type="varchar" MaxLength="50" />
+          <Property Name="Brand" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="AdditionalInfo" Type="varchar" MaxLength="500" />
+          <Property Name="AvailableSize" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="100" />
+          <Property Name="Model" Type="varchar" MaxLength="50" />
+          <Property Name="OrignalCode" Type="varchar" MaxLength="50" />
+          <Property Name="Mgf_Code" Type="varchar" MaxLength="50" />
+          <Property Name="Rim" Type="varchar" MaxLength="50" />
+          <Property Name="Sticker" Type="varchar" MaxLength="50" />
+          <Property Name="Feature" Type="varchar" MaxLength="50" />
+          <Property Name="ProductCategory" Type="varchar" MaxLength="50" />
+          <Property Name="ReleatedTo" Type="int" />
+          <Property Name="Clicks" Type="int" />
+          <Property Name="SellinClinic" Type="varchar" MaxLength="50" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tblReviewLike">
+          <Key>
+            <PropertyRef Name="ReviewLikeID" />
+          </Key>
+          <Property Name="ReviewLikeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Productid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblReviews">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GlassID" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Review" Type="varchar" MaxLength="1000" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ReviewImage" Type="varchar" MaxLength="100" />
+          <Property Name="UserName" Type="varchar" MaxLength="100" />
+          <Property Name="UserImage" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tblSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clientId" Type="nvarchar(max)" />
+          <Property Name="clientSecret" Type="nvarchar(max)" />
+          <Property Name="AccountType" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="SMTP" Type="nvarchar" MaxLength="100" />
+          <Property Name="Port" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="StripeID" Type="nvarchar(max)" />
+          <Property Name="ReceipentEmail" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblSizes">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="TypeValue" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="100" />
+          <Property Name="UserPass" Type="varchar" MaxLength="100" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="Phone" Type="varchar" MaxLength="100" />
+          <Property Name="Role" Type="varchar" MaxLength="100" />
+          <Property Name="Firstname" Type="varchar" MaxLength="100" />
+          <Property Name="Lastname" Type="varchar" MaxLength="100" />
+          <Property Name="UserImage" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DateofBirth" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="UserStatus" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblUserPrescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="r_sph" Type="float" />
+          <Property Name="r_cyl" Type="float" />
+          <Property Name="r_axis" Type="float" />
+          <Property Name="r_add" Type="float" />
+          <Property Name="l_sph" Type="float" />
+          <Property Name="l_cyl" Type="float" />
+          <Property Name="l_axis" Type="float" />
+          <Property Name="l_add" Type="float" />
+          <Property Name="lensType" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="Fname" Type="varchar" MaxLength="50" />
+          <Property Name="Lname" Type="varchar" MaxLength="50" />
+          <Property Name="prescription" Type="varchar" MaxLength="50" />
+          <Property Name="prescriptionDate" Type="date" />
+          <Property Name="PD" Type="float" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PDImage" Type="varchar" MaxLength="500" />
+          <Property Name="PrescriptionImage" Type="varchar" MaxLength="500" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblVariation">
+          <Key>
+            <PropertyRef Name="VariationID" />
+          </Key>
+          <Property Name="VariationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ColorCode" Type="varchar" MaxLength="50" />
+          <Property Name="Color1" Type="varchar" MaxLength="50" />
+          <Property Name="Color2" Type="varchar" MaxLength="50" />
+          <Property Name="size" Type="varchar" MaxLength="50" />
+          <Property Name="FrameAWidth" Type="float" />
+          <Property Name="FrameBHeight" Type="float" />
+          <Property Name="FrameED" Type="varchar" MaxLength="50" />
+          <Property Name="FrameDBBridger" Type="varchar" MaxLength="50" />
+          <Property Name="FrameTempleLegs" Type="varchar" MaxLength="50" />
+          <Property Name="FrameTotalWidth" Type="varchar" MaxLength="50" />
+          <Property Name="MinPDPositive" Type="varchar" MaxLength="50" />
+          <Property Name="MinPDNeg" Type="varchar" MaxLength="50" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Function Name="Get_Rating_Stats" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="Productid" Type="int" Mode="In" />
+          <Parameter Name="type" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Sp_Get_Favourite_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_Get_Five_Reviews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_Get_Product_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Userid" Type="int" Mode="In" />
+          <Parameter Name="Sticker" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_Get_Product_List_Filter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductType" Type="varchar" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="cwhere" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Sp_Get_Product_List_Filter_Accessory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cwhere" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spgetorderDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="OlaGlassesModelStoreContainer">
+          <EntitySet Name="tblcart" EntityType="Self.tblcart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblColors" EntityType="Self.tblColors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCoupon" EntityType="Self.tblCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFavourite" EntityType="Self.tblFavourite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblglassPicture" EntityType="Self.tblglassPicture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderPrescription" EntityType="Self.tblOrderPrescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReviewLike" EntityType="Self.tblReviewLike" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReviews" EntityType="Self.tblReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSettings" EntityType="Self.tblSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSizes" EntityType="Self.tblSizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserPrescription" EntityType="Self.tblUserPrescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVariation" EntityType="Self.tblVariation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActivationCode" EntityType="Self.ActivationCode" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ActivationCode].[UID] AS [UID], 
+    [ActivationCode].[Code] AS [Code]
+    FROM [dbo].[ActivationCode] AS [ActivationCode]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ForgetPassword" EntityType="Self.ForgetPassword" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ForgetPassword].[UID] AS [UID], 
+    [ForgetPassword].[Code] AS [Code]
+    FROM [dbo].[ForgetPassword] AS [ForgetPassword]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OlaGlassesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCoupon">
+          <Key>
+            <PropertyRef Name="CouponID" />
+          </Key>
+          <Property Name="CouponID" Type="Int32" Nullable="false" />
+          <Property Name="CouponCode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="DiscountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CouponStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CouponLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CouponColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TimesUsed" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblFavourite">
+          <Key>
+            <PropertyRef Name="FavouriteID" />
+          </Key>
+          <Property Name="FavouriteID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblglassPicture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="Int32" Nullable="false" />
+          <Property Name="glassID" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblOrderPrescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="r_sph" Type="Double" />
+          <Property Name="r_cyl" Type="Double" />
+          <Property Name="r_axis" Type="Double" />
+          <Property Name="r_add" Type="Double" />
+          <Property Name="l_sph" Type="Double" />
+          <Property Name="l_cyl" Type="Double" />
+          <Property Name="l_axis" Type="Double" />
+          <Property Name="l_add" Type="Double" />
+          <Property Name="lensType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescriptionDate" Type="DateTime" Precision="0" />
+          <Property Name="PD" Type="Double" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PDImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PrescriptionImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="GlassID" />
+          </Key>
+          <Property Name="GlassID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="shape" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AvailableSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="Manufacturer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrignalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mgf_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sticker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Feature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReleatedTo" Type="Int32" />
+          <Property Name="Clicks" Type="Int32" />
+          <Property Name="SellinClinic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblReviewLike">
+          <Key>
+            <PropertyRef Name="ReviewLikeID" />
+          </Key>
+          <Property Name="ReviewLikeID" Type="Int32" Nullable="false" />
+          <Property Name="ReviewID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Productid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblReview">
+          <Key>
+            <PropertyRef Name="ReviewID" />
+          </Key>
+          <Property Name="ReviewID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GlassID" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Review" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ReviewImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserPass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserImage" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserStatus" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblVariation">
+          <Key>
+            <PropertyRef Name="VariationID" />
+          </Key>
+          <Property Name="VariationID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ColorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Color2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrameAWidth" Type="Double" />
+          <Property Name="FrameBHeight" Type="Double" />
+          <Property Name="FrameED" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrameDBBridger" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrameTempleLegs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FrameTotalWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MinPDPositive" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MinPDNeg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ActivationCode">
+          <Key>
+            <PropertyRef Name="UID" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ForgetPassword">
+          <Key>
+            <PropertyRef Name="UID" />
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OlaGlassesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCoupons" EntityType="Self.tblCoupon" />
+          <EntitySet Name="tblFavourites" EntityType="Self.tblFavourite" />
+          <EntitySet Name="tblglassPictures" EntityType="Self.tblglassPicture" />
+          <EntitySet Name="tblOrderPrescriptions" EntityType="Self.tblOrderPrescription" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblReviewLikes" EntityType="Self.tblReviewLike" />
+          <EntitySet Name="tblReviews" EntityType="Self.tblReview" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblVariations" EntityType="Self.tblVariation" />
+          <EntitySet Name="ActivationCodes" EntityType="Self.ActivationCode" />
+          <EntitySet Name="ForgetPasswords" EntityType="Self.ForgetPassword" />
+          <EntitySet Name="tblSizes" EntityType="OlaGlassesModel.tblSize" />
+          <EntitySet Name="tblSettings" EntityType="OlaGlassesModel.tblSetting" />
+          <FunctionImport Name="Sp_Get_Favourite_List" ReturnType="Collection(OlaGlassesModel.Sp_Get_Favourite_List_Result)">
+          <Parameter Name="Userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblColors" EntityType="OlaGlassesModel.tblColors" />
+          <FunctionImport Name="Sp_Get_Five_Reviews" ReturnType="Collection(OlaGlassesModel.Sp_Get_Five_Reviews_Result)" />
+          <FunctionImport Name="Sp_Get_Product_List" ReturnType="Collection(OlaGlassesModel.Sp_Get_Product_List_Result)">
+            <Parameter Name="Userid" Mode="In" Type="Int32" />
+            <Parameter Name="Sticker" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Get_Product_List_Filter" ReturnType="Collection(OlaGlassesModel.Sp_Get_Product_List_Filter_Result)">
+            <Parameter Name="ProductType" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="cwhere" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Get_Product_List_Filter_Accessory" ReturnType="Collection(OlaGlassesModel.Sp_Get_Product_List_Filter_Accessory_Result)">
+          <Parameter Name="cwhere" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblUserPrescription" EntityType="OlaGlassesModel.tblUserPrescription" />
+          <EntitySet Name="tblcart" EntityType="OlaGlassesModel.tblcart" />
+          <EntitySet Name="tblOrder" EntityType="OlaGlassesModel.tblOrder" />
+          <EntitySet Name="tblOrderDetails" EntityType="OlaGlassesModel.tblOrderDetails" />
+          <FunctionImport Name="spgetorderDetails" ReturnType="Collection(OlaGlassesModel.spgetorderDetails_Result4)">
+          <Parameter Name="OrderID" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="tblSize">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TypeValue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="spgetorderDetails_Result">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="userID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsPaid" Nullable="true" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Vision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OrderComments" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+          <Property Type="String" Name="UserAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrderDetailID" Nullable="false" />
+          <Property Type="Int32" Name="OrderID1" Nullable="true" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="Productname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductPrice" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="postalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="shippingCountry" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="OrderDate1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Vision1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UV_Protection" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Total1" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductVariation" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="Double" Name="TaxAmount" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="Int32" Name="PrescriptionID" Nullable="true" />
+          <Property Type="Int32" Name="ProductID1" Nullable="true" />
+          <Property Type="Int32" Name="OrderID2" Nullable="true" />
+          <Property Type="Double" Name="r_sph" Nullable="true" />
+          <Property Type="Double" Name="r_cyl" Nullable="true" />
+          <Property Type="Double" Name="r_axis" Nullable="true" />
+          <Property Type="Double" Name="r_add" Nullable="true" />
+          <Property Type="Double" Name="l_sph" Nullable="true" />
+          <Property Type="Double" Name="l_cyl" Nullable="true" />
+          <Property Type="Double" Name="l_axis" Nullable="true" />
+          <Property Type="Double" Name="l_add" Nullable="true" />
+          <Property Type="String" Name="lensType2" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="quantity1" Nullable="true" />
+          <Property Type="String" Name="Fname1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Lname1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="prescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="prescriptionDate" Nullable="true" />
+          <Property Type="Double" Name="PD" Nullable="true" />
+          <Property Type="Int32" Name="UserID1" Nullable="true" />
+          <Property Type="String" Name="PDImage" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PrescriptionImage" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spgetorderDetails_Result1">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="userID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsPaid" Nullable="true" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Vision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OrderComments" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+          <Property Type="String" Name="UserAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrderDetailID" Nullable="false" />
+          <Property Type="Int32" Name="OrderID1" Nullable="true" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="Productname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductPrice" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="postalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="shippingCountry" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="OrderDate1" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Vision1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UV_Protection" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Total1" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductVariation" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="Double" Name="TaxAmount" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="String" Name="FrameColor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductImage" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="ShippingAmount" Nullable="true" />
+          <Property Type="Double" Name="Subtotal" Nullable="true" />
+          <Property Type="Int32" Name="PrescriptionID" Nullable="true" />
+          <Property Type="Int32" Name="ProductID1" Nullable="true" />
+          <Property Type="Int32" Name="OrderID2" Nullable="true" />
+          <Property Type="Double" Name="r_sph" Nullable="true" />
+          <Property Type="Double" Name="r_cyl" Nullable="true" />
+          <Property Type="Double" Name="r_axis" Nullable="true" />
+          <Property Type="Double" Name="r_add" Nullable="true" />
+          <Property Type="Double" Name="l_sph" Nullable="true" />
+          <Property Type="Double" Name="l_cyl" Nullable="true" />
+          <Property Type="Double" Name="l_axis" Nullable="true" />
+          <Property Type="Double" Name="l_add" Nullable="true" />
+          <Property Type="String" Name="lensType2" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="quantity1" Nullable="true" />
+          <Property Type="String" Name="Fname1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Lname1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="prescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="prescriptionDate" Nullable="true" />
+          <Property Type="Double" Name="PD" Nullable="true" />
+          <Property Type="Int32" Name="UserID1" Nullable="true" />
+          <Property Type="String" Name="PDImage" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PrescriptionImage" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spgetorderDetails_Result2">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="userID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsPaid" Nullable="true" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="OrderComments" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+          <Property Type="String" Name="UserAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrderDetailID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="Productname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductPrice" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="postalCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="shippingCountry" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Vision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UV_Protection" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductTotal" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductVariation" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="Double" Name="TaxAmount" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="String" Name="FrameColor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductImage" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="ShippingAmount" Nullable="true" />
+          <Property Type="Double" Name="Subtotal" Nullable="true" />
+          <Property Type="Int32" Name="PrescriptionID" Nullable="true" />
+          <Property Type="Double" Name="r_sph" Nullable="true" />
+          <Property Type="Double" Name="r_cyl" Nullable="true" />
+          <Property Type="Double" Name="r_axis" Nullable="true" />
+          <Property Type="Double" Name="r_add" Nullable="true" />
+          <Property Type="Double" Name="l_sph" Nullable="true" />
+          <Property Type="Double" Name="l_cyl" Nullable="true" />
+          <Property Type="Double" Name="l_axis" Nullable="true" />
+          <Property Type="Double" Name="l_add" Nullable="true" />
+          <Property Type="String" Name="prescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="prescriptionDate" Nullable="true" />
+          <Property Type="Double" Name="PD" Nullable="true" />
+          <Property Type="String" Name="PDImage" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PrescriptionImage" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="tblSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clientId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="clientSecret" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccountType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SMTP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="StripeID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReceipentEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Sp_Get_Favourite_List_Result">
+          <Property Type="Int32" Name="Likestatus" Nullable="false" />
+          <Property Type="String" Name="Sticker" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="GlassID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ColorCode" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="tblColors">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hexacode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="colorname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="Sp_Get_Five_Reviews_Result">
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="GlassID" Nullable="true" />
+          <Property Type="String" Name="UserImage" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ReviewImage" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="String" Name="Review" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="TotalReviews" Nullable="true" />
+          <Property Type="Int32" Name="AverageRating" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_Get_Product_List_Result">
+          <Property Type="Int32" Name="Likestatus" Nullable="false" />
+          <Property Type="String" Name="Sticker" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="GlassID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ColorCode" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Sp_Get_Product_List_Filter_Result">
+          <Property Type="Int32" Name="Likestatus" Nullable="false" />
+          <Property Type="String" Name="Sticker" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="GlassID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ColorCode" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Sp_Get_Product_List_Filter_Accessory_Result">
+          <Property Type="Int32" Name="Likestatus" Nullable="false" />
+          <Property Type="String" Name="Sticker" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="GlassID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="Price" Nullable="true" />
+          <Property Type="String" Name="ImagePath" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tblUserPrescription">
+          <Key>
+            <PropertyRef Name="PrescriptionID" />
+          </Key>
+          <Property Name="PrescriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="r_sph" Type="Double" />
+          <Property Name="r_cyl" Type="Double" />
+          <Property Name="r_axis" Type="Double" />
+          <Property Name="r_add" Type="Double" />
+          <Property Name="l_sph" Type="Double" />
+          <Property Name="l_cyl" Type="Double" />
+          <Property Name="l_axis" Type="Double" />
+          <Property Name="l_add" Type="Double" />
+          <Property Name="lensType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescriptionDate" Type="DateTime" Precision="0" />
+          <Property Name="PD" Type="Double" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PDImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PrescriptionImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblcart">
+          <Key>
+            <PropertyRef Name="Cartid" />
+          </Key>
+          <Property Name="Cartid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GlassID" Type="Int32" Nullable="false" />
+          <Property Name="Variationid" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="LensType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VisionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UVProtection" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Double" Nullable="false" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="r_sph" Type="Double" />
+          <Property Name="r_cyl" Type="Double" />
+          <Property Name="r_axis" Type="Double" />
+          <Property Name="r_add" Type="Double" />
+          <Property Name="l_sph" Type="Double" />
+          <Property Name="l_cyl" Type="Double" />
+          <Property Name="l_axis" Type="Double" />
+          <Property Name="l_add" Type="Double" />
+          <Property Name="lensType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PD" Type="Double" />
+          <Property Name="PDImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PrescriptionImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="shape" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colour" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="ProductImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Productcategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaxAmount" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Shippingamount" Type="Double" />
+          <Property Name="GranTotal" Type="Double" />
+          <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prescriptionDate" Type="DateTime" Precision="0" />
+          <Property Name="Extracharges" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsPaid" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Vision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LensType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderComments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="UserAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="BFname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BLname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Bcity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BState" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BPostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SFname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SLname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Scity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SState" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SPostalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblOrderDetails">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Productname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Vision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LensType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UV_Protection" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductVariation" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="TaxAmount" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="FrameColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingAmount" Type="Double" />
+          <Property Name="Subtotal" Type="Double" />
+        </EntityType>
+        <ComplexType Name="spgetorderDetails_Result3">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="userID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsPaid" Nullable="true" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="OrderComments" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+          <Property Type="String" Name="UserAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrderDetailID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="Productname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductPrice" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BFname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BLname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="BCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BPostalCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BPhone" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BCountry" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Vision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UV_Protection" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductTotal" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductVariation" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="Double" Name="TaxAmount" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="String" Name="FrameColor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductImage" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="ShippingAmount" Nullable="true" />
+          <Property Type="Double" Name="Subtotal" Nullable="true" />
+          <Property Type="Int32" Name="PrescriptionID" Nullable="true" />
+          <Property Type="Double" Name="r_sph" Nullable="true" />
+          <Property Type="Double" Name="r_cyl" Nullable="true" />
+          <Property Type="Double" Name="r_axis" Nullable="true" />
+          <Property Type="Double" Name="r_add" Nullable="true" />
+          <Property Type="Double" Name="l_sph" Nullable="true" />
+          <Property Type="Double" Name="l_cyl" Nullable="true" />
+          <Property Type="Double" Name="l_axis" Nullable="true" />
+          <Property Type="Double" Name="l_add" Nullable="true" />
+          <Property Type="String" Name="prescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="prescriptionDate" Nullable="true" />
+          <Property Type="Double" Name="PD" Nullable="true" />
+          <Property Type="String" Name="PDImage" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PrescriptionImage" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="spgetorderDetails_Result4">
+          <Property Type="Int32" Name="OrderID" Nullable="false" />
+          <Property Type="Int32" Name="userID" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UserEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IsPaid" Nullable="true" />
+          <Property Type="Decimal" Name="TotalAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="OrderComments" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+          <Property Type="String" Name="UserAddress" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="OrderDetailID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="Productname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductPrice" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BFname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BLname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="BCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BPostalCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BPhone" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BCountry" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SFname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SLname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="SCity" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SState" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SPostalCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SPhone" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SEmail" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SCountry" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Vision" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LensType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="UV_Protection" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductTotal" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductVariation" Nullable="true" />
+          <Property Type="Int32" Name="quantity" Nullable="true" />
+          <Property Type="Double" Name="TaxAmount" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="String" Name="FrameColor" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductImage" Nullable="true" MaxLength="500" />
+          <Property Type="Double" Name="ShippingAmount" Nullable="true" />
+          <Property Type="Double" Name="Subtotal" Nullable="true" />
+          <Property Type="Int32" Name="PrescriptionID" Nullable="true" />
+          <Property Type="Double" Name="r_sph" Nullable="true" />
+          <Property Type="Double" Name="r_cyl" Nullable="true" />
+          <Property Type="Double" Name="r_axis" Nullable="true" />
+          <Property Type="Double" Name="r_add" Nullable="true" />
+          <Property Type="Double" Name="l_sph" Nullable="true" />
+          <Property Type="Double" Name="l_cyl" Nullable="true" />
+          <Property Type="Double" Name="l_axis" Nullable="true" />
+          <Property Type="Double" Name="l_add" Nullable="true" />
+          <Property Type="String" Name="prescription" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="prescriptionDate" Nullable="true" />
+          <Property Type="Double" Name="PD" Nullable="true" />
+          <Property Type="String" Name="PDImage" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="PrescriptionImage" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OlaGlassesModelStoreContainer" CdmEntityContainer="OlaGlassesEntities">
+          <EntitySetMapping Name="tblCoupons">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblCoupon">
+              <MappingFragment StoreEntitySet="tblCoupon">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="CouponID" ColumnName="CouponID" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="DiscountType" ColumnName="DiscountType" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CouponStatus" ColumnName="CouponStatus" />
+                <ScalarProperty Name="CouponLink" ColumnName="CouponLink" />
+                <ScalarProperty Name="CouponColor" ColumnName="CouponColor" />
+                <ScalarProperty Name="TimesUsed" ColumnName="TimesUsed" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFavourites">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblFavourite">
+              <MappingFragment StoreEntitySet="tblFavourite">
+                <ScalarProperty Name="FavouriteID" ColumnName="FavouriteID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblglassPictures">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblglassPicture">
+              <MappingFragment StoreEntitySet="tblglassPicture">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="glassID" ColumnName="glassID" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderPrescriptions">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblOrderPrescription">
+              <MappingFragment StoreEntitySet="tblOrderPrescription">
+                <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="r_sph" ColumnName="r_sph" />
+                <ScalarProperty Name="r_cyl" ColumnName="r_cyl" />
+                <ScalarProperty Name="r_axis" ColumnName="r_axis" />
+                <ScalarProperty Name="r_add" ColumnName="r_add" />
+                <ScalarProperty Name="l_sph" ColumnName="l_sph" />
+                <ScalarProperty Name="l_cyl" ColumnName="l_cyl" />
+                <ScalarProperty Name="l_axis" ColumnName="l_axis" />
+                <ScalarProperty Name="l_add" ColumnName="l_add" />
+                <ScalarProperty Name="lensType" ColumnName="lensType" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="prescription" ColumnName="prescription" />
+                <ScalarProperty Name="prescriptionDate" ColumnName="prescriptionDate" />
+                <ScalarProperty Name="PD" ColumnName="PD" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PDImage" ColumnName="PDImage" />
+                <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="shape" ColumnName="shape" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="AvailableSize" ColumnName="AvailableSize" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="OrignalCode" ColumnName="OrignalCode" />
+                <ScalarProperty Name="Mgf_Code" ColumnName="Mgf_Code" />
+                <ScalarProperty Name="Rim" ColumnName="Rim" />
+                <ScalarProperty Name="Sticker" ColumnName="Sticker" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+                <ScalarProperty Name="ReleatedTo" ColumnName="ReleatedTo" />
+                <ScalarProperty Name="Clicks" ColumnName="Clicks" />
+                <ScalarProperty Name="SellinClinic" ColumnName="SellinClinic" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviewLikes">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblReviewLike">
+              <MappingFragment StoreEntitySet="tblReviewLike">
+                <ScalarProperty Name="Productid" ColumnName="Productid" />
+                <ScalarProperty Name="ReviewLikeID" ColumnName="ReviewLikeID" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReviews">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblReview">
+              <MappingFragment StoreEntitySet="tblReviews">
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ReviewImage" ColumnName="ReviewImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVariations">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblVariation">
+              <MappingFragment StoreEntitySet="tblVariation">
+                <ScalarProperty Name="VariationID" ColumnName="VariationID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="Color1" ColumnName="Color1" />
+                <ScalarProperty Name="Color2" ColumnName="Color2" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="FrameAWidth" ColumnName="FrameAWidth" />
+                <ScalarProperty Name="FrameBHeight" ColumnName="FrameBHeight" />
+                <ScalarProperty Name="FrameED" ColumnName="FrameED" />
+                <ScalarProperty Name="FrameDBBridger" ColumnName="FrameDBBridger" />
+                <ScalarProperty Name="FrameTempleLegs" ColumnName="FrameTempleLegs" />
+                <ScalarProperty Name="FrameTotalWidth" ColumnName="FrameTotalWidth" />
+                <ScalarProperty Name="MinPDPositive" ColumnName="MinPDPositive" />
+                <ScalarProperty Name="MinPDNeg" ColumnName="MinPDNeg" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActivationCodes">
+            <EntityTypeMapping TypeName="OlaGlassesModel.ActivationCode">
+              <MappingFragment StoreEntitySet="ActivationCode">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForgetPasswords">
+            <EntityTypeMapping TypeName="OlaGlassesModel.ForgetPassword">
+              <MappingFragment StoreEntitySet="ForgetPassword">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSizes">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblSize">
+              <MappingFragment StoreEntitySet="tblSizes">
+                <ScalarProperty Name="TypeValue" ColumnName="TypeValue" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSettings">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblSetting">
+              <MappingFragment StoreEntitySet="tblSettings">
+                <ScalarProperty Name="ReceipentEmail" ColumnName="ReceipentEmail" />
+                <ScalarProperty Name="StripeID" ColumnName="StripeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="SMTP" ColumnName="SMTP" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="clientSecret" ColumnName="clientSecret" />
+                <ScalarProperty Name="clientId" ColumnName="clientId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Get_Favourite_List" FunctionName="OlaGlassesModel.Store.Sp_Get_Favourite_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.Sp_Get_Favourite_List_Result">
+                <ScalarProperty Name="Likestatus" ColumnName="Likestatus" />
+                <ScalarProperty Name="Sticker" ColumnName="Sticker" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblColors">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblColors">
+              <MappingFragment StoreEntitySet="tblColors">
+                <ScalarProperty Name="colorname" ColumnName="colorname" />
+                <ScalarProperty Name="hexacode" ColumnName="hexacode" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Get_Five_Reviews" FunctionName="OlaGlassesModel.Store.Sp_Get_Five_Reviews">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.Sp_Get_Five_Reviews_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="ReviewImage" ColumnName="ReviewImage" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="TotalReviews" ColumnName="TotalReviews" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Get_Product_List" FunctionName="OlaGlassesModel.Store.Sp_Get_Product_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.Sp_Get_Product_List_Result">
+                <ScalarProperty Name="Likestatus" ColumnName="Likestatus" />
+                <ScalarProperty Name="Sticker" ColumnName="Sticker" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Get_Product_List_Filter" FunctionName="OlaGlassesModel.Store.Sp_Get_Product_List_Filter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.Sp_Get_Product_List_Filter_Result">
+                <ScalarProperty Name="Likestatus" ColumnName="Likestatus" />
+                <ScalarProperty Name="Sticker" ColumnName="Sticker" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Get_Product_List_Filter_Accessory" FunctionName="OlaGlassesModel.Store.Sp_Get_Product_List_Filter_Accessory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.Sp_Get_Product_List_Filter_Accessory_Result">
+                <ScalarProperty Name="Likestatus" ColumnName="Likestatus" />
+                <ScalarProperty Name="Sticker" ColumnName="Sticker" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblUserPrescription">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblUserPrescription">
+              <MappingFragment StoreEntitySet="tblUserPrescription">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+                <ScalarProperty Name="PDImage" ColumnName="PDImage" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PD" ColumnName="PD" />
+                <ScalarProperty Name="prescriptionDate" ColumnName="prescriptionDate" />
+                <ScalarProperty Name="prescription" ColumnName="prescription" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="lensType" ColumnName="lensType" />
+                <ScalarProperty Name="l_add" ColumnName="l_add" />
+                <ScalarProperty Name="l_axis" ColumnName="l_axis" />
+                <ScalarProperty Name="l_cyl" ColumnName="l_cyl" />
+                <ScalarProperty Name="l_sph" ColumnName="l_sph" />
+                <ScalarProperty Name="r_add" ColumnName="r_add" />
+                <ScalarProperty Name="r_axis" ColumnName="r_axis" />
+                <ScalarProperty Name="r_cyl" ColumnName="r_cyl" />
+                <ScalarProperty Name="r_sph" ColumnName="r_sph" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblcart">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblcart">
+              <MappingFragment StoreEntitySet="tblcart">
+                <ScalarProperty Name="Extracharges" ColumnName="Extracharges" />
+                <ScalarProperty Name="prescriptionDate" ColumnName="prescriptionDate" />
+                <ScalarProperty Name="prescription" ColumnName="prescription" />
+                <ScalarProperty Name="Lname" ColumnName="Lname" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="GranTotal" ColumnName="GranTotal" />
+                <ScalarProperty Name="Shippingamount" ColumnName="Shippingamount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="Productcategory" ColumnName="Productcategory" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="shape" ColumnName="shape" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+                <ScalarProperty Name="PDImage" ColumnName="PDImage" />
+                <ScalarProperty Name="PD" ColumnName="PD" />
+                <ScalarProperty Name="lensType1" ColumnName="lensType1" />
+                <ScalarProperty Name="l_add" ColumnName="l_add" />
+                <ScalarProperty Name="l_axis" ColumnName="l_axis" />
+                <ScalarProperty Name="l_cyl" ColumnName="l_cyl" />
+                <ScalarProperty Name="l_sph" ColumnName="l_sph" />
+                <ScalarProperty Name="r_add" ColumnName="r_add" />
+                <ScalarProperty Name="r_axis" ColumnName="r_axis" />
+                <ScalarProperty Name="r_cyl" ColumnName="r_cyl" />
+                <ScalarProperty Name="r_sph" ColumnName="r_sph" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="UVProtection" ColumnName="UVProtection" />
+                <ScalarProperty Name="VisionType" ColumnName="VisionType" />
+                <ScalarProperty Name="LensType" ColumnName="LensType" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Variationid" ColumnName="Variationid" />
+                <ScalarProperty Name="GlassID" ColumnName="GlassID" />
+                <ScalarProperty Name="Cartid" ColumnName="Cartid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrder">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="SEmail" ColumnName="SEmail" />
+                <ScalarProperty Name="SPhone" ColumnName="SPhone" />
+                <ScalarProperty Name="SCountry" ColumnName="SCountry" />
+                <ScalarProperty Name="SPostalCode" ColumnName="SPostalCode" />
+                <ScalarProperty Name="SState" ColumnName="SState" />
+                <ScalarProperty Name="Scity" ColumnName="Scity" />
+                <ScalarProperty Name="SAddress" ColumnName="SAddress" />
+                <ScalarProperty Name="SLname" ColumnName="SLname" />
+                <ScalarProperty Name="SFname" ColumnName="SFname" />
+                <ScalarProperty Name="BEmail" ColumnName="BEmail" />
+                <ScalarProperty Name="BPhone" ColumnName="BPhone" />
+                <ScalarProperty Name="BCountry" ColumnName="BCountry" />
+                <ScalarProperty Name="BPostalCode" ColumnName="BPostalCode" />
+                <ScalarProperty Name="BState" ColumnName="BState" />
+                <ScalarProperty Name="Bcity" ColumnName="Bcity" />
+                <ScalarProperty Name="BAddress" ColumnName="BAddress" />
+                <ScalarProperty Name="BLname" ColumnName="BLname" />
+                <ScalarProperty Name="BFname" ColumnName="BFname" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderComments" ColumnName="OrderComments" />
+                <ScalarProperty Name="LensType" ColumnName="LensType" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderDetails">
+            <EntityTypeMapping TypeName="OlaGlassesModel.tblOrderDetails">
+              <MappingFragment StoreEntitySet="tblOrderDetails">
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="ShippingAmount" ColumnName="ShippingAmount" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="FrameColor" ColumnName="FrameColor" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="ProductVariation" ColumnName="ProductVariation" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="UV_Protection" ColumnName="UV_Protection" />
+                <ScalarProperty Name="LensType" ColumnName="LensType" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="Productname" ColumnName="Productname" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spgetorderDetails" FunctionName="OlaGlassesModel.Store.spgetorderDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OlaGlassesModel.spgetorderDetails_Result4">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="OrderComments" ColumnName="OrderComments" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Productname" ColumnName="Productname" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="BFname" ColumnName="BFname" />
+                <ScalarProperty Name="BLname" ColumnName="BLname" />
+                <ScalarProperty Name="BAddress" ColumnName="BAddress" />
+                <ScalarProperty Name="BCity" ColumnName="BCity" />
+                <ScalarProperty Name="BState" ColumnName="BState" />
+                <ScalarProperty Name="BPostalCode" ColumnName="BPostalCode" />
+                <ScalarProperty Name="BPhone" ColumnName="BPhone" />
+                <ScalarProperty Name="BEmail" ColumnName="BEmail" />
+                <ScalarProperty Name="BCountry" ColumnName="BCountry" />
+                <ScalarProperty Name="SFname" ColumnName="SFname" />
+                <ScalarProperty Name="SLname" ColumnName="SLname" />
+                <ScalarProperty Name="SAddress" ColumnName="SAddress" />
+                <ScalarProperty Name="SCity" ColumnName="SCity" />
+                <ScalarProperty Name="SState" ColumnName="SState" />
+                <ScalarProperty Name="SPostalCode" ColumnName="SPostalCode" />
+                <ScalarProperty Name="SPhone" ColumnName="SPhone" />
+                <ScalarProperty Name="SEmail" ColumnName="SEmail" />
+                <ScalarProperty Name="SCountry" ColumnName="SCountry" />
+                <ScalarProperty Name="Vision" ColumnName="Vision" />
+                <ScalarProperty Name="LensType" ColumnName="LensType" />
+                <ScalarProperty Name="UV_Protection" ColumnName="UV_Protection" />
+                <ScalarProperty Name="ProductTotal" ColumnName="ProductTotal" />
+                <ScalarProperty Name="ProductVariation" ColumnName="ProductVariation" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="FrameColor" ColumnName="FrameColor" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ShippingAmount" ColumnName="ShippingAmount" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
+                <ScalarProperty Name="r_sph" ColumnName="r_sph" />
+                <ScalarProperty Name="r_cyl" ColumnName="r_cyl" />
+                <ScalarProperty Name="r_axis" ColumnName="r_axis" />
+                <ScalarProperty Name="r_add" ColumnName="r_add" />
+                <ScalarProperty Name="l_sph" ColumnName="l_sph" />
+                <ScalarProperty Name="l_cyl" ColumnName="l_cyl" />
+                <ScalarProperty Name="l_axis" ColumnName="l_axis" />
+                <ScalarProperty Name="l_add" ColumnName="l_add" />
+                <ScalarProperty Name="prescription" ColumnName="prescription" />
+                <ScalarProperty Name="prescriptionDate" ColumnName="prescriptionDate" />
+                <ScalarProperty Name="PD" ColumnName="PD" />
+                <ScalarProperty Name="PDImage" ColumnName="PDImage" />
+                <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

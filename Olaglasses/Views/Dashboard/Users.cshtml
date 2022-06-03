@@ -1,0 +1,95 @@
+﻿@using Olaglasses.Models;
+@{
+    List<tblUser> users = (List<tblUser>)ViewBag.usersList;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+
+                    <h2 class="breadcrumb-title">Users</h2>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 col-4"></div>
+    
+</div>
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="card">
+            <div class="card-body">
+               
+                <div class="table-responsive">
+                    <table class="table table-hover table-center mb-0" id="GlassesList">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in users)
+                            {
+                                <tr>
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a href="javascript:void(0);">@item.Firstname</a>
+                                        </h2>
+                                    </td>
+
+
+                                    <td>@item.Lastname</td>
+                                    <td>@item.UserEmail</td>
+                                   
+                                   
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Dashboardassets/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Dashboardassets/assets/plugins/datatables/datatables.min.js"></script>
+<script>
+    function DeleteData(ID) {
+
+        var myModal = $('#delete_post');
+        $("#id", myModal).val(ID);
+        $("#delete_post").modal('show');
+    }
+    $(document).ready(function () {
+        $('#GlassesList').DataTable({
+            searching: true,
+            "ordering": false
+        });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#user').addClass('active');
+
+    });
+</script>
+

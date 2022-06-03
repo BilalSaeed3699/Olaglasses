@@ -1,0 +1,162 @@
+﻿@using Olaglasses.Models;
+@model Olaglasses.Models.tblCoupon
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+<head>
+
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/dropzone/dropzone.min.css">
+
+    <link rel="stylesheet" href="~/Dashboardassets/assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+
+    <script src="~/Dashboardassets/assets/js/profile-settings.js"></script>
+
+    <script src="~/Dashboardassets/assets/plugins/dropzone/dropzone.min.js"></script>
+</head>
+<div class="row">
+    <div class="col-md-5 col-5">
+        <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    @if (Model.CouponID > 0)
+                    {
+                        <h2 class="breadcrumb-title">Edit Coupon Info</h2>
+                    }
+                    else
+                    {
+                        <h2 class="breadcrumb-title">Add Coupon Info</h2>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="doc-review review-listing custom-edit-service">
+
+
+    <!-- Add Blog -->
+    <div class="card">
+        <div class="card-body">
+
+            <form method="post" action="@Url.Action("Create","Coupons")">
+                <input type="hidden" name="CouponID" id="CouponID" value="@Model.CouponID">
+
+                <div class="service-fields">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Coupon <span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="text" name="CouponCode" id="CouponCode" value="@Model.CouponCode" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Color <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="CouponColor">
+                                    @foreach (var item in ViewBag.color)
+                                    {
+                                        if (Model.CouponColor == item.hexacode)
+                                        {
+                                            <option value="@item.hexacode" selected>@item.colorname</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.hexacode">@item.colorname</option>
+                                        }
+                                    }
+                                    </select>
+                                    @*<input class="form-control" type="text" name="CouponColor" id="CouponColor" value="@Model.CouponColor" required="">*@
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Discount <span class="text-danger">*</span></label>
+
+                                <input class="form-control" type="text" name="Discount" id="Discount" value="@Model.Discount" required="">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="service-fields">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Description <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Description" id="Description" value="@Model.Description" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Text <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="Text" id="Text" value="@Model.Text" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Link <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="CouponLink" id="CouponLink" value="@Model.CouponLink" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>Status <span class="text-danger">*</span></label>
+                                <select class="form-control select" name="CouponStatus">
+
+                                    @if (Model.CouponStatus == "Active")
+                                    {
+                                        <option selected>Active</option>
+                                        <option>InActive</option>
+
+                                    }
+                                    @if (Model.CouponStatus == "InActive")
+                                    {
+                                        <option>Active</option>
+                                        <option selected>InActive</option>
+                                    }
+
+                                    else if (Model.CouponStatus == "")
+
+                                    {
+
+                                        <option selected>Active</option>
+                                        <option>InActive</option>
+                                    }
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" style="margin-top:3%">
+                            <div class="form-group">
+                                <button class="btn btn-primary submit-btn" type="submit" name="form_submit" value="submit">Submit</button>
+                                <a href="@Url.Action("Index","Coupons")"><button class="btn btn-secondary submit-btn" type="button" name="form_submit" value="submit">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </form>
+           
+        </div>
+    </div>
+    
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $('#coupon').addClass('active');
+
+    });
+</script>
+
+
